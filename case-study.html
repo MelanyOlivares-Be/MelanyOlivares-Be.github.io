@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZePOS — Caso de estudio · Melany Olivares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0C0C0F; --surface: #13131A; --surface2: #1A1A24;
+      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+      --text: #EAE8E0; --muted: #7A7870; --accent: #5DCAA5; --coral: #D85A30;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(12,12,15,0.85); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 18px; color: var(--text); text-decoration: none; }
+    .nav-back { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* CASE HERO */
+    .case-hero {
+      padding: 160px 48px 80px;
+      max-width: 1100px; margin: 0 auto;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .case-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .case-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .case-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text); max-width: 800px; margin-bottom: 28px; }
+    .case-title em { font-style: italic; color: var(--accent); }
+    .case-desc { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; font-weight: 300; margin-bottom: 48px; }
+    .case-meta { display: flex; gap: 40px; flex-wrap: wrap; padding-top: 40px; border-top: 0.5px solid var(--border); }
+    .case-meta-item { display: flex; flex-direction: column; gap: 6px; }
+    .case-meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .case-meta-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+    /* METRICS STRIP */
+    .metrics-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 0.5px solid var(--border); border-top: 0.5px solid var(--border); }
+    .metric-cell { padding: 40px; border-right: 0.5px solid var(--border); max-width: 1100px; }
+    .metric-cell:last-child { border-right: none; }
+    .metric-num { font-family: var(--font-display); font-size: 56px; line-height: 1; margin-bottom: 8px; letter-spacing: -0.03em; }
+    .metric-num.positive { color: var(--accent); }
+    .metric-num.neutral { color: var(--text); }
+    .metric-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .metrics-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+    .metrics-inner .metric-cell { border-right: 0.5px solid var(--border); }
+    .metrics-inner .metric-cell:last-child { border-right: none; }
+
+    /* BODY */
+    .case-body { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+    .body-section { margin-bottom: 80px; }
+    .body-section:last-child { margin-bottom: 0; }
+    .body-section-title { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; padding-bottom: 12px; border-bottom: 0.5px solid var(--border); }
+
+    /* CONTEXTO */
+    .contexto-text { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 720px; font-weight: 300; }
+    .contexto-text strong { color: var(--text); font-weight: 500; }
+
+    /* RESUMEN */
+    .resumen-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-radius: 6px; overflow: hidden; }
+    .resumen-cell { background: var(--surface2); padding: 28px 24px; }
+    .resumen-icon { font-size: 20px; margin-bottom: 12px; }
+    .resumen-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; font-weight: 500; }
+    .resumen-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .resumen-text strong { color: var(--text); font-weight: 500; }
+
+    /* PROCESO */
+    .proceso-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; margin-top: 16px; }
+    .proceso-steps::before { content: ''; position: absolute; top: 19px; left: 5%; right: 5%; height: 0.5px; background: linear-gradient(90deg, var(--accent), rgba(93,202,165,0.1)); z-index: 0; }
+    .proceso-step { padding: 0 20px; padding-top: 52px; position: relative; }
+    .proceso-num { position: absolute; top: 0; left: 20px; width: 38px; height: 38px; border-radius: 50%; background: var(--surface2); border: 0.5px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent); font-weight: 500; z-index: 1; }
+    .proceso-step-tag { display: inline-block; font-size: 10px; color: var(--accent); border: 0.5px solid rgba(93,202,165,0.3); border-radius: 3px; padding: 2px 8px; margin-bottom: 8px; }
+    .proceso-step-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+    .proceso-step-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* DECISIONS */
+    .decisions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .decision-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
+    .decision-num { font-family: var(--font-display); font-size: 48px; color: var(--border2); line-height: 1; margin-bottom: 16px; }
+    .decision-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+    .decision-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* IMPACTO */
+    .impacto-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+    .impacto-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
+    .impacto-card-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .impacto-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 0.5px solid var(--border); gap: 8px; }
+    .impacto-row:last-child { border-bottom: none; }
+    .impacto-label { font-size: 12px; color: var(--muted); flex: 1; }
+    .impacto-before { font-size: 13px; color: var(--coral); font-weight: 500; }
+    .impacto-arrow { font-size: 11px; color: var(--border2); }
+    .impacto-after { font-size: 13px; color: var(--accent); font-weight: 500; }
+    .impacto-note { font-size: 13px; color: var(--muted); line-height: 1.7; padding: 20px 24px; background: rgba(93,202,165,0.04); border-radius: 4px; border-left: 2px solid var(--accent); }
+
+    /* BEFORE AFTER */
+    .ba-section-label { font-size: 13px; font-weight: 500; color: var(--text); margin: 32px 0 16px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+    .ba-panel { border-radius: 6px; padding: 28px; border: 0.5px solid var(--border); }
+    .ba-panel.before { background: rgba(216,90,48,0.04); border-color: rgba(216,90,48,0.15); }
+    .ba-panel.after  { background: rgba(93,202,165,0.04); border-color: rgba(93,202,165,0.15); }
+    .ba-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .ba-panel.before .ba-label { color: var(--coral); }
+    .ba-panel.after  .ba-label { color: var(--accent); }
+    .ba-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .ba-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .ba-list li { font-size: 13px; color: var(--muted); line-height: 1.5; padding-left: 16px; position: relative; }
+    .ba-list li::before { content: '—'; position: absolute; left: 0; font-size: 12px; }
+    .ba-panel.before .ba-list li::before { color: var(--coral); }
+    .ba-panel.after  .ba-list li::before { color: var(--accent); }
+
+    /* REFLEXIONES */
+    .reflexiones-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .reflexion-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
+    .reflexion-icon { font-size: 20px; margin-bottom: 12px; }
+    .reflexion-title { font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }
+    .reflexion-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .reflection-block { border-left: 1px solid var(--accent); padding: 28px 36px; margin-top: 48px; background: rgba(93,202,165,0.03); border-radius: 0 6px 6px 0; }
+    .reflection-quote { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--text); line-height: 1.5; }
+
+    /* FOOTER */
+    .case-footer { border-top: 0.5px solid var(--border); padding: 48px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .footer-name { font-family: var(--font-display); font-size: 16px; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .case-hero { padding: 120px 24px 56px; }
+      .case-body { padding: 48px 24px; }
+      .metrics-inner { grid-template-columns: repeat(2,1fr); }
+      .metrics-inner .metric-cell:nth-child(2) { border-right: none; }
+      .resumen-grid { grid-template-columns: 1fr 1fr; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; }
+      .proceso-steps::before { display: none; }
+      .impacto-grid { grid-template-columns: 1fr; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .decisions-grid { grid-template-columns: 1fr; }
+      .reflexiones-grid { grid-template-columns: 1fr; }
+      .case-footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Melany Olivares</a>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<!-- CASE HERO -->
+<div class="case-hero">
+  <div class="case-eyebrow">Zebrands · ZePOS · 2024</div>
+  <h1 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em><br>para escalar.</h1>
+  <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma multicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin.</p>
+  <div class="case-meta">
+    <div class="case-meta-item"><span class="case-meta-label">Empresa</span><span class="case-meta-value">Zebrands</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">8 meses</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">18 personas</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mercados</span><span class="case-meta-value">México · Brasil</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX Lead — único diseñador</span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div style="border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+  <div class="metrics-inner" style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr);">
+    <div class="metric-cell"><div class="metric-num positive">−80%</div><div class="metric-desc">Errores en sincronización</div></div>
+    <div class="metric-cell"><div class="metric-num positive">75%</div><div class="metric-desc">Usuarios con mayor velocidad percibida</div></div>
+    <div class="metric-cell"><div class="metric-num positive">−50%</div><div class="metric-desc">Tiempo para crear una orden</div></div>
+    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">200+</div><div class="metric-desc">Tiendas sin incidentes en lanzamiento</div></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- CONTEXTO -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Contexto</div>
+    <p class="contexto-text">
+      Zebrands es una empresa de retail omnicanal con presencia en México y Brasil. Como parte de su ecosistema multitienda, opera su propio sistema de punto de venta, el cual es utilizado en más de 200 tiendas físicas. En 2023 detecté como UX el estado integral de la plataforma, colaborando con un equipo multidisciplinario conformado por frontend, backend, arquitectura y liderazgo técnico.<br><br>
+      El proyecto surgió tras identificar problemas críticos de <strong>performance, estabilidad y operación</strong> durante eventos de alta demanda como Hot Sale. El diseño no consistía únicamente en rediseñar la interfaz, sino en replantear un sistema capaz de soportar una operación <strong>multitienda y transaccional en tiempo real</strong>, reduciendo fricción en tienda y preparando la plataforma para crecer de forma sostenible.
+    </p>
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Resumen del proyecto</div>
+    <div class="resumen-grid">
+      <div class="resumen-cell">
+        <div class="resumen-icon">⚡</div>
+        <div class="resumen-label">El problema</div>
+        <div class="resumen-text">El POS presentaba tiempos de carga altos, catálogo sobrecargado, inconsistencias entre módulos, dependencia crítica del ERP RPNext y falta de visibilidad del stock en tiempo real. Los vendedores podían generar caídas con acciones cotidianas.</div>
+      </div>
+      <div class="resumen-cell">
+        <div class="resumen-icon">🎯</div>
+        <div class="resumen-label">El objetivo</div>
+        <div class="resumen-text">Transformar el sistema frágil en una plataforma escalable, optimizando catálogo, disponibilidad y flujos de operación. Mejorar velocidad de servicio, estabilidad y experiencia en tienda.</div>
+      </div>
+      <div class="resumen-cell">
+        <div class="resumen-icon">👤</div>
+        <div class="resumen-label">Mi rol</div>
+        <div class="resumen-text">Lideré la estrategia y experiencia de usuario como <strong>único diseñador UX</strong> durante la mayor parte del proyecto. Definí flujos, arquitectura y colaboré en la implementación en operación real.</div>
+      </div>
+      <div class="resumen-cell">
+        <div class="resumen-icon">📈</div>
+        <div class="resumen-label">El impacto</div>
+        <div class="resumen-text">Sistema más ágil y estable. Menor fricción en ventas y operación en tiendas. Lanzamiento exitoso en <strong>200+ tiendas antes de Buen Fin 2024</strong> — el evento de alta demanda más crítico del año.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISIONES -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Decisiones críticas</div>
+    <div class="decisions-grid">
+      <div class="decision-card">
+        <div class="decision-num">01</div>
+        <div class="decision-title">Investigación con información incompleta</div>
+        <div class="decision-desc">Visitas a tiendas en solitario, entrevistas directas a vendedores y tracking de SLA con PostHog — mientras el equipo técnico estaba enfocado en Brasil. La investigación de campo reveló patrones de falla invisibles desde la oficina.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">02</div>
+        <div class="decision-title">Design System independiente del ERP</div>
+        <div class="decision-desc">Construir un sistema de diseño compatible con MCP que no dependiera del ciclo de releases de RPNext. Esta decisión desbloqueó la velocidad del equipo y permitió iterar en paralelo sin depender de la arquitectura legacy.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-num">03</div>
+        <div class="decision-title">Priorizar performance sobre complejidad</div>
+        <div class="decision-desc">Diseñar para conexión intermitente. Priorizar tiempos de carga y estabilidad operacional antes de agregar funcionalidades. El sistema tenía que funcionar en tiendas con infraestructura de red limitada sin margen de error.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="body-section reveal">
+    <div class="body-section-title">¿Cómo trabajamos bajo presión?</div>
+    <div class="proceso-steps">
+      <div class="proceso-step">
+        <div class="proceso-num">1</div>
+        <div class="proceso-step-tag">Research</div>
+        <div class="proceso-step-title">Investigación en campo</div>
+        <div class="proceso-step-desc">Visitas a tiendas, entrevistas a vendedores, detección de errores y definición de SLA críticos mediante PostHog.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-num">2</div>
+        <div class="proceso-step-tag">Arquitectura</div>
+        <div class="proceso-step-title">Event Storming con el equipo</div>
+        <div class="proceso-step-desc">Workshop para mapear el dominio del sistema y redefinir la arquitectura de eventos junto con backend.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-num">3</div>
+        <div class="proceso-step-tag">Diseño</div>
+        <div class="proceso-step-title">Diseño en paralelo</div>
+        <div class="proceso-step-desc">Flujos, wireframes y prototipado de los 3 flujos críticos: catálogo, carrito y pagos/envío — en ciclos cortos.</div>
+      </div>
+      <div class="proceso-step">
+        <div class="proceso-num">4</div>
+        <div class="proceso-step-tag">Validación</div>
+        <div class="proceso-step-title">Piloto y rollout</div>
+        <div class="proceso-step-desc">Pruebas piloto en tiendas seleccionadas, ajustes rápidos y lanzamiento progresivo en 200+ tiendas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACTO OPERATIVO -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Impacto operativo — tiempos antes vs después</div>
+    <div class="impacto-grid">
+      <div class="impacto-card">
+        <div class="impacto-card-title">Performance</div>
+        <div class="impacto-row"><span class="impacto-label">Carga inicial</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;3.5 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Búsqueda catálogo</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Confirmación de orden</span><span class="impacto-before">variable</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
+      </div>
+      <div class="impacto-card">
+        <div class="impacto-card-title">Reducción de errores</div>
+        <div class="impacto-row"><span class="impacto-label">Errores de sync</span><span class="impacto-before">alto</span><span class="impacto-arrow">→</span><span class="impacto-after">−80%</span></div>
+        <div class="impacto-row"><span class="impacto-label">Errores en catálogo</span><span class="impacto-before">frecuente</span><span class="impacto-arrow">→</span><span class="impacto-after">−5%</span></div>
+        <div class="impacto-row"><span class="impacto-label">Errores de servicio</span><span class="impacto-before">crítico</span><span class="impacto-arrow">→</span><span class="impacto-after">−1%</span></div>
+      </div>
+      <div class="impacto-card">
+        <div class="impacto-card-title">Confianza y adopción</div>
+        <div class="impacto-row"><span class="impacto-label">Tiempo por orden</span><span class="impacto-before">4–6 min</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 min</span></div>
+        <div class="impacto-row"><span class="impacto-label">Confirmación envío</span><span class="impacto-before">lento</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Incidentes lanzamiento</span><span class="impacto-before">crash</span><span class="impacto-arrow">→</span><span class="impacto-after">0</span></div>
+      </div>
+    </div>
+    <div class="impacto-note">El POS fue implementado progresivamente — tiendas piloto → validación → flujo completo — hasta llegar a las 200+ tiendas antes de Buen Fin 2024 sin incidentes masivos de operación.</div>
+  </div>
+
+  <!-- ANTES VS DESPUÉS -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Antes vs Después — flujos críticos</div>
+
+    <div class="ba-section-label">Catálogo</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Catálogo V1</div><ul class="ba-list"><li>Lentitud — el catálogo genera cuellos de botella</li><li>Sobrecargado con productos descontinuados y baja calidad</li><li>Búsqueda pasiva sin filtros</li><li>Falta de visibilidad de información clave de producto</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Catálogo V2</div><ul class="ba-list"><li>Búsqueda optimizada con buscador rápido y filtros múltiples</li><li>Limpieza de catálogo — solo productos activos y relevantes</li><li>Card de producto intuitiva con información en múltiples canales</li><li>Visibilidad de información clave resuelta</li></ul></div>
+    </div>
+
+    <div class="ba-section-label">Modal de producto</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Modal V1</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos necesarios para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Modal V2</div><ul class="ba-list"><li>Card design intuitivo con mejora en arquitectura de información</li><li>Apoyos visuales para características relevantes del producto</li><li>Disponibilidad integrada — sin necesidad de plataformas externas</li></ul></div>
+    </div>
+
+    <div class="ba-section-label">Carrito</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Carrito V1</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos necesarios para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Carrito V2</div><ul class="ba-list"><li>Mejora de arquitectura de información</li><li>Checkout rápido y fluido</li><li>Visibilidad de disponibilidad de producto en tiempo real</li></ul></div>
+    </div>
+
+    <div class="ba-section-label">Envío</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Envío V1</div><ul class="ba-list"><li>Flujo crítico en un solo modal sin salida</li><li>Feedback insuficiente en procesos de cálculo</li><li>Falta de logs de asignación por falta de datos en el sistema</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Envío V2</div><ul class="ba-list"><li>Flujo completo rediseñado con configuración en tiempo real</li><li>Servicios de inventario integrados en tiempo real</li><li>Cards rediseñadas para agilizar la venta de envío en store</li></ul></div>
+    </div>
+
+    <div class="ba-section-label">Pago</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Pago V1</div><ul class="ba-list"><li>Métodos de pago desordenados sin jerarquía</li><li>Feedback insuficiente en procesos críticos</li><li>Estado de error poco claro sin acciones de recuperación</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Pago V2</div><ul class="ba-list"><li>Flujo simple y guiado paso a paso</li><li>Estados claros y en tiempo real durante el proceso</li><li>Experiencia segura y confiable con estados de salida claros</li></ul></div>
+    </div>
+  </div>
+
+  <!-- REFLEXIONES -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Lo que este proyecto cambió en mi forma de diseñar</div>
+    <div class="reflexiones-grid">
+      <div class="reflexion-card"><div class="reflexion-icon">🧩</div><div class="reflexion-title">Diseñar sistemas complejos</div><div class="reflexion-desc">Implica entender arquitectura, operación, escalabilidad y contexto. Cada interacción impacta directamente a personas trabajando bajo presión real.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon">🎨</div><div class="reflexion-title">Diseñar para sistemas nerviosos</div><div class="reflexion-desc">Tener una visión técnica del sistema te permite tomar mejores decisiones de diseño, anticipar puntos de falla y colaborar con ingeniería desde el inicio.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon">⚡</div><div class="reflexion-title">Performance también es UX</div><div class="reflexion-desc">El tiempo de respuesta, la disponibilidad y la confiabilidad son parte de la experiencia. Un sistema lento o inestable no es un problema técnico — es un problema de diseño.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon">🌐</div><div class="reflexion-title">La arquitectura impacta experiencia</div><div class="reflexion-desc">Escalar requiere pensar en sistemas, no solo en pantallas. El Design System fue la decisión que permitió iterar rápido sin romper la consistencia en 200+ puntos de venta.</div></div>
+    </div>
+    <div class="reflection-block">
+      <p class="reflection-quote">"Diseñar sistemas complejos me enseñó que la arquitectura de información impacta experiencia — cada decisión técnica tiene consecuencias directas en las personas que usan el producto todos los días."</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="case-footer">
+  <span class="footer-name">Melany Olivares — 2026</span>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="https://www.behance.net/melanyolivares" target="_blank">Behance</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
