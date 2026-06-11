@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melany Olivares — UX/UI Product Designer</title>
+  <meta name="description" content="Product Designer especializada en sistemas complejos, experiencias transaccionales y plataformas operacionales. Disponible para trabajo remoto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0C0C0F; --surface: #13131A; --surface2: #1A1A24;
+      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+      --text: #EAE8E0; --muted: #9A9890; --accent: #5DCAA5; --coral: #D85A30;
+      --accent-light: #7EDAD8;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(12,12,15,0.88); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-status { font-size: 11px; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .nav-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 80px; position: relative; overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(93,202,165,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(93,202,165,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 20%, transparent 80%);
+    }
+    .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+    .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(48px, 7.5vw, 92px); line-height: 1.0; letter-spacing: -0.03em; color: var(--text); margin-bottom: 32px; max-width: 860px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 48px; font-weight: 300; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+    .hero-cta { display: flex; gap: 16px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--accent); color: #04342C; border: 1px solid var(--accent); }
+    .btn-primary:hover { background: #7EDAD8; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 0.5px solid var(--border2); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .hero-metrics { position: absolute; right: 48px; bottom: 80px; display: flex; flex-direction: column; gap: 20px; opacity: 0; animation: fadeLeft 0.8s ease 1s forwards; }
+    .hero-metric { text-align: right; }
+    .hero-metric-num { font-family: var(--font-display); font-size: 36px; color: var(--accent); line-height: 1; }
+    .hero-metric-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .hero-metric-divider { width: 100%; height: 0.5px; background: var(--border); }
+
+    /* TICKER */
+    .ticker-wrap { border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); overflow: hidden; padding: 14px 0; }
+    .ticker-track { display: flex; gap: 0; animation: ticker 30s linear infinite; width: max-content; }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item { font-size: 12px; color: var(--accent-light); letter-spacing: 0.1em; text-transform: uppercase; padding: 0 32px; white-space: nowrap; }
+    .ticker-item span { color: var(--accent); margin-right: 32px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTION */
+    .section-wrap { max-width: 1100px; margin: 0 auto; padding: 120px 48px; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+    .section-title { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.2; letter-spacing: -0.02em; color: var(--text); max-width: 560px; }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* PROJECT CARDS */
+    .projects-list { display: flex; flex-direction: column; gap: 2px; }
+    .project-card {
+      display: grid; grid-template-columns: 80px 1fr auto;
+      align-items: center; gap: 32px;
+      padding: 28px 32px; border-radius: 6px;
+      text-decoration: none; border: 0.5px solid transparent;
+      transition: background 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .project-card:hover { background: var(--surface); border-color: var(--border); }
+    .project-card-img { width: 80px; height: 56px; border-radius: 4px; object-fit: cover; border: 0.5px solid var(--border); flex-shrink: 0; background: var(--surface2); }
+    .project-card-body { display: flex; flex-direction: column; gap: 6px; }
+    .project-card-num { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+    .project-card-title { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); color: var(--text); letter-spacing: -0.02em; line-height: 1.2; }
+    .project-card-title em { font-style: italic; color: var(--accent); }
+    .project-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 520px; }
+    .project-card-tags { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+    .tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 0.5px solid var(--border2); color: var(--muted); }
+    .project-card-arrow { font-size: 20px; color: var(--border2); transition: color 0.2s, transform 0.2s; flex-shrink: 0; }
+    .project-card:hover .project-card-arrow { color: var(--accent); transform: translateX(4px); }
+    .project-card-metrics { display: flex; gap: 24px; margin-top: 12px; }
+    .pcm { display: flex; flex-direction: column; gap: 2px; }
+    .pcm-num { font-family: var(--font-display); font-size: 22px; color: var(--accent); line-height: 1; }
+    .pcm-label { font-size: 11px; color: var(--muted); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 80px; align-items: start; }
+    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 6px; border: 0.5px solid var(--border); }
+    .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--surface2); border-radius: 6px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
+    .about-content { display: flex; flex-direction: column; gap: 40px; }
+    .about-name { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .about-name em { font-style: italic; color: var(--accent); }
+    .about-bio { font-size: 16px; color: var(--muted); line-height: 1.8; font-weight: 300; }
+    .about-bio strong { color: var(--text); font-weight: 500; }
+    .about-principles { display: flex; flex-direction: column; gap: 0; }
+    .principle { padding: 20px 0; border-bottom: 0.5px solid var(--border); display: flex; gap: 24px; align-items: flex-start; }
+    .principle:first-child { border-top: 0.5px solid var(--border); }
+    .principle-num { font-family: var(--font-display); font-size: 32px; color: var(--border2); line-height: 1; min-width: 40px; }
+    .principle-content {}
+    .principle-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .principle-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .about-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .about-tag { font-size: 12px; padding: 6px 14px; border-radius: 4px; border: 0.5px solid var(--border2); color: var(--muted); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 28px 0; border-bottom: 0.5px solid var(--border); }
+    .exp-item:first-child { border-top: 0.5px solid var(--border); }
+    .exp-date { font-size: 12px; color: var(--muted); padding-top: 3px; }
+    .exp-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .exp-role em { font-style: italic; color: var(--accent); }
+    .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-group { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 24px; }
+    .skill-group-title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 16px; font-weight: 500; }
+    .skill-list { display: flex; flex-direction: column; gap: 8px; }
+    .skill-item { font-size: 13px; color: var(--muted); line-height: 1.5; padding-left: 14px; position: relative; }
+    .skill-item::before { content: '—'; position: absolute; left: 0; font-size: 11px; color: var(--border2); }
+
+    /* CONTACT */
+    .contact-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .contact-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .contact-title em { font-style: italic; color: var(--accent); }
+    .contact-desc { font-size: 15px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted); font-size: 14px; transition: color 0.2s; }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link-icon { width: 36px; height: 36px; border-radius: 6px; border: 0.5px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .form-input { background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 4px; padding: 12px 16px; color: var(--text); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--muted); }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+    .form-submit { background: var(--accent); color: #04342C; border: none; border-radius: 4px; padding: 14px 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; align-self: flex-start; font-family: var(--font-body); }
+    .form-submit:hover { background: #7EDAD8; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { border-top: 0.5px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .footer-left { display: flex; flex-direction: column; gap: 4px; }
+    .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--muted); }
+    .footer-credit { font-size: 11px; color: var(--border2); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeLeft { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:translateX(0); } }
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; } .nav-links { display: none; } .nav-status { display: none; }
+      .hero { padding: 0 24px 64px; } .hero-metrics { display: none; }
+      .section-wrap { padding: 80px 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .project-card { grid-template-columns: 1fr; gap: 16px; }
+      .project-card-img { width: 100%; height: 180px; }
+      .project-card-arrow { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-width: 240px; aspect-ratio: 1; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Melany <em style="font-style:italic;color:var(--accent)">Olivares</em></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+  <span class="nav-status">Open to work remotely</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag">UX · UI · Product Design</div>
+  <h1 class="hero-title">Diseño sistemas<br>que <em>resisten</em><br>la realidad.</h1>
+  <p class="hero-sub">Product Designer especializada en productos digitales complejos — experiencias transaccionales, sistemas operacionales y plataformas multicanal.</p>
+  <div class="hero-cta">
+    <a href="#work" class="btn btn-primary">Ver proyectos</a>
+    <a href="assets/cv-melany-olivares.pdf" target="_blank" class="btn btn-secondary">Descargar CV ↓</a>
+    <a href="https://www.behance.net/melanyolivares" target="_blank" class="btn btn-secondary">Behance →</a>
+  </div>
+  <div class="hero-metrics">
+    <div class="hero-metric"><div class="hero-metric-num">4+</div><div class="hero-metric-label">Años de experiencia</div></div>
+    <div class="hero-metric-divider"></div>
+    <div class="hero-metric"><div class="hero-metric-num">200+</div><div class="hero-metric-label">Tiendas impactadas</div></div>
+    <div class="hero-metric-divider"></div>
+    <div class="hero-metric"><div class="hero-metric-num">5</div><div class="hero-metric-label">Mercados</div></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span>·</span> Product Design</span>
+    <span class="ticker-item"><span>·</span> Design Systems</span>
+    <span class="ticker-item"><span>·</span> UX Research</span>
+    <span class="ticker-item"><span>·</span> Event Storming</span>
+    <span class="ticker-item"><span>·</span> Figma MCP</span>
+    <span class="ticker-item"><span>·</span> A/B Testing</span>
+    <span class="ticker-item"><span>·</span> Retail · POS</span>
+    <span class="ticker-item"><span>·</span> AI-powered Workflows</span>
+    <span class="ticker-item"><span>·</span> PostHog · Sentry · Grafana</span>
+    <span class="ticker-item"><span>·</span> Cross-functional Collaboration</span>
+    <span class="ticker-item"><span>·</span> Product Design</span>
+    <span class="ticker-item"><span>·</span> Design Systems</span>
+    <span class="ticker-item"><span>·</span> UX Research</span>
+    <span class="ticker-item"><span>·</span> Event Storming</span>
+    <span class="ticker-item"><span>·</span> Figma MCP</span>
+    <span class="ticker-item"><span>·</span> A/B Testing</span>
+    <span class="ticker-item"><span>·</span> Retail · POS</span>
+    <span class="ticker-item"><span>·</span> AI-powered Workflows</span>
+    <span class="ticker-item"><span>·</span> PostHog · Sentry · Grafana</span>
+    <span class="ticker-item"><span>·</span> Cross-functional Collaboration</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<div class="section-wrap" id="work">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Proyectos seleccionados</div>
+      <h2 class="section-title">Cuatro casos que resumen<br>lo que hago: <em>sistema, escala, impacto.</em></h2>
+    </div>
+  </div>
+
+  <div class="projects-list">
+
+    <!-- ZePOS -->
+    <a href="case-study.html" class="project-card reveal">
+      <img src="images/hero.png" alt="ZePOS" class="project-card-img"
+           onerror="this.style.display='none'">
+      <div class="project-card-body">
+        <span class="project-card-num">01 / 04 · UX / UI · Retail POS</span>
+        <h3 class="project-card-title">Rediseño <em>ZePOS</em> — de sistema frágil a plataforma escalable</h3>
+        <p class="project-card-desc">200+ tiendas en México y Brasil. Rediseño end-to-end de catálogo, carrito, pagos y envío. Lanzado antes de Buen Fin sin incidentes.</p>
+        <div class="project-card-tags">
+          <span class="tag">Design System</span>
+          <span class="tag">Event Storming</span>
+          <span class="tag">Field Research</span>
+          <span class="tag">Retail · POS</span>
+        </div>
+        <div class="project-card-metrics">
+          <div class="pcm"><div class="pcm-num">−80%</div><div class="pcm-label">Errores sync</div></div>
+          <div class="pcm"><div class="pcm-num">−50%</div><div class="pcm-label">Tiempo por orden</div></div>
+          <div class="pcm"><div class="pcm-num">200+</div><div class="pcm-label">Tiendas</div></div>
+        </div>
+      </div>
+      <span class="project-card-arrow">→</span>
+    </a>
+
+    <!-- InsightOne -->
+    <a href="#" class="project-card reveal">
+      <img src="images/insightone-cover.png" alt="InsightOne" class="project-card-img"
+           onerror="this.style.display='none'">
+      <div class="project-card-body">
+        <span class="project-card-num">02 / 04 · UX / UI · Fintech</span>
+        <h3 class="project-card-title">InsightOne — <em>Smart Payment Platform</em></h3>
+        <p class="project-card-desc">Rediseño completo de una plataforma de pagos inteligente en EE.UU. Primer design system de la empresa, coordinando equipos distribuidos en múltiples zonas horarias.</p>
+        <div class="project-card-tags">
+          <span class="tag">Design System</span>
+          <span class="tag">Usability Testing</span>
+          <span class="tag">Fintech</span>
+          <span class="tag">Agile</span>
+        </div>
+      </div>
+      <span class="project-card-arrow">→</span>
+    </a>
+
+    <!-- Clue -->
+    <a href="#" class="project-card reveal">
+      <img src="images/clue-cover.png" alt="Clue" class="project-card-img"
+           onerror="this.style.display='none'">
+      <div class="project-card-body">
+        <span class="project-card-num">03 / 04 · UX / UI · Mobile Health</span>
+        <h3 class="project-card-title">Clue — <em>rediseño de experiencia</em> en app de salud</h3>
+        <p class="project-card-desc">Análisis UX profundo e iteración de diseño para mejorar navegación, flujos clave y experiencia general. Benchmarking, testing heurístico y prototipos de alta fidelidad.</p>
+        <div class="project-card-tags">
+          <span class="tag">UX Research</span>
+          <span class="tag">Heuristic Evaluation</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Mobile</span>
+        </div>
+      </div>
+      <span class="project-card-arrow">→</span>
+    </a>
+
+    <!-- Palm & Rescycle -->
+    <a href="#" class="project-card reveal">
+      <img src="images/palm-cover.png" alt="Palm & Rescycle" class="project-card-img"
+           onerror="this.style.display='none'">
+      <div class="project-card-body">
+        <span class="project-card-num">04 / 04 · UX / UI · Startup</span>
+        <h3 class="project-card-title">Palm & Rescycle — <em>economía circular</em> centrada en el usuario</h3>
+        <p class="project-card-desc">Rediseño de home y landing pages para startup colombiana con foco en economía circular. End-to-end UX: research, prototipado, testing e iteración bajo metodología Agile.</p>
+        <div class="project-card-tags">
+          <span class="tag">UX Research</span>
+          <span class="tag">UX Writing</span>
+          <span class="tag">Agile · Scrum</span>
+          <span class="tag">Startup</span>
+        </div>
+      </div>
+      <span class="project-card-arrow">→</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div style="border-top: 0.5px solid var(--border);">
+<div class="section-wrap" id="about">
+  <div class="section-label" style="margin-bottom:56px;">Sobre mí</div>
+  <div class="about-grid">
+    <div>
+      <img src="images/portada.png" alt="Melany Olivares" class="about-photo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="about-photo-placeholder" style="display:none;">portada.png</div>
+      <div class="about-tags" style="margin-top:16px;">
+        <span class="about-tag">🇲🇽 México</span>
+        <span class="about-tag">🌍 Remote-first</span>
+        <span class="about-tag">ES · EN · PT · DE</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <div>
+        <h2 class="about-name">Hi, soy <em>Mel.</em></h2>
+        <p class="about-bio">
+          Product Designer especializada en <strong>sistemas digitales complejos</strong> — plataformas POS, flujos de pago y herramientas operacionales en entornos de alta presión.<br><br>
+          Trabajo de cerca con equipos de ingeniería y producto para diseñar experiencias <strong>escalables, confiables y performantes</strong>, a menudo bajo restricciones de modo offline, latencia y limitaciones de hardware. Mi enfoque combina <strong>systems thinking, diseño centrado en el usuario y comprensión técnica</strong> para entregar soluciones que sean tanto usables como factibles.<br><br>
+          Uso IA de verdad en mi flujo — Claude, Figma MCP, Copilot. No como buzzword, sino como herramienta que acelera el loop entre idea y prototipo.
+        </p>
+      </div>
+      <div class="about-principles">
+        <div class="principle">
+          <div class="principle-num">01</div>
+          <div class="principle-content">
+            <div class="principle-title">Pienso en sistemas antes que en pantallas</div>
+            <div class="principle-desc">Tokens, componentes, variantes. Un diseño que no se mantiene solo no está terminado.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">02</div>
+          <div class="principle-content">
+            <div class="principle-title">Performance también es UX</div>
+            <div class="principle-desc">Tiempos de carga, disponibilidad y confiabilidad son parte de la experiencia. Un sistema lento es un problema de diseño.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">03</div>
+          <div class="principle-content">
+            <div class="principle-title">La IA la uso de verdad, no la vendo</div>
+            <div class="principle-desc">Claude, Figma MCP, Copilot. Herramientas que aceleran el loop entre idea y prototipo en código.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">04</div>
+          <div class="principle-content">
+            <div class="principle-title">Decisiones validadas con research y datos</div>
+            <div class="principle-desc">Entrevistas, PostHog, Sentry, Grafana. Las hipótesis se prueban. La intuición no es un plan de diseño.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div style="border-top: 0.5px solid var(--border);">
+<div class="section-wrap" id="experience">
+  <div class="section-label" style="margin-bottom:56px;">Experiencia</div>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items:start;">
+    <div>
+      <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px); letter-spacing:-0.02em; margin-bottom:40px; line-height:1.2;">Dónde he estado <em style="font-style:italic;color:var(--accent)">construyendo.</em></h2>
+      <div class="exp-list">
+        <div class="exp-item reveal">
+          <div class="exp-date">2024 — 2025</div>
+          <div>
+            <div class="exp-role">UX/UI Product Designer <em>· Zebrands</em></div>
+            <div class="exp-company">Retail omnicanal · México & Brasil</div>
+            <div class="exp-desc">Rediseño del POS para 200+ tiendas. Design System, event storming, performance debugging con Sentry y Grafana.</div>
+          </div>
+        </div>
+        <div class="exp-item reveal">
+          <div class="exp-date">2024</div>
+          <div>
+            <div class="exp-role">UX/UI Designer <em>· InsightOne</em></div>
+            <div class="exp-company">Smart Payment Platform · EE.UU.</div>
+            <div class="exp-desc">Rediseño end-to-end y primer design system de la empresa. Coordinación de equipos distribuidos en múltiples zonas horarias.</div>
+          </div>
+        </div>
+        <div class="exp-item reveal">
+          <div class="exp-date">2023</div>
+          <div>
+            <div class="exp-role">UX/UI Designer <em>· PALM-Rescycle</em></div>
+            <div class="exp-company">Startup · Colombia</div>
+            <div class="exp-desc">End-to-end UX: research, prototipado, testing e iteración bajo Agile/Scrum para startup de economía circular.</div>
+          </div>
+        </div>
+        <div class="exp-item reveal">
+          <div class="exp-date">2023</div>
+          <div>
+            <div class="exp-role">UX Designer <em>· Locusroom</em></div>
+            <div class="exp-company">Travel App · Chile</div>
+            <div class="exp-desc">Diseño de pasarela de pago para app de viajes. Prototipos de alta fidelidad y storytelling del flujo de usuario.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px); letter-spacing:-0.02em; margin-bottom:40px; line-height:1.2;">Core <em style="font-style:italic;color:var(--accent)">skills.</em></h2>
+      <div class="skills-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Product & UX</div>
+          <div class="skill-list">
+            <div class="skill-item">User-Centered Design</div>
+            <div class="skill-item">Usability Testing</div>
+            <div class="skill-item">UX Research · Interviews</div>
+            <div class="skill-item">Rapid Prototyping</div>
+            <div class="skill-item">UX Metrics: SLA · NPS</div>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">UI & Systems</div>
+          <div class="skill-list">
+            <div class="skill-item">Figma · FigJam</div>
+            <div class="skill-item">Design Systems · Tokens</div>
+            <div class="skill-item">Atomic Design</div>
+            <div class="skill-item">Figma MCP Integration</div>
+            <div class="skill-item">Component-Based UI</div>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Technical</div>
+          <div class="skill-list">
+            <div class="skill-item">Sentry · Grafana</div>
+            <div class="skill-item">PostHog · Analytics</div>
+            <div class="skill-item">Event Storming</div>
+            <div class="skill-item">Engineering handoff</div>
+            <div class="skill-item">HTML · CSS básico</div>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Idiomas</div>
+          <div class="skill-list">
+            <div class="skill-item">Español — Nativo</div>
+            <div class="skill-item">Inglés — C1</div>
+            <div class="skill-item">Portugués — B2</div>
+            <div class="skill-item">Alemán — B1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div style="border-top: 0.5px solid var(--border);">
+<div class="section-wrap" id="contact">
+  <div class="section-label" style="margin-bottom:40px;">Contacto</div>
+  <div class="contact-wrap reveal">
+    <div>
+      <h2 class="contact-title">¿Ideas? <em>Conversemos.</em></h2>
+      <p class="contact-desc">Escríbeme si estás buscando una Product Designer para un proyecto, quieres contratarme para un rol full-time, o simplemente quieres conversar sobre diseño, IA y sistemas.</p>
+      <div class="contact-links">
+        <a href="mailto:123mel.ida@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          123mel.ida@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/melanyolivares" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          linkedin.com/in/melanyolivares
+        </a>
+        <a href="https://www.behance.net/melanyolivares" target="_blank" class="contact-link">
+          <div class="contact-link-icon">Be</div>
+          behance.net/melanyolivares
+        </a>
+        <a href="assets/cv-melany-olivares.pdf" target="_blank" class="contact-link">
+          <div class="contact-link-icon">↓</div>
+          Descargar CV
+        </a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-field">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-input" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-input" placeholder="¿En qué puedo ayudarte?" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+    </form>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <span class="footer-name">Melany Olivares — 2026</span>
+    <span class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</span>
+  </div>
+  <div class="footer-links">
+    <a href="#work">Work</a>
+    <a href="https://linkedin.com/in/melanyolivares" target="_blank">LinkedIn ↗</a>
+    <a href="https://www.behance.net/melanyolivares" target="_blank">Behance ↗</a>
+    <a href="assets/cv-melany-olivares.pdf" target="_blank">CV ↓</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Mensaje enviado';
+    btn.style.background = 'var(--accent)';
+    setTimeout(() => { btn.textContent = 'Enviar mensaje →'; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
