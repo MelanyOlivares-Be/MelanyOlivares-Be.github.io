@@ -65,7 +65,7 @@
 
     /* FULL WIDTH IMAGE */
     .img-full { width: 100%; border-radius: 6px; display: block; border: 0.5px solid var(--border); object-fit: cover; object-position: center; }
-    .img-full.ratio-wide { aspect-ratio: 2/1; }
+    .img-full.ratio-wide { aspect-ratio: auto; max-height: 600px; object-fit: contain; background: var(--surface2); padding: 24px; }
     .img-caption { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; letter-spacing: 0.04em; }
     .img-placeholder { width: 100%; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; }
 
@@ -80,7 +80,8 @@
     /* RESUMEN */
     .resumen-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-radius: 6px; overflow: hidden; }
     .resumen-cell { background: var(--surface2); padding: 28px 24px; }
-    .resumen-icon { font-size: 20px; margin-bottom: 12px; }
+    .resumen-icon { width: 36px; height: 36px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(93,202,165,0.08); }
+    .resumen-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .resumen-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 10px; font-weight: 500; }
     .resumen-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
     .resumen-text strong { color: var(--text); font-weight: 500; }
@@ -134,7 +135,8 @@
     /* REFLEXIONES */
     .reflexiones-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     .reflexion-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
-    .reflexion-icon { font-size: 20px; margin-bottom: 12px; }
+    .reflexion-icon { width: 36px; height: 36px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(93,202,165,0.08); }
+    .reflexion-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .reflexion-title { font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }
     .reflexion-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
     .reflection-block { border-left: 1px solid var(--accent); padding: 28px 36px; margin-top: 48px; background: rgba(93,202,165,0.03); border-radius: 0 6px 6px 0; }
@@ -237,22 +239,22 @@
     <div class="body-section-title">Resumen del proyecto</div>
     <div class="resumen-grid">
       <div class="resumen-cell">
-        <div class="resumen-icon">⚡</div>
+        <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
         <div class="resumen-label">El problema</div>
         <div class="resumen-text">El POS presentaba tiempos de carga altos, catálogo sobrecargado, inconsistencias entre módulos, dependencia crítica del ERP RPNext y falta de visibilidad del stock en tiempo real.</div>
       </div>
       <div class="resumen-cell">
-        <div class="resumen-icon">🎯</div>
+        <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
         <div class="resumen-label">El objetivo</div>
         <div class="resumen-text">Transformar el sistema frágil en una plataforma escalable, optimizando catálogo, disponibilidad y flujos de operación. Mejorar velocidad de servicio, estabilidad y experiencia en tienda.</div>
       </div>
       <div class="resumen-cell">
-        <div class="resumen-icon">👤</div>
+        <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
         <div class="resumen-label">Mi rol</div>
         <div class="resumen-text">Lideré la estrategia y experiencia de usuario como <strong>único diseñador UX</strong> durante la mayor parte del proyecto. Definí flujos, arquitectura y colaboré en la implementación en operación real.</div>
       </div>
       <div class="resumen-cell">
-        <div class="resumen-icon">📈</div>
+        <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h7v7"/></svg></div>
         <div class="resumen-label">El impacto</div>
         <div class="resumen-text">Sistema más ágil y estable. Lanzamiento exitoso en <strong>200+ tiendas antes de Buen Fin 2024</strong> — el evento de alta demanda más crítico del año.</div>
       </div>
@@ -468,10 +470,10 @@
   <div class="body-section reveal">
     <div class="body-section-title">Lo que este proyecto cambió en mi forma de diseñar</div>
     <div class="reflexiones-grid">
-      <div class="reflexion-card"><div class="reflexion-icon">🧩</div><div class="reflexion-title">Diseñar sistemas complejos</div><div class="reflexion-desc">Implica entender arquitectura, operación, escalabilidad y contexto. Cada interacción impacta directamente a personas trabajando bajo presión real.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon">🎨</div><div class="reflexion-title">Diseñar para sistemas nerviosos</div><div class="reflexion-desc">Tener una visión técnica del sistema te permite tomar mejores decisiones de diseño, anticipar puntos de falla y colaborar con ingeniería desde el inicio.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon">⚡</div><div class="reflexion-title">Performance también es UX</div><div class="reflexion-desc">El tiempo de respuesta, la disponibilidad y la confiabilidad son parte de la experiencia. Un sistema lento no es un problema técnico — es un problema de diseño.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon">🌐</div><div class="reflexion-title">La arquitectura impacta experiencia</div><div class="reflexion-desc">Escalar requiere pensar en sistemas, no solo en pantallas. El Design System fue la decisión que permitió iterar rápido sin romper la consistencia en 200+ puntos de venta.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0z"/></svg></div><div class="reflexion-title">Diseñar sistemas complejos</div><div class="reflexion-desc">Implica entender arquitectura, operación, escalabilidad y contexto. Cada interacción impacta directamente a personas trabajando bajo presión real.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1-1-1.5-2-1.5h-3a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2h1c1 0 1.5-.8 1.2-1.7A9 9 0 0 0 12 3z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="9.5" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg></div><div class="reflexion-title">Diseñar para sistemas nerviosos</div><div class="reflexion-desc">Tener una visión técnica del sistema te permite tomar mejores decisiones de diseño, anticipar puntos de falla y colaborar con ingeniería desde el inicio.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><div class="reflexion-title">Performance también es UX</div><div class="reflexion-desc">El tiempo de respuesta, la disponibilidad y la confiabilidad son parte de la experiencia. Un sistema lento no es un problema técnico — es un problema de diseño.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg></div><div class="reflexion-title">La arquitectura impacta experiencia</div><div class="reflexion-desc">Escalar requiere pensar en sistemas, no solo en pantallas. El Design System fue la decisión que permitió iterar rápido sin romper la consistencia en 200+ puntos de venta.</div></div>
     </div>
     <div class="reflection-block">
       <p class="reflection-quote">"Diseñar sistemas complejos me enseñó que la arquitectura de información impacta experiencia — cada decisión técnica tiene consecuencias directas en las personas que usan el producto todos los días."</p>
