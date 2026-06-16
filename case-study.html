@@ -44,7 +44,7 @@
 
     /* HERO IMAGE */
     .hero-image-wrap { width: 100%; margin: 0 0 0; }
-    .hero-image-wrap img { width: 100%; max-height: 560px; object-fit: cover; display: block; }
+    .hero-image-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; display: block; }
     .hero-image-placeholder { width: 100%; height: 400px; background: var(--surface2); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; letter-spacing: 0.06em; }
 
     /* METRICS */
@@ -63,13 +63,14 @@
     .body-section-title { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 32px; padding-bottom: 12px; border-bottom: 0.5px solid var(--border); }
 
     /* FULL WIDTH IMAGE */
-    .img-full { width: 100%; border-radius: 6px; display: block; border: 0.5px solid var(--border); }
-    .img-caption { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center; letter-spacing: 0.04em; }
+    .img-full { width: 100%; border-radius: 6px; display: block; border: 0.5px solid var(--border); object-fit: cover; object-position: center; }
+    .img-full.ratio-wide { aspect-ratio: 2/1; }
+    .img-caption { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; letter-spacing: 0.04em; }
     .img-placeholder { width: 100%; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; }
 
     /* LUUNA BRAND */
     .luuna-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .luuna-wrap img { width: 100%; display: block; }
+    .luuna-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; display: block; }
 
     /* CONTEXTO */
     .contexto-text { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 720px; font-weight: 300; }
@@ -121,7 +122,7 @@
     .ba-panel.before .ba-label { color: var(--coral); }
     .ba-panel.after  .ba-label { color: var(--accent); }
     .ba-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-    .ba-img { width: 100%; border-radius: 4px; display: block; margin-bottom: 16px; border: 0.5px solid rgba(255,255,255,0.05); }
+    .ba-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top; border-radius: 4px; display: block; margin-bottom: 16px; border: 0.5px solid rgba(255,255,255,0.05); }
     .ba-img-placeholder { width: 100%; height: 180px; background: rgba(255,255,255,0.03); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 11px; letter-spacing: 0.06em; margin-bottom: 16px; border: 0.5px dashed var(--border2); }
     .ba-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .ba-list li { font-size: 13px; color: var(--muted); line-height: 1.5; padding-left: 16px; position: relative; }
@@ -257,7 +258,7 @@
   <!-- DIAGRAMA -->
   <div class="body-section reveal">
     <div class="body-section-title">Arquitectura del sistema — diseñar para un sistema vivo</div>
-    <img src="images/diagrama.png" alt="Diagrama de arquitectura ZePOS" class="img-full"
+    <img src="images/diagrama.png" alt="Diagrama de arquitectura ZePOS" class="img-full ratio-wide"
          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="img-placeholder" style="height:400px; display:none;">diagrama.png</div>
     <p class="img-caption">Diagrama de arquitectura — flujos entre catálogo, carrito, pagos y ERP</p>
