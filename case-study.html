@@ -32,19 +32,20 @@
 
     /* CASE HERO */
     .case-hero { padding: 160px 48px 0; max-width: 1100px; margin: 0 auto; }
+    .case-hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; margin-bottom: 48px; }
     .case-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
     .case-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-    .case-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text); max-width: 800px; margin-bottom: 28px; }
+    .case-title { font-family: var(--font-display); font-size: clamp(34px, 4.5vw, 56px); line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 24px; }
     .case-title em { font-style: italic; color: var(--accent); }
-    .case-desc { font-size: 17px; color: var(--muted); max-width: 600px; line-height: 1.7; font-weight: 300; margin-bottom: 48px; }
+    .case-desc { font-size: 16px; color: var(--muted); line-height: 1.7; font-weight: 300; }
     .case-meta { display: flex; gap: 40px; flex-wrap: wrap; padding: 32px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin-bottom: 0; }
     .case-meta-item { display: flex; flex-direction: column; gap: 6px; }
     .case-meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); }
     .case-meta-value { font-size: 14px; color: var(--text); font-weight: 500; }
 
     /* HERO IMAGE */
-    .hero-image-wrap { width: 100%; margin: 0 0 0; }
-    .hero-image-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; display: block; }
+    .hero-image-wrap { width: 100%; margin: 0 0 0; border-radius: 8px; overflow: hidden; }
+    .hero-image-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; display: block; }
     .hero-image-placeholder { width: 100%; height: 400px; background: var(--surface2); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; letter-spacing: 0.06em; }
 
     /* METRICS */
@@ -152,6 +153,7 @@
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .case-hero { padding: 120px 24px 0; }
+      .case-hero-grid { grid-template-columns: 1fr; gap: 32px; }
       .case-body { padding: 48px 24px; }
       .metrics-inner { grid-template-columns: repeat(2,1fr); }
       .metrics-inner .metric-cell:nth-child(2) { border-right: none; }
@@ -174,25 +176,27 @@
   <a href="index.html" class="nav-back">← Volver al inicio</a>
 </nav>
 
-<!-- HERO TEXT -->
+<!-- HERO TEXT + IMAGE -->
 <div class="case-hero">
-  <div class="case-eyebrow">Zebrands · ZePOS · 2024</div>
-  <h1 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em><br>para escalar.</h1>
-  <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma multicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin.</p>
+  <div class="case-hero-grid">
+    <div>
+      <div class="case-eyebrow">Zebrands · ZePOS · 2024</div>
+      <h1 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em><br>para escalar.</h1>
+      <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma multicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin.</p>
+    </div>
+    <div class="hero-image-wrap">
+      <img src="images/hero.png" alt="ZePOS hero" class="img-full" style="border-radius:8px; border:0.5px solid var(--border);"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="hero-image-placeholder" style="display:none;">hero.png</div>
+    </div>
+  </div>
   <div class="case-meta">
     <div class="case-meta-item"><span class="case-meta-label">Empresa</span><span class="case-meta-value">Zebrands</span></div>
     <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">8 meses</span></div>
     <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">18 personas</span></div>
     <div class="case-meta-item"><span class="case-meta-label">Mercados</span><span class="case-meta-value">México · Brasil</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX Lead</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX Lead — único diseñador</span></div>
   </div>
-</div>
-
-<!-- HERO IMAGE — full width -->
-<div class="hero-image-wrap">
-  <img src="images/hero.png" alt="ZePOS hero" class="img-full" style="border-radius:0; border:none;"
-       onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-  <div class="hero-image-placeholder" style="display:none;">hero.png</div>
 </div>
 
 <!-- METRICS -->
