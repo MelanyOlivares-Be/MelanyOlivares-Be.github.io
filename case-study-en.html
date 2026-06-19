@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZePOS — Caso de estudio · Melany Olivares</title>
+  <title>ZePOS — Case Study · Melany Olivares</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -178,10 +178,10 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Melany Olivares</a>
+  <a href="index-en.html" class="nav-logo">Melany Olivares</a>
   <div style="display:flex; align-items:center; gap:24px;">
-    <a href="index.html" class="nav-back">← Volver al inicio</a>
-    <a href="case-study-en.html" class="lang-switch">EN</a>
+    <a href="index-en.html" class="nav-back">← Back to home</a>
+    <a href="case-study.html" class="lang-switch">ES</a>
   </div>
 </nav>
 
@@ -190,8 +190,8 @@
   <div class="case-hero-grid">
     <div>
       <div class="case-eyebrow">Zebrands · ZePOS · 2024</div>
-      <h1 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em><br>para escalar.</h1>
-      <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma multicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin.</p>
+      <h1 class="case-title">200 stores, zero downtime.<br>A system <em>redesigned</em><br>to scale.</h1>
+      <p class="case-desc">From a fragile POS with critical dependencies to a multichannel platform. End-to-end redesign of architecture, flows, and real-time operations — launched before Buen Fin.</p>
     </div>
     <div class="hero-image-wrap">
       <img src="images/hero.png" alt="ZePOS hero" class="img-full" style="border-radius:8px; border:0.5px solid var(--border);"
@@ -200,21 +200,21 @@
     </div>
   </div>
   <div class="case-meta">
-    <div class="case-meta-item"><span class="case-meta-label">Empresa</span><span class="case-meta-value">Zebrands</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">8 meses</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">18 personas</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Mercados</span><span class="case-meta-value">México · Brasil</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX-UI Product Designer</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Company</span><span class="case-meta-value">Zebrands</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Duration</span><span class="case-meta-value">8 months</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Team</span><span class="case-meta-value">18 people</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Markets</span><span class="case-meta-value">Mexico · Brazil</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">My role</span><span class="case-meta-value">UX Lead — sole designer</span></div>
   </div>
 </div>
 
 <!-- METRICS -->
 <div style="border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
   <div class="metrics-inner">
-    <div class="metric-cell"><div class="metric-num positive">−80%</div><div class="metric-desc">Errores en sincronización</div></div>
-    <div class="metric-cell"><div class="metric-num positive">75%</div><div class="metric-desc">Usuarios con mayor velocidad percibida</div></div>
-    <div class="metric-cell"><div class="metric-num positive">−50%</div><div class="metric-desc">Tiempo para crear una orden</div></div>
-    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">200+</div><div class="metric-desc">Tiendas sin incidentes en lanzamiento</div></div>
+    <div class="metric-cell"><div class="metric-num positive">−80%</div><div class="metric-desc">Sync errors</div></div>
+    <div class="metric-cell"><div class="metric-num positive">75%</div><div class="metric-desc">Users with higher perceived speed</div></div>
+    <div class="metric-cell"><div class="metric-num positive">−50%</div><div class="metric-desc">Time to create an order</div></div>
+    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">200+</div><div class="metric-desc">Stores with zero launch incidents</div></div>
   </div>
 </div>
 
@@ -223,152 +223,152 @@
 
   <!-- CONTEXTO -->
   <div class="body-section reveal">
-    <div class="body-section-title">Contexto</div>
+    <div class="body-section-title">Context</div>
     <p class="contexto-text">
-      Zebrands es una empresa de retail omnicanal con presencia en México y Brasil. Como parte de su ecosistema multitienda, opera su propio sistema de punto de venta utilizado en más de 200 tiendas físicas. En 2023 detecté como UX el estado integral de la plataforma, colaborando con un equipo multidisciplinario conformado por frontend, backend, arquitectura y liderazgo técnico.<br><br>
-      El proyecto surgió tras identificar problemas críticos de <strong>performance, estabilidad y operación</strong> durante eventos de alta demanda como Hot Sale. El diseño no consistía únicamente en rediseñar la interfaz, sino en replantear un sistema capaz de soportar una operación <strong>multitienda y transaccional en tiempo real</strong>, reduciendo fricción en tienda y preparando la plataforma para crecer de forma sostenible.
+      Zebrands is an omnichannel retail company with operations in Mexico and Brazil. As part of its multi-store ecosystem, it runs its own point-of-sale system used in more than 200 physical stores. In 2023, as the UX lead, I assessed the full state of the platform, working alongside a cross-functional team of frontend, backend, architecture, and technical leadership.<br><br>
+      The project emerged after identifying critical <strong>performance, stability, and operational</strong> issues during high-demand events like Hot Sale. The work wasn't just about redesigning the interface — it meant rethinking a system capable of supporting <strong>real-time, multi-store transactional</strong> operations, reducing friction on the sales floor, and preparing the platform to scale sustainably.
     </p>
   </div>
 
   <!-- LUUNA BRAND -->
   <div class="body-section reveal">
-    <div class="body-section-title">El sistema en contexto — Luuna Brand</div>
+    <div class="body-section-title">The system in context — Luuna Brand</div>
     <div class="luuna-wrap">
       <img src="images/luuna.png" alt="Luuna Brand system" class="img-full"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="img-placeholder" style="height:320px; display:none;">luuna.png</div>
     </div>
-    <p class="img-caption">Contexto de marca y ecosistema de producto dentro de Zebrands</p>
+    <p class="img-caption">Context de marca y ecosistema de producto dentro de Zebrands</p>
   </div>
 
   <!-- RESUMEN -->
   <div class="body-section reveal">
-    <div class="body-section-title">Resumen del proyecto</div>
+    <div class="body-section-title">Project summary</div>
     <div class="resumen-grid">
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-        <div class="resumen-label">El problema</div>
-        <div class="resumen-text">El POS presentaba tiempos de carga altos, catálogo sobrecargado, inconsistencias entre módulos, dependencia crítica del ERP RPNext y falta de visibilidad del stock en tiempo real.</div>
+        <div class="resumen-label">The problem</div>
+        <div class="resumen-text">The POS had high load times, an overloaded catalog, inconsistencies between modules, a critical dependency on the RPNext ERP, and no real-time stock visibility.</div>
       </div>
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
-        <div class="resumen-label">El objetivo</div>
-        <div class="resumen-text">Transformar el sistema frágil en una plataforma escalable, optimizando catálogo, disponibilidad y flujos de operación. Mejorar velocidad de servicio, estabilidad y experiencia en tienda.</div>
+        <div class="resumen-label">The goal</div>
+        <div class="resumen-text">Turn the fragile system into a scalable platform by optimizing the catalog, availability, and operational flows — improving service speed, stability, and in-store experience.</div>
       </div>
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
-        <div class="resumen-label">Mi rol</div>
-        <div class="resumen-text">Lideré la estrategia y experiencia de usuario como <strong>único diseñador UX</strong> durante la mayor parte del proyecto. Definí flujos, arquitectura y colaboré en la implementación en operación real.</div>
+        <div class="resumen-label">My role</div>
+        <div class="resumen-text">I led the UX strategy and experience as the <strong>sole UX designer</strong> for most of the project — defining flows and architecture, and collaborating on implementation in live operations.</div>
       </div>
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h7v7"/></svg></div>
-        <div class="resumen-label">El impacto</div>
-        <div class="resumen-text">Sistema más ágil y estable. Lanzamiento exitoso en <strong>200+ tiendas antes de Buen Fin 2024</strong> — el evento de alta demanda más crítico del año.</div>
+        <div class="resumen-label">The impact</div>
+        <div class="resumen-text">A faster, more stable system. Successful rollout to <strong>200+ stores before Buen Fin 2024</strong> — the most critical high-demand event of the year.</div>
       </div>
     </div>
   </div>
 
   <!-- DIAGRAMA -->
   <div class="body-section reveal">
-    <div class="body-section-title">Arquitectura del sistema — diseñar para un sistema vivo</div>
-    <img src="images/diagrama.png" alt="Diagrama de arquitectura ZePOS" class="img-full ratio-wide"
+    <div class="body-section-title">System architecture — designing for a living system</div>
+    <img src="images/diagrama.png" alt="ZePOS architecture diagram" class="img-full ratio-wide"
          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
     <div class="img-placeholder" style="height:400px; display:none;">diagrama.png</div>
-    <p class="img-caption">Diagrama de arquitectura — flujos entre catálogo, carrito, pagos y ERP</p>
+    <p class="img-caption">Architecture diagram — flows between catalog, cart, payments, and ERP</p>
   </div>
 
   <!-- DECISIONES -->
   <div class="body-section reveal">
-    <div class="body-section-title">Decisiones críticas</div>
+    <div class="body-section-title">Critical decisions</div>
     <div class="decisions-grid">
       <div class="decision-card">
         <div class="decision-num">01</div>
-        <div class="decision-title">Investigación con información incompleta</div>
-        <div class="decision-desc">Visitas a tiendas en solitario, entrevistas directas a vendedores y tracking de SLA con PostHog — mientras el equipo técnico estaba enfocado en Brasil.</div>
+        <div class="decision-title">Research with incomplete information</div>
+        <div class="decision-desc">Solo store visits, direct interviews with sales staff, and SLA tracking with PostHog — while the technical team was focused on Brazil.</div>
       </div>
       <div class="decision-card">
         <div class="decision-num">02</div>
-        <div class="decision-title">Design System independiente del ERP</div>
-        <div class="decision-desc">Construir un sistema de diseño compatible con MCP que no dependiera del ciclo de releases de RPNext — decisión que desbloqueó la velocidad del equipo.</div>
+        <div class="decision-title">Design System independent from the ERP</div>
+        <div class="decision-desc">Building a design system compatible with MCP that didn't depend on RPNext's release cycle — a decision that unblocked the team's velocity.</div>
       </div>
       <div class="decision-card">
         <div class="decision-num">03</div>
-        <div class="decision-title">Priorizar performance sobre complejidad</div>
-        <div class="decision-desc">Diseñar para conexión intermitente. Priorizar tiempos de carga y estabilidad operacional antes de agregar funcionalidades.</div>
+        <div class="decision-title">Prioritizing performance over complexity</div>
+        <div class="decision-desc">Designing for intermittent connectivity. Prioritizing load times and operational stability before adding new features.</div>
       </div>
     </div>
   </div>
 
   <!-- PROCESO -->
   <div class="body-section reveal">
-    <div class="body-section-title">¿Cómo trabajamos bajo presión?</div>
+    <div class="body-section-title">How did we work under pressure?</div>
     <div class="proceso-steps">
-      <div class="proceso-step"><div class="proceso-num">1</div><div class="proceso-step-tag">Research</div><div class="proceso-step-title">Investigación en campo</div><div class="proceso-step-desc">Visitas a tiendas, entrevistas a vendedores, detección de errores y SLA via PostHog.</div></div>
-      <div class="proceso-step"><div class="proceso-num">2</div><div class="proceso-step-tag">Arquitectura</div><div class="proceso-step-title">Event Storming</div><div class="proceso-step-desc">Workshop para mapear el dominio y redefinir la arquitectura de eventos con backend.</div></div>
-      <div class="proceso-step"><div class="proceso-num">3</div><div class="proceso-step-tag">Diseño</div><div class="proceso-step-title">Diseño en paralelo</div><div class="proceso-step-desc">Flujos y prototipado de los 3 flujos críticos: catálogo, carrito y pagos/envío.</div></div>
-      <div class="proceso-step"><div class="proceso-num">4</div><div class="proceso-step-tag">Validación</div><div class="proceso-step-title">Piloto y rollout</div><div class="proceso-step-desc">Pruebas piloto, ajustes rápidos y lanzamiento progresivo en 200+ tiendas.</div></div>
+      <div class="proceso-step"><div class="proceso-num">1</div><div class="proceso-step-tag">Research</div><div class="proceso-step-title">Field research</div><div class="proceso-step-desc">Store visits, sales staff interviews, error detection, and SLA tracking via PostHog.</div></div>
+      <div class="proceso-step"><div class="proceso-num">2</div><div class="proceso-step-tag">Architecture</div><div class="proceso-step-title">Event Storming</div><div class="proceso-step-desc">Workshop to map the domain and redefine the event architecture with backend.</div></div>
+      <div class="proceso-step"><div class="proceso-num">3</div><div class="proceso-step-tag">Design</div><div class="proceso-step-title">Design en paralelo</div><div class="proceso-step-desc">Flows and prototyping of the 3 critical flows: catalog, cart, and payments/shipping.</div></div>
+      <div class="proceso-step"><div class="proceso-num">4</div><div class="proceso-step-tag">Validation</div><div class="proceso-step-title">Pilot and rollout</div><div class="proceso-step-desc">Pilot testing, fast iteration, and a progressive rollout to 200+ stores.</div></div>
     </div>
   </div>
 
   <!-- IMPACTO OPERATIVO -->
   <div class="body-section reveal">
-    <div class="body-section-title">Impacto operativo — tiempos antes vs después</div>
+    <div class="body-section-title">Operational impact — before vs after timing</div>
     <div class="impacto-grid">
       <div class="impacto-card">
         <div class="impacto-card-title">Performance</div>
-        <div class="impacto-row"><span class="impacto-label">Carga inicial</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;3.5 s</span></div>
-        <div class="impacto-row"><span class="impacto-label">Búsqueda catálogo</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 s</span></div>
-        <div class="impacto-row"><span class="impacto-label">Confirmación de orden</span><span class="impacto-before">variable</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Initial load</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;3.5 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Catalog search</span><span class="impacto-before">4–6 s</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Order confirmation</span><span class="impacto-before">variable</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
       </div>
       <div class="impacto-card">
-        <div class="impacto-card-title">Reducción de errores</div>
-        <div class="impacto-row"><span class="impacto-label">Errores de sync</span><span class="impacto-before">alto</span><span class="impacto-arrow">→</span><span class="impacto-after">−80%</span></div>
-        <div class="impacto-row"><span class="impacto-label">Errores en catálogo</span><span class="impacto-before">frecuente</span><span class="impacto-arrow">→</span><span class="impacto-after">−5%</span></div>
-        <div class="impacto-row"><span class="impacto-label">Errores de servicio</span><span class="impacto-before">crítico</span><span class="impacto-arrow">→</span><span class="impacto-after">−1%</span></div>
+        <div class="impacto-card-title">Error reduction</div>
+        <div class="impacto-row"><span class="impacto-label">Sync errors</span><span class="impacto-before">high</span><span class="impacto-arrow">→</span><span class="impacto-after">−80%</span></div>
+        <div class="impacto-row"><span class="impacto-label">Catalog errors</span><span class="impacto-before">frequent</span><span class="impacto-arrow">→</span><span class="impacto-after">−5%</span></div>
+        <div class="impacto-row"><span class="impacto-label">Service errors</span><span class="impacto-before">critical</span><span class="impacto-arrow">→</span><span class="impacto-after">−1%</span></div>
       </div>
       <div class="impacto-card">
-        <div class="impacto-card-title">Confianza y adopción</div>
-        <div class="impacto-row"><span class="impacto-label">Tiempo por orden</span><span class="impacto-before">4–6 min</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 min</span></div>
-        <div class="impacto-row"><span class="impacto-label">Confirmación envío</span><span class="impacto-before">lento</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
-        <div class="impacto-row"><span class="impacto-label">Incidentes lanzamiento</span><span class="impacto-before">crash</span><span class="impacto-arrow">→</span><span class="impacto-after">0</span></div>
+        <div class="impacto-card-title">Trust and adoption</div>
+        <div class="impacto-row"><span class="impacto-label">Time per order</span><span class="impacto-before">4–6 min</span><span class="impacto-arrow">→</span><span class="impacto-after">3–5 min</span></div>
+        <div class="impacto-row"><span class="impacto-label">Shipping confirmation</span><span class="impacto-before">slow</span><span class="impacto-arrow">→</span><span class="impacto-after">&lt;15 s</span></div>
+        <div class="impacto-row"><span class="impacto-label">Launch incidents</span><span class="impacto-before">crash</span><span class="impacto-arrow">→</span><span class="impacto-after">0</span></div>
       </div>
     </div>
-    <div class="impacto-note">El POS fue implementado progresivamente — tiendas piloto → validación → flujo completo — hasta llegar a las 200+ tiendas antes de Buen Fin 2024 sin incidentes masivos de operación.</div>
+    <div class="impacto-note">The POS was rolled out progressively — pilot stores → validation → full flow — scaling to 200+ stores before Buen Fin 2024 with no major operational incidents.</div>
   </div>
 
   <!-- ANTES VS DESPUÉS -->
   <div class="body-section reveal">
-    <div class="body-section-title">Antes vs Después — flujos críticos</div>
+    <div class="body-section-title">Before vs After — critical flows</div>
 
-    <div class="ba-section-label">Catálogo</div>
+    <div class="ba-section-label">Catalog</div>
     <div class="ba-grid">
       <div class="ba-panel before">
-        <div class="ba-label">Catálogo V1</div>
-        <img src="images/catalogo-v1.png" alt="Catálogo V1" class="ba-img"
+        <div class="ba-label">Catalog V1</div>
+        <img src="images/catalogo-v1.png" alt="Catalog V1" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">catalogo-v1.png</div>
         <ul class="ba-list">
-          <li>Lentitud — el catálogo genera cuellos de botella</li>
-          <li>Sobrecargado con productos descontinuados</li>
-          <li>Búsqueda pasiva sin filtros</li>
-          <li>Falta de visibilidad de información clave</li>
+          <li>Slowness — the catalog creates operational bottlenecks</li>
+          <li>Overloaded with discontinued products</li>
+          <li>Passive search with no filters</li>
+          <li>Missing visibility of key product information</li>
         </ul>
       </div>
       <div class="ba-panel after">
-        <div class="ba-label">Catálogo V2</div>
-        <img src="images/catalogo-v2.png" alt="Catálogo V2" class="ba-img"
+        <div class="ba-label">Catalog V2</div>
+        <img src="images/catalogo-v2.png" alt="Catalog V2" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">catalogo-v2.png</div>
         <ul class="ba-list">
-          <li>Búsqueda optimizada con buscador y filtros múltiples</li>
-          <li>Solo productos activos y relevantes</li>
-          <li>Card de producto intuitiva multicanal</li>
-          <li>Visibilidad de información clave resuelta</li>
+          <li>Optimized search with multiple filters</li>
+          <li>Only active, relevant products</li>
+          <li>Intuitive, multichannel product cards</li>
+          <li>Key information visibility resolved</li>
         </ul>
       </div>
     </div>
 
-    <div class="ba-section-label">Modal de producto</div>
+    <div class="ba-section-label">Product modal</div>
     <div class="ba-grid">
       <div class="ba-panel before">
         <div class="ba-label">Modal V1</div>
@@ -376,9 +376,9 @@
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">modal-v1.png</div>
         <ul class="ba-list">
-          <li>Sobrecarga de información no esencial</li>
-          <li>Falta de elementos para el flujo crítico</li>
-          <li>Arquitectura de información poco clara</li>
+          <li>Overload of non-essential information</li>
+          <li>Falta de elementos para el flujo critical</li>
+          <li>Unclear information architecture</li>
         </ul>
       </div>
       <div class="ba-panel after">
@@ -387,87 +387,87 @@
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">modal-v2.png</div>
         <ul class="ba-list">
-          <li>Card design intuitivo con mejor arquitectura</li>
-          <li>Apoyos visuales para características relevantes</li>
-          <li>Disponibilidad integrada sin plataformas externas</li>
+          <li>Intuitive card design with improved architecture</li>
+          <li>Visual support for relevant product features</li>
+          <li>Integrated availability — no external platforms needed</li>
         </ul>
       </div>
     </div>
 
-    <div class="ba-section-label">Carrito</div>
+    <div class="ba-section-label">Cart</div>
     <div class="ba-grid">
       <div class="ba-panel before">
-        <div class="ba-label">Carrito V1</div>
-        <img src="images/carrito-v1.png" alt="Carrito V1" class="ba-img"
+        <div class="ba-label">Cart V1</div>
+        <img src="images/carrito-v1.png" alt="Cart V1" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">carrito-v1.png</div>
         <ul class="ba-list">
-          <li>Sobrecarga de información no esencial</li>
-          <li>Falta de elementos para el flujo crítico</li>
-          <li>Arquitectura de información poco clara</li>
+          <li>Overload of non-essential information</li>
+          <li>Falta de elementos para el flujo critical</li>
+          <li>Unclear information architecture</li>
         </ul>
       </div>
       <div class="ba-panel after">
-        <div class="ba-label">Carrito V2</div>
-        <img src="images/carrito-v2.png" alt="Carrito V2" class="ba-img"
+        <div class="ba-label">Cart V2</div>
+        <img src="images/carrito-v2.png" alt="Cart V2" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">carrito-v2.png</div>
         <ul class="ba-list">
-          <li>Mejora de arquitectura de información</li>
-          <li>Checkout rápido y fluido</li>
-          <li>Visibilidad de disponibilidad en tiempo real</li>
+          <li>Improved information architecture</li>
+          <li>Fast, smooth checkout</li>
+          <li>Real-time availability visibility</li>
         </ul>
       </div>
     </div>
 
-    <div class="ba-section-label">Envío</div>
+    <div class="ba-section-label">Shipping</div>
     <div class="ba-grid">
       <div class="ba-panel before">
-        <div class="ba-label">Envío V1</div>
-        <img src="images/envio-v1.png" alt="Envío V1" class="ba-img"
+        <div class="ba-label">Shipping V1</div>
+        <img src="images/envio-v1.png" alt="Shipping V1" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">envio-v1.png</div>
         <ul class="ba-list">
-          <li>Flujo crítico en un solo modal sin salida</li>
-          <li>Feedback insuficiente en procesos de cálculo</li>
-          <li>Falta de logs de asignación y entrega</li>
+          <li>Flujo critical en un solo modal sin salida</li>
+          <li>Insufficient feedback during calculation steps</li>
+          <li>Missing assignment and delivery logs</li>
         </ul>
       </div>
       <div class="ba-panel after">
-        <div class="ba-label">Envío V2</div>
-        <img src="images/envio-v2.png" alt="Envío V2" class="ba-img"
+        <div class="ba-label">Shipping V2</div>
+        <img src="images/envio-v2.png" alt="Shipping V2" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">envio-v2.png</div>
         <ul class="ba-list">
-          <li>Flujo completo rediseñado con configuración en tiempo real</li>
-          <li>Servicios de inventario integrados</li>
-          <li>Cards rediseñadas para agilizar la venta en store</li>
+          <li>Fully redesigned flow with real-time configuration</li>
+          <li>Integrated inventory services</li>
+          <li>Redesigned cards to speed up in-store sales</li>
         </ul>
       </div>
     </div>
 
-    <div class="ba-section-label">Pago</div>
+    <div class="ba-section-label">Payment</div>
     <div class="ba-grid">
       <div class="ba-panel before">
-        <div class="ba-label">Pago V1</div>
-        <img src="images/pago-v1.png" alt="Pago V1" class="ba-img"
+        <div class="ba-label">Payment V1</div>
+        <img src="images/pago-v1.png" alt="Payment V1" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">pago-v1.png</div>
         <ul class="ba-list">
-          <li>Métodos de pago desordenados sin jerarquía</li>
-          <li>Feedback insuficiente en procesos críticos</li>
-          <li>Estado de error poco claro sin recuperación</li>
+          <li>Disorganized payment methods with no hierarchy</li>
+          <li>Feedback insuficiente en procesos criticals</li>
+          <li>Unclear error states with no recovery path</li>
         </ul>
       </div>
       <div class="ba-panel after">
-        <div class="ba-label">Pago V2</div>
-        <img src="images/pago-v2.png" alt="Pago V2" class="ba-img"
+        <div class="ba-label">Payment V2</div>
+        <img src="images/pago-v2.png" alt="Payment V2" class="ba-img"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="ba-img-placeholder" style="display:none;">pago-v2.png</div>
         <ul class="ba-list">
-          <li>Flujo simple y guiado paso a paso</li>
-          <li>Estados claros y en tiempo real</li>
-          <li>Experiencia segura con estados de salida claros</li>
+          <li>Simple, step-by-step guided flow</li>
+          <li>Clear, real-time states</li>
+          <li>Secure experience with clear exit states</li>
         </ul>
       </div>
     </div>
@@ -475,16 +475,16 @@
 
   <!-- REFLEXIONES -->
   <div class="body-section reveal">
-    <div class="body-section-title">Lo que este proyecto cambió en mi forma de diseñar</div>
-    <div class="reflexiones-eyebrow">Aprendizajes</div>
+    <div class="body-section-title">What this project changed in how I design</div>
+    <div class="reflexiones-eyebrow">Takeaways</div>
     <div class="reflexiones-grid">
-      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0z"/></svg></div><div class="reflexion-title">Diseñar para sistemas resilientes</div><div class="reflexion-desc">Diseñar sistemas complejos implica pensar más allá de pantallas: entender arquitectura, operación, escalabilidad y cómo cada interacción impacta directamente a personas trabajando bajo presión en tiempo real.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><div class="reflexion-title">Performance también es UX</div><div class="reflexion-desc">No solo se trata de hacer feliz al usuario en el camino ideal. Pensar en fallas, estados y recuperación es tan parte del diseño como el flujo principal.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg></div><div class="reflexion-title">La arquitectura impacta experiencia</div><div class="reflexion-desc">Backend y UX no son mundos separados. Colaborar es clave: cada decisión técnica tiene consecuencias directas en cómo se siente y funciona el producto.</div></div>
-      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 19V9m5 10V5m5 14v-7"/></svg></div><div class="reflexion-title">Escalar requiere claridad</div><div class="reflexion-desc">Sistemas simples, métricas claras y documentación sólida permiten crecer sin perder el control de la operación ni la consistencia del producto.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0z"/></svg></div><div class="reflexion-title">Designing for resilient systems</div><div class="reflexion-desc">Designing complex systems means thinking beyond screens: understanding architecture, operations, scalability, and how every interaction directly affects people working under real-time pressure.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div><div class="reflexion-title">Performance is also UX</div><div class="reflexion-desc">It's not just about making the user happy on the ideal path. Thinking about failures, states, and recovery is as much a part of design as the main flow.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg></div><div class="reflexion-title">Architecture shapes experience</div><div class="reflexion-desc">Backend and UX aren't separate worlds. Collaboration is key: every technical decision has direct consequences on how the product feels and functions.</div></div>
+      <div class="reflexion-card"><div class="reflexion-icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 19V9m5 10V5m5 14v-7"/></svg></div><div class="reflexion-title">Scaling requires clarity</div><div class="reflexion-desc">Simple systems, clear metrics, and solid documentation make it possible to grow without losing control of operations or product consistency.</div></div>
     </div>
     <div class="reflection-block">
-      <p class="reflection-quote">"Diseñar sistemas complejos me enseñó que la arquitectura de información impacta experiencia — cada decisión técnica tiene consecuencias directas en las personas que usan el producto todos los días."</p>
+      <p class="reflection-quote">"Designing complex systems taught me that information architecture shapes experience — every technical decision has direct consequences for the people who use the product every day."</p>
     </div>
   </div>
 
@@ -493,7 +493,7 @@
 <footer class="case-footer">
   <span class="footer-name">Melany Olivares — 2026</span>
   <div class="footer-links">
-    <a href="index.html">← Inicio</a>
+    <a href="index.html">← Home</a>
     <a href="https://www.behance.net/melanyolivares" target="_blank">Behance</a>
     <a href="https://linkedin.com" target="_blank">LinkedIn</a>
   </div>
