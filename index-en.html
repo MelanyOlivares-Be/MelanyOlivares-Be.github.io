@@ -195,6 +195,17 @@
       .contact-wrap { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
       footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     }
+
+    .contact-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); transition: border-color 0.2s, transform 0.2s; }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-card-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(93,202,165,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-card-icon svg { width: 18px; height: 18px; stroke: var(--accent); }
+    .contact-card-body { flex: 1; }
+    .contact-card-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .contact-card-value { font-size: 14px; color: var(--text); }
+    .contact-card-arrow { font-size: 16px; color: var(--border2); transition: color 0.2s; }
+    .contact-card:hover .contact-card-arrow { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -223,7 +234,7 @@
   <div class="hero-cta">
     <a href="#work" class="btn btn-primary">View projects</a>
     <a href="assets/cv-melany-olivares.pdf" target="_blank" class="btn btn-secondary">Download CV ↓</a>
-    <a href="https://www.behance.net/melanyolivares" target="_blank" class="btn btn-secondary">Behance →</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank" class="btn btn-secondary">Behance →</a>
   </div>
   <div class="hero-metrics">
     <div class="hero-metric"><div class="hero-metric-num">4+</div><div class="hero-metric-label">Years of experience</div></div>
@@ -504,44 +515,43 @@
 <div style="border-top: 0.5px solid var(--border);">
 <div class="section-wrap" id="contact">
   <div class="section-label" style="margin-bottom:40px;">Contact</div>
-  <div class="contact-wrap reveal">
-    <div>
-      <h2 class="contact-title">Got an idea? <em>Let's talk.</em></h2>
-      <p class="contact-desc">Reach out if you're looking for a Product Designer for a project, want to hire me for a full-time role, or just want to talk about design, AI, and systems.</p>
-      <div class="contact-links">
-        <a href="mailto:123mel.ida@gmail.com" class="contact-link">
-          <div class="contact-link-icon">✉</div>
-          123mel.ida@gmail.com
-        </a>
-        <a href="https://linkedin.com/in/melanyolivares" target="_blank" class="contact-link">
-          <div class="contact-link-icon">in</div>
-          linkedin.com/in/melanyolivares
-        </a>
-        <a href="https://www.behance.net/melanyolivares" target="_blank" class="contact-link">
-          <div class="contact-link-icon">Be</div>
-          behance.net/melanyolivares
-        </a>
-        <a href="assets/cv-melany-olivares.pdf" target="_blank" class="contact-link">
-          <div class="contact-link-icon">↓</div>
-          Download CV
-        </a>
-      </div>
+  <div class="contact-wrap reveal" style="display:block;">
+    <h2 class="contact-title" style="margin-bottom:16px;">Got an idea? <em>Let's talk.</em></h2>
+    <p class="contact-desc" style="margin-bottom:48px;">Reach out if you're looking for a Product Designer for a project, want to hire me for a full-time role, or just want to talk about design, AI, and systems.</p>
+    <div class="contact-cards">
+      <a href="mailto:123mel.ida@gmail.com" class="contact-card">
+        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">123mel.ida@gmail.com</div>
+        </div>
+        <span class="contact-card-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank" class="contact-card">
+        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4m0-4v4"/></svg></div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">linkedin.com/in/uxmel-olivares</div>
+        </div>
+        <span class="contact-card-arrow">→</span>
+      </a>
+      <a href="https://www.behance.net/mitzyolivares" target="_blank" class="contact-card">
+        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="9" height="12" rx="2"/><path d="M11 10a3 3 0 0 1 0 4H2"/><rect x="13" y="6" width="9" height="12" rx="2"/><path d="M13 10h9"/></svg></div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">Behance</div>
+          <div class="contact-card-value">behance.net/mitzyolivares</div>
+        </div>
+        <span class="contact-card-arrow">→</span>
+      </a>
+      <a href="assets/cv-melany-olivares.pdf" target="_blank" class="contact-card">
+        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg></div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">Resume</div>
+          <div class="contact-card-value">Download CV</div>
+        </div>
+        <span class="contact-card-arrow">↓</span>
+      </a>
     </div>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <div class="form-field">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-input" placeholder="Your name" required>
-      </div>
-      <div class="form-field">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="tu@email.com" required>
-      </div>
-      <div class="form-field">
-        <label class="form-label">Message</label>
-        <textarea class="form-input" placeholder="How can I help?" required></textarea>
-      </div>
-      <button type="submit" class="form-submit">Send message →</button>
-    </form>
   </div>
 </div>
 </div>
@@ -554,8 +564,8 @@
   </div>
   <div class="footer-links">
     <a href="#work">Work</a>
-    <a href="https://linkedin.com/in/melanyolivares" target="_blank">LinkedIn ↗</a>
-    <a href="https://www.behance.net/melanyolivares" target="_blank">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
     <a href="assets/cv-melany-olivares.pdf" target="_blank">CV ↓</a>
   </div>
 </footer>
@@ -565,15 +575,7 @@
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Form
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = '✓ Message enviado';
-    btn.style.background = 'var(--accent)';
-    setTimeout(() => { btn.textContent = 'Send message →'; e.target.reset(); }, 3000);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));, 3000);
   }
 </script>
 </body>
