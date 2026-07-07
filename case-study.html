@@ -1,202 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>ZePOS — Caso de estudio · Melany Olivares</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0C0C0F; --surface: #13131A; --surface2: #1A1A24;
-      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
-      --text: #EAE8E0; --muted: #9A9890; --accent: #5DCAA5; --coral: #D85A30;
-      --accent-light: #7EDAD8;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#FAFAF8; --surface:#F0F0EE; --surface2:#E8E8E5;
+      --border:rgba(0,0,0,0.08); --border2:rgba(0,0,0,0.14);
+      --text:#0F0E0C; --muted:#6B6860; --soft:#736D63;
+      --coral:#FE6647; --coral-text:#C73D18; --coral-large:#E54B22;
+      --blue:#4784FE; --blue-text:#2A63D9;
+      --yellow:#DFFE47;
+      --coral-light:#FFF0ED; --blue-light:#EEF3FF; --yellow-light:#FAFFD9;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'DM Sans',sans-serif;
     }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
-      background: rgba(12,12,15,0.85); backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo { font-family: var(--font-display); font-size: 18px; color: var(--text); text-decoration: none; }
-    .nav-back { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .nav-back:hover { color: var(--accent); }
-    .lang-switch { font-size: 11px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; border: 0.5px solid var(--border2); border-radius: 4px; padding: 5px 11px; transition: all 0.2s; }
-    .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral-large);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;text-decoration:none;font-weight:500;transition:all 0.2s;}
+    .lang-btn:hover{border-color:var(--coral-text);color:var(--coral-text);}
 
     /* CASE HERO */
-    .case-hero { padding: 160px 48px 0; max-width: 1100px; margin: 0 auto; }
-    .case-hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; margin-bottom: 48px; }
-    .case-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-    .case-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-    .case-title { font-family: var(--font-display); font-size: clamp(34px, 4.5vw, 56px); line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 24px; }
-    .case-title em { font-style: italic; color: var(--accent); }
-    .case-desc { font-size: 16px; color: var(--muted); line-height: 1.7; font-weight: 300; }
-    .case-meta { display: flex; gap: 40px; flex-wrap: wrap; padding: 32px 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin-bottom: 0; }
-    .case-meta-item { display: flex; flex-direction: column; gap: 6px; }
-    .case-meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); }
-    .case-meta-value { font-size: 14px; color: var(--text); font-weight: 500; }
+    .case-hero{padding:120px 56px 0;max-width:1100px;margin:0 auto;}
+    .case-hero-grid{display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;margin-bottom:0;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .case-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+    .case-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--coral-text);}
+    .case-title{font-family:var(--font-display);font-size:clamp(36px,5vw,58px);line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
+    .case-title em{font-style:italic;color:var(--coral-large);}
+    .case-desc{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;}
+    .case-hero-img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:12px;border:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;}
+    .case-hero-img img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:11px;display:block;}
+    .case-meta{display:flex;gap:40px;flex-wrap:wrap;padding:32px 0;border-bottom:1px solid var(--border);}
+    .case-meta-item{display:flex;flex-direction:column;gap:5px;}
+    .case-meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);}
+    .case-meta-value{font-size:14px;color:var(--text);font-weight:500;}
 
-    /* HERO IMAGE */
-    .hero-image-wrap { width: 100%; margin: 0 0 0; border-radius: 8px; overflow: hidden; }
-    .hero-image-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; display: block; }
-    .hero-image-placeholder { width: 100%; height: 400px; background: var(--surface2); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; letter-spacing: 0.06em; }
-
-    /* METRICS */
-    .metrics-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
-    .metric-cell { padding: 40px; border-right: 0.5px solid var(--border); }
-    .metric-cell:last-child { border-right: none; }
-    .metric-num { font-family: var(--font-display); font-size: 56px; line-height: 1; margin-bottom: 8px; letter-spacing: -0.03em; }
-    .metric-num.positive { color: var(--accent); }
-    .metric-num.neutral { color: var(--text); }
-    .metric-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    /* METRICS STRIP */
+    .metrics-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);}
+    .metrics-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+    .metric-cell{padding:40px 48px;border-right:1px solid var(--border);}
+    .metric-cell:last-child{border-right:none;}
+    .metric-num{font-family:var(--font-display);font-size:52px;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;}
+    .metric-num.positive{color:var(--coral-large);}
+    .metric-num.blue{color:var(--blue-text);}
+    .metric-num.neutral{color:var(--text);}
+    .metric-desc{font-size:13px;color:var(--soft);line-height:1.5;}
 
     /* BODY */
-    .case-body { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
-    .body-section { margin-bottom: 80px; }
-    .body-section:last-child { margin-bottom: 0; }
-    .body-section-title { font-family: var(--font-display); font-size: clamp(22px, 2.8vw, 30px); font-weight: 400; letter-spacing: -0.01em; text-transform: none; color: var(--text); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
-    .body-section-heading { display: none; }
-    .reflexiones-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 24px; margin-top: -16px; }
-
-    /* FULL WIDTH IMAGE */
-    .img-full { width: 100%; border-radius: 6px; display: block; border: 0.5px solid var(--border); object-fit: cover; object-position: center; }
-    .img-full.ratio-wide { aspect-ratio: auto; max-height: 600px; object-fit: contain; background: var(--surface2); padding: 24px; }
-    .img-caption { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; letter-spacing: 0.04em; }
-    .img-placeholder { width: 100%; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; }
-
-    /* LUUNA BRAND */
-    .luuna-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .luuna-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; display: block; }
+    .case-body{max-width:1100px;margin:0 auto;padding:80px 56px;}
+    .body-section{margin-bottom:80px;}
+    .body-section:last-child{margin-bottom:0;}
+    .body-section-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:400;letter-spacing:-0.01em;color:var(--text);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .body-section-title em{font-style:italic;color:var(--coral-large);}
 
     /* CONTEXTO */
-    .contexto-text { font-size: 16.5px; color: var(--muted); line-height: 1.85; max-width: 720px; font-weight: 300; }
-    .contexto-text strong { color: var(--text); font-weight: 500; }
+    .contexto-text{font-size:16.5px;color:var(--muted);line-height:1.85;max-width:720px;font-weight:300;}
+    .contexto-text strong{color:var(--text);font-weight:500;}
 
-    /* RESUMEN */
-    .resumen-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border-radius: 6px; overflow: hidden; }
-    .resumen-cell { background: var(--surface2); padding: 28px 24px; }
-    .resumen-icon { width: 36px; height: 36px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(93,202,165,0.08); }
-    .resumen-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-    .resumen-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 10px; font-weight: 500; }
-    .resumen-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .resumen-text strong { color: var(--text); font-weight: 500; }
+    /* RESUMEN GRID */
+    .resumen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:8px;overflow:hidden;}
+    .resumen-cell{background:var(--surface);padding:28px 24px;}
+    .resumen-icon{width:36px;height:36px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(231,75,34,0.08);}
+    .resumen-icon svg{width:18px;height:18px;stroke:var(--coral-text);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+    .resumen-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral-text);margin-bottom:10px;font-weight:500;}
+    .resumen-text{font-size:13.5px;color:var(--muted);line-height:1.6;}
+    .resumen-text strong{color:var(--text);font-weight:500;}
+
+    /* REFLEXIONES EYEBROW */
+    .reflexiones-eyebrow{font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--soft);margin-bottom:24px;margin-top:-16px;}
 
     /* PROCESO */
-    .proceso-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; margin-top: 16px; }
-    .proceso-steps::before { content: ''; position: absolute; top: 19px; left: 5%; right: 5%; height: 0.5px; background: linear-gradient(90deg, var(--accent), rgba(93,202,165,0.1)); z-index: 0; }
-    .proceso-step { padding: 0 20px; padding-top: 52px; position: relative; }
-    .proceso-num { position: absolute; top: 0; left: 20px; width: 38px; height: 38px; border-radius: 50%; background: var(--surface2); border: 0.5px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent); font-weight: 500; z-index: 1; }
-    .proceso-step-tag { display: inline-block; font-size: 10px; color: var(--accent-light); border: 0.5px solid rgba(93,202,165,0.3); border-radius: 3px; padding: 2px 8px; margin-bottom: 8px; }
-    .proceso-step-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
-    .proceso-step-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+    .proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:16px;}
+    .proceso-steps::before{content:'';position:absolute;top:19px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,var(--coral-large),rgba(231,75,34,0.1));z-index:0;}
+    .proceso-step{padding:0 20px;padding-top:52px;position:relative;}
+    .proceso-num{position:absolute;top:0;left:20px;width:38px;height:38px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--coral-text);font-weight:500;z-index:1;}
+    .proceso-step-tag{display:inline-block;font-size:10px;color:var(--coral-text);border:1px solid rgba(199,61,24,0.25);border-radius:3px;padding:2px 8px;margin-bottom:8px;}
+    .proceso-step-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;line-height:1.4;}
+    .proceso-step-desc{font-size:12.5px;color:var(--muted);line-height:1.6;}
 
     /* DECISIONS */
-    .decisions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .decision-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
-    .decision-num { font-family: var(--font-display); font-size: 48px; color: var(--border2); line-height: 1; margin-bottom: 16px; }
-    .decision-title { font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
-    .decision-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+    .decisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .decision-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px;}
+    .decision-num{font-family:var(--font-display);font-size:48px;color:var(--border2);line-height:1;margin-bottom:16px;}
+    .decision-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;line-height:1.4;}
+    .decision-desc{font-size:13.5px;color:var(--muted);line-height:1.6;}
 
     /* IMPACTO */
-    .impacto-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
-    .impacto-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
-    .impacto-card-title { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 16px; }
-    .impacto-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 0.5px solid var(--border); gap: 8px; }
-    .impacto-row:last-child { border-bottom: none; }
-    .impacto-label { font-size: 12px; color: var(--muted); flex: 1; }
-    .impacto-before { font-size: 13px; color: var(--coral); font-weight: 500; }
-    .impacto-arrow { font-size: 11px; color: var(--border2); }
-    .impacto-after { font-size: 13px; color: var(--accent); font-weight: 500; }
-    .impacto-note { font-size: 14.5px; color: var(--muted); line-height: 1.7; padding: 20px 24px; background: rgba(93,202,165,0.04); border-radius: 4px; border-left: 2px solid var(--accent); }
+    .impacto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+    .impacto-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px;}
+    .impacto-card-title{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral-text);margin-bottom:16px;font-weight:500;}
+    .impacto-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:8px;}
+    .impacto-row:last-child{border-bottom:none;}
+    .impacto-label{font-size:12px;color:var(--muted);flex:1;}
+    .impacto-before{font-size:13px;color:var(--coral-text);font-weight:500;}
+    .impacto-arrow{font-size:11px;color:var(--soft);}
+    .impacto-after{font-size:13px;color:var(--blue-text);font-weight:500;}
+    .impacto-note{font-size:13.5px;color:var(--muted);line-height:1.7;padding:20px 24px;background:var(--blue-light);border-radius:6px;border-left:3px solid var(--blue-text);}
 
     /* BEFORE AFTER */
-    .ba-section-label { font-family: var(--font-display); font-size: 19px; font-weight: 400; color: var(--text); margin: 44px 0 18px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
-    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
-    .ba-panel { border-radius: 6px; padding: 28px; border: 0.5px solid var(--border); }
-    .ba-panel.before { background: rgba(216,90,48,0.04); border-color: rgba(216,90,48,0.15); }
-    .ba-panel.after  { background: rgba(93,202,165,0.04); border-color: rgba(93,202,165,0.15); }
-    .ba-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-    .ba-panel.before .ba-label { color: var(--coral); }
-    .ba-panel.after  .ba-label { color: var(--accent); }
-    .ba-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-    .ba-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top; border-radius: 4px; display: block; margin-bottom: 16px; border: 0.5px solid rgba(255,255,255,0.05); }
-    .ba-img-placeholder { width: 100%; height: 180px; background: rgba(255,255,255,0.03); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 11px; letter-spacing: 0.06em; margin-bottom: 16px; border: 0.5px dashed var(--border2); }
-    .ba-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .ba-list li { font-size: 14px; color: var(--muted); line-height: 1.5; padding-left: 16px; position: relative; }
-    .ba-list li::before { content: '—'; position: absolute; left: 0; font-size: 12px; }
-    .ba-panel.before .ba-list li::before { color: var(--coral); }
-    .ba-panel.after  .ba-list li::before { color: var(--accent); }
+    .ba-section-label{font-family:var(--font-display);font-size:19px;font-weight:400;color:var(--text);margin:44px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+    .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;}
+    .ba-panel{border-radius:8px;padding:28px;border:1px solid var(--border);}
+    .ba-panel.before{background:var(--coral-light);border-color:rgba(199,61,24,0.15);}
+    .ba-panel.after{background:var(--blue-light);border-color:rgba(42,99,217,0.15);}
+    .ba-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .ba-panel.before .ba-label{color:var(--coral-text);}
+    .ba-panel.after .ba-label{color:var(--blue-text);}
+    .ba-label::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+    .ba-img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:6px;display:block;margin-bottom:16px;border:1px solid rgba(0,0,0,0.06);}
+
+    /* VIDEO PLAYER */
+    .ba-video{width:100%;aspect-ratio:4/3;border-radius:6px;display:block;margin-bottom:16px;border:1px solid rgba(0,0,0,0.06);object-fit:cover;background:#000;}
+    .ba-video-wrap{position:relative;margin-bottom:16px;}
+    .ba-video-wrap video{width:100%;aspect-ratio:4/3;border-radius:6px;display:block;object-fit:cover;border:1px solid rgba(0,0,0,0.06);}
+    .ba-video-badge{position:absolute;top:10px;left:10px;background:rgba(42,99,217,0.9);color:white;font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:12px;backdrop-filter:blur(4px);}
+    .ba-img-placeholder{width:100%;aspect-ratio:4/3;background:rgba(0,0,0,0.04);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:11px;letter-spacing:0.06em;margin-bottom:16px;border:1px dashed var(--border2);}
+    .ba-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .ba-list li{font-size:13.5px;color:var(--muted);line-height:1.5;padding-left:16px;position:relative;}
+    .ba-list li::before{content:'—';position:absolute;left:0;font-size:12px;}
+    .ba-panel.before .ba-list li::before{color:var(--coral-text);}
+    .ba-panel.after .ba-list li::before{color:var(--blue-text);}
 
     /* REFLEXIONES */
-    .reflexiones-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-    .reflexion-card { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 28px; }
-    .reflexion-icon { width: 36px; height: 36px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: rgba(93,202,165,0.08); }
-    .reflexion-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-    .reflexion-title { font-size: 16px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }
-    .reflexion-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .reflection-block { border-left: 1px solid var(--accent); padding: 28px 36px; margin-top: 48px; background: rgba(93,202,165,0.03); border-radius: 0 6px 6px 0; }
-    .reflection-quote { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--text); line-height: 1.5; }
+    .reflexiones-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .reflexion-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px;}
+    .reflexion-icon{width:36px;height:36px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(231,75,34,0.08);}
+    .reflexion-icon svg{width:18px;height:18px;stroke:var(--coral-text);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+    .reflexion-title{font-size:15px;font-weight:500;color:var(--coral-text);margin-bottom:8px;}
+    .reflexion-desc{font-size:13.5px;color:var(--muted);line-height:1.6;}
+    .reflection-block{border-left:3px solid var(--coral-large);padding:28px 36px;margin-top:48px;background:var(--coral-light);border-radius:0 8px 8px 0;}
+    .reflection-quote{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-style:italic;color:var(--text);line-height:1.5;}
+
+    /* LUUNA */
+    .luuna-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+    .luuna-wrap img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;display:block;}
+
+    /* DIAGRAM */
+    .img-full{width:100%;border-radius:8px;display:block;border:1px solid var(--border);object-fit:contain;background:var(--surface);}
+    .img-full.ratio-wide{max-height:600px;padding:24px;}
+    .img-caption{font-size:12px;color:var(--soft);margin-top:12px;text-align:center;letter-spacing:0.04em;}
+    .img-placeholder{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;}
 
     /* FOOTER */
-    .case-footer { border-top: 0.5px solid var(--border); padding: 48px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
-    .footer-name { font-family: var(--font-display); font-size: 16px; color: var(--muted); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
+    .case-footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+    .footer-left{display:flex;flex-direction:column;gap:3px;}
+    .footer-name{font-family:var(--font-display);font-size:14px;color:var(--soft);}
+    .footer-credit{font-size:11px;color:var(--border2);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:11px;color:var(--soft);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--coral-text);}
 
-    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
 
-    @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .case-hero { padding: 120px 24px 0; }
-      .case-hero-grid { grid-template-columns: 1fr; gap: 32px; }
-      .case-body { padding: 48px 24px; }
-      .metrics-inner { grid-template-columns: repeat(2,1fr); }
-      .metrics-inner .metric-cell:nth-child(2) { border-right: none; }
-      .resumen-grid { grid-template-columns: 1fr 1fr; }
-      .proceso-steps { grid-template-columns: 1fr 1fr; }
-      .proceso-steps::before { display: none; }
-      .impacto-grid { grid-template-columns: 1fr; }
-      .ba-grid { grid-template-columns: 1fr; }
-      .decisions-grid { grid-template-columns: 1fr; }
-      .reflexiones-grid { grid-template-columns: 1fr; }
-      .case-footer { flex-direction: column; gap: 16px; text-align: center; }
-      .case-meta { gap: 20px; }
+    @media(max-width:768px){
+      nav{padding:14px 24px;}
+      .case-hero{padding:100px 24px 0;}
+      .case-hero-grid{grid-template-columns:1fr;gap:32px;}
+      .case-body{padding:48px 24px;}
+      .metrics-inner{grid-template-columns:repeat(2,1fr);}
+      .metrics-inner .metric-cell:nth-child(2){border-right:none;}
+      .resumen-grid{grid-template-columns:1fr 1fr;}
+      .proceso-steps{grid-template-columns:1fr 1fr;}
+      .proceso-steps::before{display:none;}
+      .impacto-grid{grid-template-columns:1fr;}
+      .ba-grid{grid-template-columns:1fr;}
+      .decisions-grid{grid-template-columns:1fr;}
+      .reflexiones-grid{grid-template-columns:1fr;}
+      .case-footer{flex-direction:column;gap:14px;padding:32px 24px;text-align:center;}
+      .case-meta{gap:20px;}
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Melany Olivares</a>
-  <div style="display:flex; align-items:center; gap:24px;">
+  <a href="index.html" class="nav-logo">Melany <em>Olivares</em></a>
+  <div class="nav-right">
     <a href="index.html" class="nav-back">← Volver al inicio</a>
-    <a href="case-study-en.html" class="lang-switch">EN</a>
+    <a href="case-study-en.html" class="lang-btn">EN</a>
   </div>
 </nav>
 
-<!-- HERO TEXT + IMAGE -->
+<!-- HERO -->
 <div class="case-hero">
   <div class="case-hero-grid">
     <div>
-      <div class="case-eyebrow">Zebrands · ZePOS · 2024</div>
-      <h1 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em><br>para escalar.</h1>
-      <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma multicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin.</p>
+      <div class="case-eyebrow">Zebrands · ZePOS · Dic 2024 – Abr 2026</div>
+      <h2 class="case-title">200 tiendas sin caerse.<br>Un sistema <em>rediseñado</em> para escalar.</h2>
+      <p class="case-desc">De un POS frágil con dependencias críticas a una plataforma omnicanal. Rediseño end-to-end de arquitectura, flujos y operación en tiempo real — lanzado antes de Buen Fin sin incidentes.</p>
     </div>
-    <div class="hero-image-wrap">
-      <img src="images/hero.png" alt="ZePOS hero" class="img-full" style="border-radius:8px; border:0.5px solid var(--border);"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="hero-image-placeholder" style="display:none;">hero.png</div>
+    <div class="case-hero-img">
+      <img src="images/hero.png" alt="ZePOS hero" onerror="this.style.display='none';this.parentElement.textContent='hero.png'"/>
     </div>
   </div>
   <div class="case-meta">
@@ -204,15 +212,15 @@
     <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">8 meses</span></div>
     <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">18 personas</span></div>
     <div class="case-meta-item"><span class="case-meta-label">Mercados</span><span class="case-meta-value">México · Brasil</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX Lead — único diseñador</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">Product Designer UX/UI — único diseñador</span></div>
   </div>
 </div>
 
 <!-- METRICS -->
-<div style="border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="metrics-inner">
     <div class="metric-cell"><div class="metric-num positive">−80%</div><div class="metric-desc">Errores en sincronización</div></div>
-    <div class="metric-cell"><div class="metric-num positive">75%</div><div class="metric-desc">Usuarios con mayor velocidad percibida</div></div>
+    <div class="metric-cell"><div class="metric-num blue">75%</div><div class="metric-desc">Usuarios con mayor velocidad percibida</div></div>
     <div class="metric-cell"><div class="metric-num positive">−50%</div><div class="metric-desc">Tiempo para crear una orden</div></div>
     <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">200+</div><div class="metric-desc">Tiendas sin incidentes en lanzamiento</div></div>
   </div>
@@ -221,34 +229,27 @@
 <!-- BODY -->
 <div class="case-body">
 
-  <!-- CONTEXTO -->
   <div class="body-section reveal">
     <div class="body-section-title">Contexto</div>
-    <p class="contexto-text">
-      Zebrands es una empresa de retail omnicanal con presencia en México y Brasil. Como parte de su ecosistema multitienda, opera su propio sistema de punto de venta utilizado en más de 200 tiendas físicas. En 2023 detecté como UX el estado integral de la plataforma, colaborando con un equipo multidisciplinario conformado por frontend, backend, arquitectura y liderazgo técnico.<br><br>
-      El proyecto surgió tras identificar problemas críticos de <strong>performance, estabilidad y operación</strong> durante eventos de alta demanda como Hot Sale. El diseño no consistía únicamente en rediseñar la interfaz, sino en replantear un sistema capaz de soportar una operación <strong>multitienda y transaccional en tiempo real</strong>, reduciendo fricción en tienda y preparando la plataforma para crecer de forma sostenible.
-    </p>
+    <p class="contexto-text">Zebrands es una empresa de retail omnicanal con presencia en México y Brasil. Como parte de su ecosistema multitienda, opera su propio sistema de punto de venta utilizado en más de 200 tiendas físicas. En 2024 lideré el rediseño integral de la plataforma, colaborando con un equipo multidisciplinario de frontend, backend, arquitectura y liderazgo técnico.<br><br>El proyecto surgió tras identificar problemas críticos de <strong>performance, estabilidad y operación</strong> durante eventos de alta demanda como Hot Sale. El diseño no consistía únicamente en rediseñar la interfaz, sino en replantear un sistema capaz de soportar una operación <strong>multitienda y transaccional en tiempo real</strong>, reduciendo fricción en tienda y preparando la plataforma para crecer de forma sostenible.</p>
   </div>
 
-  <!-- LUUNA BRAND -->
   <div class="body-section reveal">
-    <div class="body-section-title">El sistema en contexto — Luuna Brand</div>
+    <div class="body-section-title">El sistema en contexto — <em>Luuna Brand</em></div>
     <div class="luuna-wrap">
-      <img src="images/luuna.png" alt="Luuna Brand system" class="img-full"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="img-placeholder" style="height:320px; display:none;">luuna.png</div>
+      <img src="images/luuna.png" alt="Luuna Brand system" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="img-placeholder" style="height:320px;display:none;">luuna.png</div>
     </div>
     <p class="img-caption">Contexto de marca y ecosistema de producto dentro de Zebrands</p>
   </div>
 
-  <!-- RESUMEN -->
   <div class="body-section reveal">
     <div class="body-section-title">Resumen del proyecto</div>
     <div class="resumen-grid">
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
         <div class="resumen-label">El problema</div>
-        <div class="resumen-text">El POS presentaba tiempos de carga altos, catálogo sobrecargado, inconsistencias entre módulos, dependencia crítica del ERP RPNext y falta de visibilidad del stock en tiempo real.</div>
+        <div class="resumen-text">El POS presentaba tiempos de carga altos, catálogo sobrecargado, inconsistencias entre módulos y dependencia crítica del ERP RPNext. Los vendedores podían generar caídas del sistema con acciones cotidianas.</div>
       </div>
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
@@ -258,61 +259,56 @@
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
         <div class="resumen-label">Mi rol</div>
-        <div class="resumen-text">Lideré la estrategia y experiencia de usuario como <strong>único diseñador UX</strong> durante la mayor parte del proyecto. Definí flujos, arquitectura y colaboré en la implementación en operación real.</div>
+        <div class="resumen-text">Lideré la estrategia y experiencia de usuario como <strong>único Product Designer UX/UI</strong> durante la mayor parte del proyecto. Definí flujos, arquitectura y colaboré en la implementación en operación real.</div>
       </div>
       <div class="resumen-cell">
         <div class="resumen-icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-9"/><path d="M14 7h7v7"/></svg></div>
         <div class="resumen-label">El impacto</div>
-        <div class="resumen-text">Sistema más ágil y estable. Lanzamiento exitoso en <strong>200+ tiendas antes de Buen Fin 2024</strong> — el evento de alta demanda más crítico del año.</div>
+        <div class="resumen-text">Sistema más ágil y estable. Lanzamiento exitoso en <strong>200+ tiendas antes de Buen Fin 2024</strong> — el evento de alta demanda más crítico del año — sin incidentes masivos.</div>
       </div>
     </div>
   </div>
 
-  <!-- DIAGRAMA -->
   <div class="body-section reveal">
-    <div class="body-section-title">Arquitectura del sistema — diseñar para un sistema vivo</div>
-    <img src="images/diagrama.png" alt="Diagrama de arquitectura ZePOS" class="img-full ratio-wide"
-         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-    <div class="img-placeholder" style="height:400px; display:none;">diagrama.png</div>
+    <div class="body-section-title">Arquitectura del sistema — <em>diseñar para un sistema vivo</em></div>
+    <img src="images/diagrama.png" alt="Diagrama de arquitectura ZePOS" class="img-full ratio-wide" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="img-placeholder" style="height:400px;display:none;">diagrama.png</div>
     <p class="img-caption">Diagrama de arquitectura — flujos entre catálogo, carrito, pagos y ERP</p>
   </div>
 
-  <!-- DECISIONES -->
   <div class="body-section reveal">
     <div class="body-section-title">Decisiones críticas</div>
     <div class="decisions-grid">
       <div class="decision-card">
         <div class="decision-num">01</div>
         <div class="decision-title">Investigación con información incompleta</div>
-        <div class="decision-desc">Visitas a tiendas en solitario, entrevistas directas a vendedores y tracking de SLA con PostHog — mientras el equipo técnico estaba enfocado en Brasil.</div>
+        <div class="decision-desc">Visitas a tiendas en solitario, entrevistas directas a vendedores y tracking de SLA con herramientas de monitoreo — mientras el equipo técnico estaba enfocado en Brasil. La investigación de campo reveló patrones de falla invisibles desde la oficina.</div>
       </div>
       <div class="decision-card">
         <div class="decision-num">02</div>
         <div class="decision-title">Design System independiente del ERP</div>
-        <div class="decision-desc">Construir un sistema de diseño compatible con MCP que no dependiera del ciclo de releases de RPNext — decisión que desbloqueó la velocidad del equipo.</div>
+        <div class="decision-desc">Construir un sistema de diseño que no dependiera del ciclo de releases de RPNext. Esta decisión desbloqueó la velocidad del equipo y permitió iterar en paralelo sin depender de la arquitectura legacy.</div>
       </div>
       <div class="decision-card">
         <div class="decision-num">03</div>
         <div class="decision-title">Priorizar performance sobre complejidad</div>
-        <div class="decision-desc">Diseñar para conexión intermitente. Priorizar tiempos de carga y estabilidad operacional antes de agregar funcionalidades.</div>
+        <div class="decision-desc">Diseñar para conexión intermitente. Priorizar tiempos de carga y estabilidad operacional antes de agregar funcionalidades. El sistema tenía que funcionar en tiendas con infraestructura de red limitada sin margen de error.</div>
       </div>
     </div>
   </div>
 
-  <!-- PROCESO -->
   <div class="body-section reveal">
     <div class="body-section-title">¿Cómo trabajamos bajo presión?</div>
     <div class="proceso-steps">
-      <div class="proceso-step"><div class="proceso-num">1</div><div class="proceso-step-tag">Research</div><div class="proceso-step-title">Investigación en campo</div><div class="proceso-step-desc">Visitas a tiendas, entrevistas a vendedores, detección de errores y SLA via PostHog.</div></div>
-      <div class="proceso-step"><div class="proceso-num">2</div><div class="proceso-step-tag">Arquitectura</div><div class="proceso-step-title">Event Storming</div><div class="proceso-step-desc">Workshop para mapear el dominio y redefinir la arquitectura de eventos con backend.</div></div>
-      <div class="proceso-step"><div class="proceso-num">3</div><div class="proceso-step-tag">Diseño</div><div class="proceso-step-title">Diseño en paralelo</div><div class="proceso-step-desc">Flujos y prototipado de los 3 flujos críticos: catálogo, carrito y pagos/envío.</div></div>
-      <div class="proceso-step"><div class="proceso-num">4</div><div class="proceso-step-tag">Validación</div><div class="proceso-step-title">Piloto y rollout</div><div class="proceso-step-desc">Pruebas piloto, ajustes rápidos y lanzamiento progresivo en 200+ tiendas.</div></div>
+      <div class="proceso-step"><div class="proceso-num">1</div><div class="proceso-step-tag">Research</div><div class="proceso-step-title">Investigación en campo</div><div class="proceso-step-desc">Visitas a tiendas, entrevistas a vendedores, detección de errores y SLA via herramientas de monitoreo.</div></div>
+      <div class="proceso-step"><div class="proceso-num">2</div><div class="proceso-step-tag">Arquitectura</div><div class="proceso-step-title">Event Storming</div><div class="proceso-step-desc">Workshop para mapear el dominio y redefinir la arquitectura de eventos junto con backend.</div></div>
+      <div class="proceso-step"><div class="proceso-num">3</div><div class="proceso-step-tag">Diseño</div><div class="proceso-step-title">Diseño en paralelo</div><div class="proceso-step-desc">Flujos y prototipado de los 3 flujos críticos: catálogo, carrito y pagos/envío en ciclos cortos.</div></div>
+      <div class="proceso-step"><div class="proceso-num">4</div><div class="proceso-step-tag">Validación</div><div class="proceso-step-title">Piloto y rollout</div><div class="proceso-step-desc">Pruebas piloto, ajustes rápidos y lanzamiento progresivo en 200+ tiendas antes de Buen Fin.</div></div>
     </div>
   </div>
 
-  <!-- IMPACTO OPERATIVO -->
   <div class="body-section reveal">
-    <div class="body-section-title">Impacto operativo — tiempos antes vs después</div>
+    <div class="body-section-title">Impacto operativo — <em>tiempos antes vs después</em></div>
     <div class="impacto-grid">
       <div class="impacto-card">
         <div class="impacto-card-title">Performance</div>
@@ -336,144 +332,40 @@
     <div class="impacto-note">El POS fue implementado progresivamente — tiendas piloto → validación → flujo completo — hasta llegar a las 200+ tiendas antes de Buen Fin 2024 sin incidentes masivos de operación.</div>
   </div>
 
-  <!-- ANTES VS DESPUÉS -->
   <div class="body-section reveal">
-    <div class="body-section-title">Antes vs Después — flujos críticos</div>
+    <div class="body-section-title">Antes vs Después — <em>flujos críticos</em></div>
 
     <div class="ba-section-label">Catálogo</div>
     <div class="ba-grid">
-      <div class="ba-panel before">
-        <div class="ba-label">Catálogo V1</div>
-        <img src="images/catalogo-v1.png" alt="Catálogo V1" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">catalogo-v1.png</div>
-        <ul class="ba-list">
-          <li>Lentitud — el catálogo genera cuellos de botella</li>
-          <li>Sobrecargado con productos descontinuados</li>
-          <li>Búsqueda pasiva sin filtros</li>
-          <li>Falta de visibilidad de información clave</li>
-        </ul>
-      </div>
-      <div class="ba-panel after">
-        <div class="ba-label">Catálogo V2</div>
-        <img src="images/catalogo-v2.png" alt="Catálogo V2" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">catalogo-v2.png</div>
-        <ul class="ba-list">
-          <li>Búsqueda optimizada con buscador y filtros múltiples</li>
-          <li>Solo productos activos y relevantes</li>
-          <li>Card de producto intuitiva multicanal</li>
-          <li>Visibilidad de información clave resuelta</li>
-        </ul>
-      </div>
+      <div class="ba-panel before"><div class="ba-label">Catálogo V1</div><img src="images/catalogo-v1.png" alt="Catálogo V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">catalogo-v1.png</div><ul class="ba-list"><li>Lentitud — el catálogo genera cuellos de botella</li><li>Sobrecargado con productos descontinuados</li><li>Búsqueda pasiva sin filtros</li><li>Falta de visibilidad de información clave</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Catálogo V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/catalogo-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Búsqueda optimizada con buscador y filtros múltiples</li><li>Solo productos activos y relevantes</li><li>Card de producto intuitiva multicanal</li><li>Visibilidad de información clave resuelta</li></ul></div>
     </div>
 
     <div class="ba-section-label">Modal de producto</div>
     <div class="ba-grid">
-      <div class="ba-panel before">
-        <div class="ba-label">Modal V1</div>
-        <img src="images/modal-v1.png" alt="Modal V1" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">modal-v1.png</div>
-        <ul class="ba-list">
-          <li>Sobrecarga de información no esencial</li>
-          <li>Falta de elementos para el flujo crítico</li>
-          <li>Arquitectura de información poco clara</li>
-        </ul>
-      </div>
-      <div class="ba-panel after">
-        <div class="ba-label">Modal V2</div>
-        <img src="images/modal-v2.png" alt="Modal V2" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">modal-v2.png</div>
-        <ul class="ba-list">
-          <li>Card design intuitivo con mejor arquitectura</li>
-          <li>Apoyos visuales para características relevantes</li>
-          <li>Disponibilidad integrada sin plataformas externas</li>
-        </ul>
-      </div>
+      <div class="ba-panel before"><div class="ba-label">Modal V1</div><img src="images/modal-v1.png" alt="Modal V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">modal-v1.png</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Modal V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/modal-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Card design intuitivo con mejor arquitectura</li><li>Apoyos visuales para características relevantes</li><li>Disponibilidad integrada sin plataformas externas</li></ul></div>
     </div>
 
     <div class="ba-section-label">Carrito</div>
     <div class="ba-grid">
-      <div class="ba-panel before">
-        <div class="ba-label">Carrito V1</div>
-        <img src="images/carrito-v1.png" alt="Carrito V1" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">carrito-v1.png</div>
-        <ul class="ba-list">
-          <li>Sobrecarga de información no esencial</li>
-          <li>Falta de elementos para el flujo crítico</li>
-          <li>Arquitectura de información poco clara</li>
-        </ul>
-      </div>
-      <div class="ba-panel after">
-        <div class="ba-label">Carrito V2</div>
-        <img src="images/carrito-v2.png" alt="Carrito V2" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">carrito-v2.png</div>
-        <ul class="ba-list">
-          <li>Mejora de arquitectura de información</li>
-          <li>Checkout rápido y fluido</li>
-          <li>Visibilidad de disponibilidad en tiempo real</li>
-        </ul>
-      </div>
+      <div class="ba-panel before"><div class="ba-label">Carrito V1</div><img src="images/carrito-v1.png" alt="Carrito V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">carrito-v1.png</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Carrito V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/carrito-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Mejora de arquitectura de información</li><li>Checkout rápido y fluido</li><li>Visibilidad de disponibilidad en tiempo real</li></ul></div>
     </div>
 
     <div class="ba-section-label">Envío</div>
     <div class="ba-grid">
-      <div class="ba-panel before">
-        <div class="ba-label">Envío V1</div>
-        <img src="images/envio-v1.png" alt="Envío V1" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">envio-v1.png</div>
-        <ul class="ba-list">
-          <li>Flujo crítico en un solo modal sin salida</li>
-          <li>Feedback insuficiente en procesos de cálculo</li>
-          <li>Falta de logs de asignación y entrega</li>
-        </ul>
-      </div>
-      <div class="ba-panel after">
-        <div class="ba-label">Envío V2</div>
-        <img src="images/envio-v2.png" alt="Envío V2" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">envio-v2.png</div>
-        <ul class="ba-list">
-          <li>Flujo completo rediseñado con configuración en tiempo real</li>
-          <li>Servicios de inventario integrados</li>
-          <li>Cards rediseñadas para agilizar la venta en store</li>
-        </ul>
-      </div>
+      <div class="ba-panel before"><div class="ba-label">Envío V1</div><img src="images/envio-v1.png" alt="Envío V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">envio-v1.png</div><ul class="ba-list"><li>Flujo crítico en un solo modal sin salida</li><li>Feedback insuficiente en procesos de cálculo</li><li>Falta de logs de asignación y entrega</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Envío V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/envio-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo completo rediseñado con configuración en tiempo real</li><li>Servicios de inventario integrados</li><li>Cards rediseñadas para agilizar la venta en store</li></ul></div>
     </div>
 
     <div class="ba-section-label">Pago</div>
     <div class="ba-grid">
-      <div class="ba-panel before">
-        <div class="ba-label">Pago V1</div>
-        <img src="images/pago-v1.png" alt="Pago V1" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">pago-v1.png</div>
-        <ul class="ba-list">
-          <li>Métodos de pago desordenados sin jerarquía</li>
-          <li>Feedback insuficiente en procesos críticos</li>
-          <li>Estado de error poco claro sin recuperación</li>
-        </ul>
-      </div>
-      <div class="ba-panel after">
-        <div class="ba-label">Pago V2</div>
-        <img src="images/pago-v2.png" alt="Pago V2" class="ba-img"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="ba-img-placeholder" style="display:none;">pago-v2.png</div>
-        <ul class="ba-list">
-          <li>Flujo simple y guiado paso a paso</li>
-          <li>Estados claros y en tiempo real</li>
-          <li>Experiencia segura con estados de salida claros</li>
-        </ul>
-      </div>
+      <div class="ba-panel before"><div class="ba-label">Pago V1</div><img src="images/pago-v1.png" alt="Pago V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">pago-v1.png</div><ul class="ba-list"><li>Métodos de pago desordenados sin jerarquía</li><li>Feedback insuficiente en procesos críticos</li><li>Estado de error poco claro sin recuperación</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Pago V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/pago-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo simple y guiado paso a paso</li><li>Estados claros y en tiempo real</li><li>Experiencia segura con estados de salida claros</li></ul></div>
     </div>
   </div>
 
-  <!-- REFLEXIONES -->
   <div class="body-section reveal">
     <div class="body-section-title">Lo que este proyecto cambió en mi forma de diseñar</div>
     <div class="reflexiones-eyebrow">Aprendizajes</div>
@@ -491,17 +383,20 @@
 </div>
 
 <footer class="case-footer">
-  <span class="footer-name">Melany Olivares — 2026</span>
+  <div class="footer-left">
+    <div class="footer-name">Melany Olivares — 2026</div>
+    <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
+  </div>
   <div class="footer-links">
     <a href="index.html">← Inicio</a>
-    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance</a>
-    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
   </div>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>

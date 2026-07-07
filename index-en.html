@@ -1,419 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melany Olivares — UX/UI Product Designer</title>
-  <meta name="description" content="Product Designer specialized in complex systems, transactional experiences, and operational platforms. Open to remote work.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0C0C0F; --surface: #13131A; --surface2: #1A1A24;
-      --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
-      --text: #EAE8E0; --muted: #9A9890; --accent: #5DCAA5; --coral: #D85A30;
-      --accent-light: #7EDAD8;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Melany Olivares — UX/UI Product Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#FAFAF8;
+  --text:#0F0E0C;
+  --muted:#6B6860;
+  --soft:#736D63;
+  --border:rgba(0,0,0,0.08);
+  --blue:#4784FE;
+  --coral:#FE6647;
+  --coral-text:#C73D18;
+  --coral-large:#E54B22;
+  --blue-text:#2A63D9;
+  --yellow:#DFFE47;
+  --blue-light:#EEF3FF;
+  --coral-light:#FFF0ED;
+  --yellow-light:#FAFFD9;
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
-      background: rgba(12,12,15,0.88); backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo { font-family: var(--font-display); font-size: 18px; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .lang-switch { font-size: 11px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; border: 0.5px solid var(--border2); border-radius: 4px; padding: 5px 11px; transition: all 0.2s; }
-    .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
-    .nav-status { font-size: 11px; color: var(--accent); display: flex; align-items: center; gap: 6px; }
-    .nav-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:18px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(250,250,248,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;}
+.nav-logo em{font-style:italic;color:var(--coral-text);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-status{font-size:11px;color:var(--blue-text);display:flex;align-items:center;gap:6px;font-weight:500;}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-text);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:5px 10px;text-decoration:none;transition:all 0.2s;font-weight:500;}
+.lang-btn:hover{border-color:var(--coral-text);color:var(--coral-text);}
 
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 48px 80px; position: relative; overflow: hidden;
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(93,202,165,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(93,202,165,0.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 20%, transparent 80%);
-    }
-    .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
-    .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
-    .hero-title { font-family: var(--font-display); font-size: clamp(48px, 7.5vw, 92px); line-height: 1.0; letter-spacing: -0.03em; color: var(--text); margin-bottom: 32px; max-width: 860px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
-    .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub { font-size: 17px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 48px; font-weight: 300; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
-    .hero-cta { display: flex; gap: 16px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 4px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--accent); color: #04342C; border: 1px solid var(--accent); }
-    .btn-primary:hover { background: #7EDAD8; transform: translateY(-1px); }
-    .btn-secondary { background: transparent; color: var(--text); border: 0.5px solid var(--border2); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-    .hero-metrics { position: absolute; right: 48px; bottom: 80px; display: flex; flex-direction: column; gap: 20px; opacity: 0; animation: fadeLeft 0.8s ease 1s forwards; }
-    .hero-metric { text-align: right; }
-    .hero-metric-num { font-family: var(--font-display); font-size: 36px; color: var(--accent); line-height: 1; }
-    .hero-metric-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
-    .hero-metric-divider { width: 100%; height: 0.5px; background: var(--border); }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:120px 56px 0;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
 
-    /* TICKER */
-    .ticker-wrap { border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); overflow: hidden; padding: 14px 0; }
-    .ticker-track { display: flex; gap: 0; animation: ticker 30s linear infinite; width: max-content; }
-    .ticker-track:hover { animation-play-state: paused; }
-    .ticker-item { font-size: 12px; color: var(--accent-light); letter-spacing: 0.1em; text-transform: uppercase; padding: 0 32px; white-space: nowrap; }
-    .ticker-item span { color: var(--accent); margin-right: 32px; }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* BLOBS — fixed circles like reference */
+.blob{position:absolute;pointer-events:none;}
+.blob-1{
+  width:420px;height:420px;
+  background:var(--coral);
+  top:50%;right:10%;
+  transform:translateY(-50%);
+  border-radius:50%;
+  opacity:1;
+}
+.blob-2{
+  width:280px;height:280px;
+  background:var(--blue);
+  bottom:-80px;left:-60px;
+  border-radius:50%;
+  opacity:1;
+}
+.blob-3{
+  width:220px;height:220px;
+  background:var(--yellow);
+  top:-40px;right:-30px;
+  border-radius:50%;
+  opacity:1;
+}
 
-    /* SECTION */
-    .section-wrap { max-width: 1100px; margin: 0 auto; padding: 120px 48px; }
-    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; }
-    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-    .section-title { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.2; letter-spacing: -0.02em; color: var(--text); max-width: 560px; }
-    .section-title em { font-style: italic; color: var(--accent); }
+/* HERO CONTENT */
+.hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;width:100%;padding-bottom:0;}
 
-    /* PROJECT CARDS */
-    .projects-list { display: flex; flex-direction: column; gap: 2px; }
-    .project-card {
-      display: grid; grid-template-columns: 80px 1fr auto;
-      align-items: center; gap: 32px;
-      padding: 28px 32px; border-radius: 6px;
-      text-decoration: none; border: 0.5px solid transparent;
-      transition: background 0.3s, border-color 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .project-card:hover { background: var(--surface); border-color: var(--border); }
-    .project-card-img { width: 80px; height: 56px; border-radius: 4px; object-fit: cover; border: 0.5px solid var(--border); flex-shrink: 0; background: var(--surface2); }
-    .project-card-body { display: flex; flex-direction: column; gap: 6px; }
-    .project-card-num { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
-    .project-card-title { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); color: var(--text); letter-spacing: -0.02em; line-height: 1.2; }
-    .project-card-title em { font-style: italic; color: var(--accent); }
-    .project-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 520px; }
-    .project-card-tags { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
-    .tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 0.5px solid var(--border2); color: var(--muted); }
-    .project-card-arrow { font-size: 20px; color: var(--border2); transition: color 0.2s, transform 0.2s; flex-shrink: 0; }
-    .project-card:hover .project-card-arrow { color: var(--accent); transform: translateX(4px); }
-    .project-card-metrics { display: flex; gap: 24px; margin-top: 12px; }
-    .pcm { display: flex; flex-direction: column; gap: 2px; }
-    .pcm-num { font-family: var(--font-display); font-size: 22px; color: var(--accent); line-height: 1; }
-    .pcm-label { font-size: 11px; color: var(--muted); }
+.hero-name{
+  font-size:13px;color:var(--muted);
+  letter-spacing:0.06em;margin-bottom:16px;
+  font-weight:400;
+}
 
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 80px; align-items: start; }
-    .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 6px; border: 0.5px solid var(--border); }
-    .about-photo-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--surface2); border-radius: 6px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; }
-    .about-content { display: flex; flex-direction: column; gap: 40px; }
-    .about-name { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .about-name em { font-style: italic; color: var(--accent); }
-    .about-bio { font-size: 16px; color: var(--muted); line-height: 1.8; font-weight: 300; }
-    .about-bio strong { color: var(--text); font-weight: 500; }
-    .about-principles { display: flex; flex-direction: column; gap: 0; }
-    .principle { padding: 20px 0; border-bottom: 0.5px solid var(--border); display: flex; gap: 24px; align-items: flex-start; }
-    .principle:first-child { border-top: 0.5px solid var(--border); }
-    .principle-num { font-family: var(--font-display); font-size: 32px; color: var(--border2); line-height: 1; min-width: 40px; }
-    .principle-content {}
-    .principle-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-    .principle-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-    .about-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-    .about-tag { font-size: 12px; padding: 6px 14px; border-radius: 4px; border: 0.5px solid var(--border2); color: var(--muted); }
+h1.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(64px,9.5vw,128px);
+  line-height:0.92;
+  letter-spacing:-0.04em;
+  color:var(--text);
+  margin-bottom:0;
+  max-width:100%;
+}
+h1.hero-title em{font-style:italic;color:var(--coral-large);}
+h1.hero-title .line-blue{color:var(--blue);}
 
-    /* EXPERIENCE */
-    .exp-list { display: flex; flex-direction: column; gap: 0; }
-    .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 28px 0; border-bottom: 0.5px solid var(--border); }
-    .exp-item:first-child { border-top: 0.5px solid var(--border); }
-    .exp-date { font-size: 12px; color: var(--muted); padding-top: 3px; }
-    .exp-role { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-    .exp-role em { font-style: italic; color: var(--accent); }
-    .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-    .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.hero-sub{
+  font-size:16px;color:var(--muted);line-height:1.7;
+  font-weight:300;max-width:500px;
+  margin-top:40px;margin-bottom:0;
+}
+.hero-sub strong{color:var(--text);font-weight:500;}
 
-    /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .skill-group { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; padding: 24px; }
-    .skill-group-title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 16px; font-weight: 500; }
-    .skill-list { display: flex; flex-direction: column; gap: 8px; }
-    .skill-item { font-size: 13px; color: var(--muted); line-height: 1.5; padding-left: 14px; position: relative; }
-    .skill-item::before { content: '—'; position: absolute; left: 0; font-size: 11px; color: var(--border2); }
+/* METRICS ROW */
+.hero-bottom{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:36px 0 48px;
+  margin-top:40px;
+  border-top:1px solid var(--border);
+}
+.hero-metrics-left{display:flex;flex-direction:column;gap:16px;}
+.metrics-row{display:flex;align-items:baseline;gap:0;}
+.metric-block{display:flex;align-items:baseline;gap:6px;padding-right:28px;margin-right:28px;border-right:1px solid var(--border);}
+.metric-block:last-child{border-right:none;padding-right:0;margin-right:0;}
+.hm-num{font-family:var(--font-display);font-size:clamp(28px,3.5vw,40px);color:var(--text);line-height:1;letter-spacing:-0.02em;font-weight:400;}
+.hm-num.b{color:var(--blue-text);}
+.hm-label{font-size:12px;color:var(--soft);letter-spacing:0.03em;margin-left:2px;}
+.pills-row{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{
+  font-size:11px;color:var(--muted);font-weight:500;
+  border:1px solid var(--border);
+  border-radius:20px;padding:5px 12px;
+  letter-spacing:0.04em;
+  background:rgba(255,255,255,0.7);
+}
+.pill.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:500;letter-spacing:0.01em;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:var(--font-body);}
+.btn-dark{background:var(--text);color:var(--bg);border:2px solid var(--text);}
+.btn-dark:hover{background:#2D2920;transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--text);border:2px solid var(--text);}
+.btn-outline:hover{background:var(--text);color:var(--bg);transform:translateY(-2px);}
 
-    /* CONTACT */
-    .contact-wrap { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; padding: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-    .contact-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-    .contact-title em { font-style: italic; color: var(--accent); }
-    .contact-desc { font-size: 15px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 32px; }
-    .contact-links { display: flex; flex-direction: column; gap: 12px; }
-    .contact-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted); font-size: 14px; transition: color 0.2s; }
-    .contact-link:hover { color: var(--accent); }
-    .contact-link-icon { width: 36px; height: 36px; border-radius: 6px; border: 0.5px solid var(--border2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-    .contact-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-field { display: flex; flex-direction: column; gap: 6px; }
-    .form-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-    .form-input { background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 4px; padding: 12px 16px; color: var(--text); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
-    .form-input:focus { border-color: var(--accent); }
-    .form-input::placeholder { color: var(--muted); }
-    textarea.form-input { resize: vertical; min-height: 100px; }
-    .form-submit { background: var(--accent); color: #04342C; border: none; border-radius: 4px; padding: 14px 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; cursor: pointer; transition: all 0.2s; align-self: flex-start; font-family: var(--font-body); }
-    .form-submit:hover { background: #7EDAD8; transform: translateY(-1px); }
+/* ── TICKER ── */
+.ticker-wrap{
+  border-top:2px solid var(--text);
+  border-bottom:2px solid var(--text);
+  overflow:hidden;padding:12px 0;
+  background:var(--yellow);
+}
+.ticker-track{display:flex;animation:ticker 24s linear infinite;width:max-content;}
+.ticker-track:hover{animation-play-state:paused;}
+.ticker-item{font-size:13px;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;padding:0 24px;white-space:nowrap;font-weight:500;}
+.ticker-sep{color:var(--coral-text);margin-right:24px;font-weight:700;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* FOOTER */
-    footer { border-top: 0.5px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
-    .footer-left { display: flex; flex-direction: column; gap: 4px; }
-    .footer-name { font-family: var(--font-display); font-size: 15px; color: var(--muted); }
-    .footer-credit { font-size: 11px; color: var(--border2); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
+/* ── SECTIONS ── */
+.section{max-width:1100px;margin:0 auto;padding:120px 48px;}
+.section-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--coral);border-radius:2px;}
+.section-heading{
+  font-family:var(--font-display);
+  font-size:clamp(32px,4.5vw,52px);
+  line-height:1.1;letter-spacing:-0.02em;
+  color:var(--text);margin-bottom:56px;
+}
+.section-heading em{font-style:italic;color:var(--coral-large);}
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeLeft { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:translateX(0); } }
-    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
+/* ── PROJECTS ── */
+.projects-list{display:flex;flex-direction:column;gap:2px;}
+.project-card{
+  display:grid;grid-template-columns:120px 1fr 180px;
+  align-items:center;gap:32px;
+  padding:28px 0;
+  border-bottom:1px solid var(--border);
+  text-decoration:none;color:var(--text);
+  transition:all 0.25s;
+  position:relative;
+}
+.project-card:first-child{border-top:1px solid var(--border);}
+.project-card::before{
+  content:'';position:absolute;left:-48px;right:-48px;top:0;bottom:0;
+  background:transparent;z-index:0;
+  transition:background 0.25s;
+}
+.project-card:hover::before{background:var(--blue-light);}
+.project-card>*{position:relative;z-index:1;}
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; } .nav-links { display: none; } .nav-status { display: none; }
-      .hero { padding: 0 24px 64px; } .hero-metrics { display: none; }
-      .section-wrap { padding: 80px 24px; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .project-card { grid-template-columns: 1fr; gap: 16px; }
-      .project-card-img { width: 100%; height: 180px; }
-      .project-card-arrow { display: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo { max-width: 240px; aspect-ratio: 1; }
-      .exp-item { grid-template-columns: 1fr; gap: 8px; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .contact-wrap { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-    }
+.project-thumb{
+  width:120px;height:80px;border-radius:8px;
+  overflow:hidden;background:var(--blue-light);
+  border:1px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--soft);
+}
+.project-thumb img{width:100%;height:100%;object-fit:cover;}
+.project-num{font-size:10px;color:var(--soft);letter-spacing:0.1em;margin-bottom:6px;}
+.project-title{
+  font-family:var(--font-display);
+  font-size:clamp(20px,2.5vw,28px);
+  color:var(--text);letter-spacing:-0.01em;
+  line-height:1.15;margin-bottom:8px;
+}
+.project-title em{font-style:italic;color:var(--coral);}
+.project-desc{font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:10px;}
+.project-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ptag{font-size:11px;padding:3px 10px;border-radius:12px;border:1px solid var(--border);color:var(--muted);}
 
-    .contact-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); transition: border-color 0.2s, transform 0.2s; }
-    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .contact-card-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(93,202,165,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .contact-card-icon svg { width: 18px; height: 18px; stroke: var(--accent); }
-    .contact-card-body { flex: 1; }
-    .contact-card-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
-    .contact-card-value { font-size: 14px; color: var(--text); }
-    .contact-card-arrow { font-size: 16px; color: var(--border2); transition: color 0.2s; }
-    .contact-card:hover .contact-card-arrow { color: var(--accent); }
-  </style>
+.project-meta{display:flex;flex-direction:column;gap:16px;align-items:flex-end;}
+.project-impact{text-align:right;}
+.pi-num{font-family:var(--font-display);font-size:36px;line-height:1;letter-spacing:-0.02em;}
+.pi-label{font-size:11px;color:var(--soft);margin-top:2px;}
+.project-arrow{
+  width:40px;height:40px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--muted);
+  transition:all 0.2s;align-self:flex-end;
+}
+.project-card:hover .project-arrow{background:var(--text);color:var(--bg);border-color:var(--text);}
+
+/* Project color accents */
+.project-card[data-color="coral"] .project-thumb{background:var(--coral-light);}
+.project-card[data-color="coral"] .project-title em{color:var(--coral-large);}
+.project-card[data-color="coral"] .pi-num{color:var(--coral-large);}
+.project-card[data-color="blue"] .project-thumb{background:var(--blue-light);}
+.project-card[data-color="blue"] .project-title em{color:var(--blue);}
+.project-card[data-color="blue"] .pi-num{color:var(--blue-text);}
+.project-card[data-color="blue"]:hover::before{background:var(--blue-light);}
+.project-card[data-color="yellow"] .project-thumb{background:var(--yellow-light);}
+.project-card[data-color="yellow"]:hover::before{background:var(--yellow-light);}
+.project-card[data-color="yellow"] .pi-num{color:#8A8A00;}
+
+/* ── ABOUT ── */
+.about-section{background:#F0F0EE;border-top:2px solid var(--text);border-bottom:2px solid var(--text);}
+.about-grid{display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start;}
+.about-photo-wrap{position:relative;}
+.about-photo{
+  width:100%;aspect-ratio:3/4;border-radius:16px;
+  object-fit:cover;display:block;
+  background:var(--blue-light);
+  border:2px solid var(--text);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;color:var(--soft);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
+}
+.about-photo svg{width:32px;height:32px;stroke:var(--soft);fill:none;stroke-width:1.2;stroke-linecap:round;}
+.about-photo-badge{
+  position:absolute;bottom:-16px;left:16px;right:16px;
+  background:var(--yellow);
+  border:2px solid var(--text);
+  border-radius:8px;padding:12px 16px;
+}
+.apb-name{font-family:var(--font-display);font-size:15px;color:var(--text);margin-bottom:2px;}
+.apb-role{font-size:12px;color:var(--text);opacity:0.7;}
+.about-content{padding-top:8px;}
+.about-name{
+  font-family:var(--font-display);
+  font-size:clamp(36px,5vw,56px);
+  line-height:1.05;letter-spacing:-0.03em;
+  margin-bottom:24px;
+}
+.about-name em{font-style:italic;color:var(--coral-large);}
+.about-bio{font-size:16px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:40px;}
+.about-bio strong{color:var(--text);font-weight:500;}
+.principles{display:flex;flex-direction:column;}
+.principle{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,0.1);}
+.principle:first-child{border-top:1px solid rgba(0,0,0,0.1);}
+.pr-num{font-family:var(--font-display);font-size:26px;color:rgba(0,0,0,0.15);line-height:1;min-width:32px;}
+.pr-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.pr-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* ── EXPERIENCE ── */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.exp-list{display:flex;flex-direction:column;}
+.exp-item{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);}
+.exp-item:first-child{border-top:1px solid var(--border);}
+.exp-date{font-size:12px;color:var(--soft);padding-top:2px;}
+.exp-role{font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.exp-role em{font-style:italic;color:var(--coral-text);}
+.exp-co{font-size:12px;color:var(--muted);margin-bottom:5px;}
+.exp-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.skill-group{border:1px solid var(--border);border-radius:8px;padding:20px;}
+.sg-title{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral-text);margin-bottom:12px;font-weight:500;}
+.sg-items{display:flex;flex-direction:column;gap:6px;}
+.sg-item{font-size:13px;color:var(--muted);padding-left:12px;position:relative;}
+.sg-item::before{content:'—';position:absolute;left:0;font-size:11px;color:var(--border);}
+
+/* ── CONTACT ── */
+.contact-section{background:var(--text);border-top:2px solid var(--text);}
+.contact-inner{max-width:1100px;margin:0 auto;padding:100px 48px;}
+.contact-title{
+  font-family:var(--font-display);
+  font-size:clamp(40px,6vw,72px);
+  line-height:1.0;letter-spacing:-0.03em;
+  color:var(--bg);margin-bottom:48px;
+}
+.contact-title em{font-style:italic;color:var(--yellow);}
+.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:640px;}
+.contact-card{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;text-decoration:none;color:var(--bg);
+  transition:all 0.2s;
+}
+.contact-card:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:translateY(-2px);}
+.cc-icon{width:36px;height:36px;border-radius:7px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cc-icon svg{width:16px;height:16px;stroke:var(--yellow);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.cc-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#999590;margin-bottom:2px;}
+.cc-value{font-size:13px;color:var(--bg);}
+.cc-arrow{font-size:14px;color:#999590;margin-left:auto;transition:color 0.2s;}
+.contact-card:hover .cc-arrow{color:var(--yellow);}
+
+/* ── FOOTER ── */
+.site-footer{border-top:1px solid rgba(255,255,255,0.1);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+.footer-left{display:flex;flex-direction:column;gap:3px;}
+.footer-name{font-family:var(--font-display);font-size:14px;color:#A8A4A0;}
+.footer-credit{font-size:11px;color:#999590;}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:11px;color:#A8A4A0;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.footer-links a:hover{color:var(--yellow);}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:14px 24px;} .nav-links{display:none;} .nav-status span{display:none;}
+  .hero{padding:100px 24px 0;}
+  .blob-1{width:220px;height:220px;right:5%;top:auto;bottom:10%;transform:none;}
+  .blob-2{width:160px;height:160px;bottom:-40px;left:-30px;}
+  .blob-3{width:130px;height:130px;top:-20px;right:-15px;}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:24px;padding:28px 0 40px;}
+  .hero-ctas{justify-content:flex-start;}
+  .metrics-row{flex-wrap:wrap;}
+  .section{padding:80px 24px;}
+  .project-card{grid-template-columns:1fr;padding:24px 0;}
+  .project-thumb{width:100%;height:180px;}
+  .project-card::before{left:-24px;right:-24px;}
+  .project-meta{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-photo-wrap{max-width:260px;}
+  .exp-grid{grid-template-columns:1fr;}
+  .exp-item{grid-template-columns:1fr;gap:4px;}
+  .contact-cards{grid-template-columns:1fr;}
+  .contact-inner{padding:60px 24px;}
+  .site-footer{flex-direction:column;gap:12px;padding:24px;text-align:center;}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 <nav>
-  <a href="#" class="nav-logo">Melany <em style="font-style:italic;color:var(--accent)">Olivares</em></a>
+  <a href="#" class="nav-logo">Melany <em>Olivares</em></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div style="display:flex; align-items:center; gap:16px;">
-    <span class="nav-status">Open to work remotely</span>
-    <a href="index.html" class="lang-switch">ES</a>
+  <div class="nav-right">
+    <div class="nav-status"><div class="nav-dot"></div><span>Open to work · Remote</span></div>
+    <a href="#" class="lang-btn">EN</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ── -->
 <div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-tag">UX · UI · Product Design</div>
-  <h1 class="hero-title">I design systems<br>that <em>withstand</em><br>reality.</h1>
-  <p class="hero-sub">Product Designer specialized in complex digital products — transactional experiences, operational systems, and multichannel platforms.</p>
-  <div class="hero-cta">
-    <a href="#work" class="btn btn-primary">View projects</a>
-    <a href="assets/cv-melany-olivares.pdf" target="_blank" class="btn btn-secondary">Download CV ↓</a>
-    <a href="https://www.behance.net/mitzyolivares" target="_blank" class="btn btn-secondary">Behance →</a>
-  </div>
-  <div class="hero-metrics">
-    <div class="hero-metric"><div class="hero-metric-num">4+</div><div class="hero-metric-label">Years of experience</div></div>
-    <div class="hero-metric-divider"></div>
-    <div class="hero-metric"><div class="hero-metric-num">200+</div><div class="hero-metric-label">Stores impacted</div></div>
-    <div class="hero-metric-divider"></div>
-    <div class="hero-metric"><div class="hero-metric-num">5</div><div class="hero-metric-label">Markets</div></div>
-  </div>
-</div>
+  <!-- Blobs — círculos fijos como referencia -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span class="ticker-item"><span>·</span> Product Design</span>
-    <span class="ticker-item"><span>·</span> Design Systems</span>
-    <span class="ticker-item"><span>·</span> UX Research</span>
-    <span class="ticker-item"><span>·</span> Event Storming</span>
-    <span class="ticker-item"><span>·</span> Figma MCP</span>
-    <span class="ticker-item"><span>·</span> A/B Testing</span>
-    <span class="ticker-item"><span>·</span> Retail · POS</span>
-    <span class="ticker-item"><span>·</span> AI-powered Workflows</span>
-    <span class="ticker-item"><span>·</span> PostHog · Sentry · Grafana</span>
-    <span class="ticker-item"><span>·</span> Cross-functional Collaboration</span>
-    <span class="ticker-item"><span>·</span> Product Design</span>
-    <span class="ticker-item"><span>·</span> Design Systems</span>
-    <span class="ticker-item"><span>·</span> UX Research</span>
-    <span class="ticker-item"><span>·</span> Event Storming</span>
-    <span class="ticker-item"><span>·</span> Figma MCP</span>
-    <span class="ticker-item"><span>·</span> A/B Testing</span>
-    <span class="ticker-item"><span>·</span> Retail · POS</span>
-    <span class="ticker-item"><span>·</span> AI-powered Workflows</span>
-    <span class="ticker-item"><span>·</span> PostHog · Sentry · Grafana</span>
-    <span class="ticker-item"><span>·</span> Cross-functional Collaboration</span>
-  </div>
-</div>
-
-<!-- WORK -->
-<div class="section-wrap" id="work">
-  <div class="section-header">
-    <div>
-      <div class="section-label">Selected projects</div>
-      <h2 class="section-title">Four cases that sum up<br>what I do: <em>system, scale, impact.</em></h2>
-    </div>
-  </div>
-
-  <div class="projects-list">
-
-    <!-- ZePOS -->
-    <a href="case-study-en.html" class="project-card reveal">
-      <img src="images/hero.png" alt="ZePOS" class="project-card-img"
-           onerror="this.style.display='none'">
-      <div class="project-card-body">
-        <span class="project-card-num">01 / 04 · UX / UI · Retail POS</span>
-        <h3 class="project-card-title"><em>ZePOS</em> redesign — from fragile system to scalable platform</h3>
-        <p class="project-card-desc">200+ stores across Mexico and Brazil. End-to-end redesign of catalog, cart, payments, and shipping. Launched before Buen Fin with zero incidents.</p>
-        <div class="project-card-tags">
-          <span class="tag">Design System</span>
-          <span class="tag">Event Storming</span>
-          <span class="tag">Field Research</span>
-          <span class="tag">Retail · POS</span>
+  <div class="hero-inner">
+    <p class="hero-name">Melany Olivares — UX/UI Product Designer</p>
+    <h1 class="hero-title">
+      Design that <em>withstands</em><br>
+      <span class="line-blue">reality.</span>
+    </h1>
+    <p class="hero-sub">
+      Product Designer specialized in <strong>complex systems</strong> —
+      retail, real-time operations, and multichannel platforms.
+    </p>
+    <div class="hero-bottom">
+      <div class="hero-metrics-left">
+        <div class="metrics-row">
+          <div class="metric-block">
+            <span class="hm-num b">4+</span>
+            <span class="hm-label">years</span>
+          </div>
+          <div class="metric-block">
+            <span class="hm-num">5</span>
+            <span class="hm-label">markets</span>
+          </div>
+          <div class="metric-block">
+            <span class="hm-num">4</span>
+            <span class="hm-label">languages</span>
+          </div>
         </div>
-        <div class="project-card-metrics">
-          <div class="pcm"><div class="pcm-num">−80%</div><div class="pcm-label">Sync errors</div></div>
-          <div class="pcm"><div class="pcm-num">−50%</div><div class="pcm-label">Time per order</div></div>
-          <div class="pcm"><div class="pcm-num">200+</div><div class="pcm-label">Stores</div></div>
+        <div class="pills-row">
+          <span class="pill active">MX</span>
+          <span class="pill active">BR</span>
+          <span class="pill">CO</span>
+          <span class="pill">CL</span>
+          <span class="pill">US</span>
+          <span class="pill" style="margin-left:8px;">ES · EN · PT · DE</span>
         </div>
       </div>
-      <span class="project-card-arrow">→</span>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-dark">View projects →</a>
+        <a href="assets/cv-melany-olivares.pdf" target="_blank" class="btn btn-outline">Download CV ↓</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Product Design</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Design Systems</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>UX Research</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Event Storming</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Figma MCP</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>PostHog · Sentry · Grafana</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Retail · Fintech · Health</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>AI-powered Workflows</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Cross-functional Teams</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Product Design</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Design Systems</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>UX Research</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Event Storming</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Figma MCP</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>PostHog · Sentry · Grafana</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Retail · Fintech · Health</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>AI-powered Workflows</span>
+    <span class="ticker-item"><span class="ticker-sep">✦</span>Cross-functional Teams</span>
+  </div>
+</div>
+
+<!-- ── WORK ── -->
+<div class="section" id="work">
+  <div class="section-eyebrow">Selected projects</div>
+  <h2 class="section-heading">
+    Cuatro casos que resumen<br>
+    lo que hago: <em>sistema, escala, impacto.</em>
+  </h2>
+  <div class="projects-list reveal">
+
+    <!-- ZePOS -->
+    <a href="case-study-en.html" class="project-card" data-color="coral">
+      <div class="project-thumb">
+        <img src="images/hero.png" alt="ZePOS" onerror="this.parentElement.textContent='ZePOS'"/>
+      </div>
+      <div>
+        <div class="project-num">01 / 04 · <strong style="color:var(--coral-text);">Product Designer UX/UI</strong> · Retail POS · Mexico & Brazil</div>
+        <div class="project-title"><em>200 stores, zero downtime</em> —<br>redesigning a POS to scale.</div>
+        <div class="project-desc">The system crashed during Hot Sale. Over 8 months, I redesigned end-to-end the architecture, catalog, cart, payments, and shipping — launching before Buen Fin 2024 across 200+ stores with zero incidents.</div>
+        <div class="project-tags"><span class="ptag">Design System</span><span class="ptag">Event Storming</span><span class="ptag">Field Research</span><span class="ptag">PostHog · Sentry</span></div>
+      </div>
+      <div class="project-meta">
+        <div class="project-impact">
+          <div class="pi-num">−80%</div>
+          <div class="pi-label">sync errors</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">from crash under high demand to zero incidents</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
     </a>
 
     <!-- InsightOne -->
-    <a href="#" class="project-card reveal">
-      <img src="images/insightone-cover.png" alt="InsightOne" class="project-card-img"
-           onerror="this.style.display='none'">
-      <div class="project-card-body">
-        <span class="project-card-num">02 / 04 · UX / UI · Fintech</span>
-        <h3 class="project-card-title">InsightOne — <em>Smart Payment Platform</em></h3>
-        <p class="project-card-desc">Complete redesign of a smart payment platform in the U.S. The company's first design system, coordinating distributed teams across multiple time zones.</p>
-        <div class="project-card-tags">
-          <span class="tag">Design System</span>
-          <span class="tag">Usability Testing</span>
-          <span class="tag">Fintech</span>
-          <span class="tag">Agile</span>
-        </div>
+    <a href="#" class="project-card" data-color="blue">
+      <div class="project-thumb">
+        <img src="images/insightone-cover.png" alt="InsightOne" onerror="this.parentElement.textContent='InsightOne'"/>
       </div>
-      <span class="project-card-arrow">→</span>
+      <div>
+        <div class="project-num">02 / 04 · <strong style="color:var(--blue-text);">UX/UI Designer</strong> · Software · U.S.A.</div>
+        <div class="project-title">From visual chaos to<br>InsightOne's <em>first Design System.</em></div>
+        <div class="project-desc">A payment platform with no design system — every screen was a new decision. I led the full redesign and built the company's first Design System, coordinating teams across time zones and aligning business, product, and engineering.</div>
+        <div class="project-tags"><span class="ptag">Payment Platform</span><span class="ptag">Usability Testing</span><span class="ptag">Agile · Distributed teams</span></div>
+      </div>
+      <div class="project-meta">
+        <div class="project-impact">
+          <div class="pi-num" style="color:var(--blue-text);font-size:28px;line-height:1.2;">Primer<br>DS</div>
+          <div class="pi-label">of the company</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">visual consistency across the entire platform</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
     </a>
 
     <!-- Clue -->
-    <a href="#" class="project-card reveal">
-      <img src="images/clue-cover.png" alt="Clue" class="project-card-img"
-           onerror="this.style.display='none'">
-      <div class="project-card-body">
-        <span class="project-card-num">03 / 04 · UX / UI · Mobile Health</span>
-        <h3 class="project-card-title">Clue — <em>experience redesign</em> for a health app</h3>
-        <p class="project-card-desc">In-depth UX analysis and design iteration to improve navigation, key flows, and overall experience. Benchmarking, heuristic testing, and high-fidelity prototypes.</p>
-        <div class="project-card-tags">
-          <span class="tag">UX Research</span>
-          <span class="tag">Heuristic Evaluation</span>
-          <span class="tag">Prototyping</span>
-          <span class="tag">Mobile</span>
-        </div>
+    <a href="#" class="project-card" data-color="yellow">
+      <div class="project-thumb">
+        <img src="images/clue-cover.png" alt="Clue" onerror="this.parentElement.textContent='Clue'"/>
       </div>
-      <span class="project-card-arrow">→</span>
-    </a>
-
-    <!-- Palm & Rescycle -->
-    <a href="#" class="project-card reveal">
-      <img src="images/palm-cover.png" alt="Palm & Rescycle" class="project-card-img"
-           onerror="this.style.display='none'">
-      <div class="project-card-body">
-        <span class="project-card-num">04 / 04 · UX / UI · Startup</span>
-        <h3 class="project-card-title">Palm & Rescycle — user-centered <em>circular economy</em></h3>
-        <p class="project-card-desc">Home and landing page redesign for a Colombian startup focused on circular economy. End-to-end UX: research, prototyping, testing, and iteration under Agile methodology.</p>
-        <div class="project-card-tags">
-          <span class="tag">UX Research</span>
-          <span class="tag">UX Writing</span>
-          <span class="tag">Agile · Scrum</span>
-          <span class="tag">Startup</span>
-        </div>
-      </div>
-      <span class="project-card-arrow">→</span>
-    </a>
-
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div style="border-top: 0.5px solid var(--border);">
-<div class="section-wrap" id="about">
-  <div class="section-label" style="margin-bottom:56px;">About</div>
-  <div class="about-grid">
-    <div>
-      <img src="images/portada.png" alt="Melany Olivares" class="about-photo"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="about-photo-placeholder" style="display:none;">portada.png</div>
-      <div class="about-tags" style="margin-top:16px;">
-        <span class="about-tag">🇲🇽 Mexico</span>
-        <span class="about-tag">🌍 Remote-first</span>
-        <span class="about-tag">ES · EN · PT · DE</span>
-      </div>
-    </div>
-    <div class="about-content">
       <div>
-        <h2 class="about-name">Hi, I'm <em>Mel.</em></h2>
-        <p class="about-bio">
-          Product Designer specialized in <strong>complex digital systems</strong> — POS platforms, payment flows, and operational tools in high-pressure environments.<br><br>
-          I work closely with engineering and product teams to design <strong>scalable, reliable, and performant</strong> experiences, often under constraints like offline mode, latency, and hardware limitations. My approach combines <strong>systems thinking, user-centered design, and technical understanding</strong> to deliver solutions that are both usable and feasible.<br><br>
-          I actually use AI in my workflow — Claude, Figma MCP, Copilot. Not as a buzzword, but as a tool that speeds up the loop between idea and prototype.
-        </p>
+        <div class="project-num">03 / 04 · <strong style="color:#6B6860;">UX/UI Designer</strong> · Mobile Health · Sep–Nov 2023</div>
+        <div class="project-title">What the data wasn't showing:<br><em>UX research on Clue.</em></div>
+        <div class="project-desc">Users were dropping off Clue — but no one knew why. I led an end-to-end UX analysis: benchmarking, heuristic evaluation, and testing with real users. Result: hidden friction in onboarding and navigation flows that had never been documented.</div>
+        <div class="project-tags"><span class="ptag">UX Research</span><span class="ptag">Heuristic Eval.</span><span class="ptag">Prototyping</span><span class="ptag">Mobile</span></div>
       </div>
-      <div class="about-principles">
+      <div class="project-meta">
+        <div class="project-impact">
+          <div class="pi-num" style="color:#5C7A3E;font-size:26px;line-height:1.2;">E2E<br>UX</div>
+          <div class="pi-label">research & testing</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">hidden friction documented and resolved</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+    </a>
+
+    <!-- Palm -->
+    <a href="#" class="project-card" data-color="coral">
+      <div class="project-thumb">
+        <img src="images/palm-cover.png" alt="Palm & Rescycle" onerror="this.parentElement.textContent='Palm'"/>
+      </div>
+      <div>
+        <div class="project-num">04 / 04 · <strong style="color:var(--coral-text);">Product Designer</strong> · Startup · Colombia</div>
+        <div class="project-title">From idea to validated product<br>in <em>8 weeks.</em></div>
+        <div class="project-desc">Palm & Rescycle needed a product that could convince users and investors. I led the full process — research, architecture, UX writing, prototyping, and testing — under Agile/Scrum with weekly deliveries. Result: −25% bounce rate, +15% user retention, and −20% development time.</div>
+        <div class="project-tags"><span class="ptag">UX Research</span><span class="ptag">UX Writing</span><span class="ptag">Agile · Scrum</span><span class="ptag">Startup</span></div>
+      </div>
+      <div class="project-meta">
+        <div class="project-impact">
+          <div class="pi-num" style="font-size:28px;line-height:1.2;">−25%</div>
+          <div class="pi-label">bounce rate</div>
+          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">+15% retención · −20% tiempo de desarrollo</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<div class="about-section" id="about">
+<div class="section">
+  <div class="section-eyebrow">About</div>
+  <div class="about-grid">
+    <div class="about-photo-wrap">
+      <div class="about-photo">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        Tu foto aquí
+      </div>
+      <div class="about-photo-badge">
+        <div class="apb-name">Melany Olivares</div>
+        <div class="apb-role">UX/UI Product Designer · Remote</div>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <h2 class="about-name">Hi, I'm <em>Mel.</em></h2>
+      <p class="about-bio">
+        Product Designer with experience building digital products at the intersection of <strong>user needs, business goals, and technical constraints</strong>.<br><br>
+        Specialized in complex systems, transactional experiences, and scalable product solutions. I collaborate with engineering, product, and cross-functional teams — from discovery through delivery — using research, design systems, and data-informed decision-making.<br><br>
+        I actually use AI in my workflow — research synthesis, ideation, and rapid prototyping. Not as a buzzword, but as a tool that shortens the loop from idea to impact.
+      </p>
+      <div class="principles">
         <div class="principle">
-          <div class="principle-num">01</div>
-          <div class="principle-content">
-            <div class="principle-title">I think in systems before I think in screens</div>
-            <div class="principle-desc">Tokens, components, variants. A design that can't maintain itself isn't finished.</div>
-          </div>
+          <div class="pr-num">01</div>
+          <div><div class="pr-title">I think in systems before I think in screens</div><div class="pr-desc">Tokens, components, variants. A design that can't maintain itself isn't finished.</div></div>
         </div>
         <div class="principle">
-          <div class="principle-num">02</div>
-          <div class="principle-content">
-            <div class="principle-title">Performance is also UX</div>
-            <div class="principle-desc">Load times, availability, and reliability are part of the experience. A slow system is a design problem.</div>
-          </div>
+          <div class="pr-num">02</div>
+          <div><div class="pr-title">Performance is also UX</div><div class="pr-desc">Load times, availability, and reliability are part of the experience. A slow system is a design problem.</div></div>
         </div>
         <div class="principle">
-          <div class="principle-num">03</div>
-          <div class="principle-content">
-            <div class="principle-title">I actually use AI, I don't just sell it</div>
-            <div class="principle-desc">Claude, Figma MCP, Copilot. Tools that speed up the loop between idea and working prototype.</div>
-          </div>
+          <div class="pr-num">03</div>
+          <div><div class="pr-title">I actually use AI, I don't just sell it</div><div class="pr-desc">Claude, Figma MCP, Copilot. Tools that speed up the loop from idea to working prototype.</div></div>
         </div>
         <div class="principle">
-          <div class="principle-num">04</div>
-          <div class="principle-content">
-            <div class="principle-title">Decisions validated with research and data</div>
-            <div class="principle-desc">Interviews, PostHog, Sentry, Grafana. Hypotheses get tested. Intuition is not a design plan.</div>
-          </div>
+          <div class="pr-num">04</div>
+          <div><div class="pr-title">Decisions validated with research and data</div><div class="pr-desc">Interviews, PostHog, Sentry, Grafana. Intuition is not a design plan.</div></div>
         </div>
       </div>
     </div>
@@ -421,162 +591,80 @@
 </div>
 </div>
 
-<!-- EXPERIENCE -->
-<div style="border-top: 0.5px solid var(--border);">
-<div class="section-wrap" id="experience">
-  <div class="section-label" style="margin-bottom:56px;">Experience</div>
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items:start;">
+<!-- ── EXPERIENCE ── -->
+<div class="section" id="experience">
+  <div class="exp-grid">
     <div>
-      <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px); letter-spacing:-0.02em; margin-bottom:40px; line-height:1.2;">Where I've been <em style="font-style:italic;color:var(--accent)">building.</em></h2>
-      <div class="exp-list">
-        <div class="exp-item reveal">
-          <div class="exp-date">2024 — 2025</div>
-          <div>
-            <div class="exp-role">UX/UI Product Designer <em>· Zebrands</em></div>
-            <div class="exp-company">Omnichannel retail · Mexico & Brazil</div>
-            <div class="exp-desc">POS redesign for 200+ stores. Design System, event storming, performance debugging with Sentry and Grafana.</div>
-          </div>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-date">2024</div>
-          <div>
-            <div class="exp-role">UX/UI Designer <em>· InsightOne</em></div>
-            <div class="exp-company">Smart Payment Platform · U.S.</div>
-            <div class="exp-desc">End-to-end redesign and the company's first design system. Coordinated distributed teams across multiple time zones.</div>
-          </div>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-date">2023</div>
-          <div>
-            <div class="exp-role">UX/UI Designer <em>· PALM-Rescycle</em></div>
-            <div class="exp-company">Startup · Colombia</div>
-            <div class="exp-desc">End-to-end UX: research, prototyping, testing, and iteration under Agile/Scrum for a circular economy startup.</div>
-          </div>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-date">2023</div>
-          <div>
-            <div class="exp-role">UX Designer <em>· Locusroom</em></div>
-            <div class="exp-company">Travel App · Chile</div>
-            <div class="exp-desc">Payment gateway design for a travel app. High-fidelity prototypes and user flow storytelling.</div>
-          </div>
-        </div>
+      <div class="section-eyebrow">Experience</div>
+      <h2 class="section-heading" style="margin-bottom:32px;">Where I've been <em>building.</em></h2>
+      <div class="exp-list reveal">
+        <div class="exp-item"><div class="exp-date">Dic 2024 — Abr 2026</div><div><div class="exp-role">Product Designer UX/UI <em>· Zebrands</em></div><div class="exp-co">E-Commerce · Remoto</div><div class="exp-desc">Led UX/UI for ZePOS — omnichannel platform across 200+ stores. Scalable interfaces, design system, and data-informed decisions with Sentry and Grafana.</div></div></div>
+        <div class="exp-item"><div class="exp-date">Ene — Jul 2024</div><div><div class="exp-role">Product Designer UX/UI <em>· InsightOne</em></div><div class="exp-co">Smart Payment Platform · Remote / U.S.A.</div><div class="exp-desc">Designed experiences for a payment platform. Transactional flows, wireframes, prototypes, and research with distributed teams.</div></div></div>
+        <div class="exp-item"><div class="exp-date">Mar — Jul 2023</div><div><div class="exp-role">UX/UI Designer <em>· PALM-Rescycle</em></div><div class="exp-co">Startup · Colombia</div><div class="exp-desc">−25% bounce rate and +15% retention by redesigning key interfaces within a circular economy model. Weekly Agile iterations.</div></div></div>
+        <div class="exp-item"><div class="exp-date">Ene — Mar 2023</div><div><div class="exp-role">UX/UI Designer <em>· Locusroom</em></div><div class="exp-co">Travel Startup · Chile</div><div class="exp-desc">New payment system that reduced friction in the purchasing process. Research, high-fidelity prototypes, and testing in an agile environment.</div></div></div>
       </div>
     </div>
     <div>
-      <h2 style="font-family:var(--font-display); font-size:clamp(24px,3vw,36px); letter-spacing:-0.02em; margin-bottom:40px; line-height:1.2;">Core <em style="font-style:italic;color:var(--accent)">skills.</em></h2>
-      <div class="skills-grid" style="grid-template-columns:1fr 1fr;">
-        <div class="skill-group reveal">
-          <div class="skill-group-title">Product & UX</div>
-          <div class="skill-list">
-            <div class="skill-item">User-Centered Design</div>
-            <div class="skill-item">Usability Testing</div>
-            <div class="skill-item">UX Research · Interviews</div>
-            <div class="skill-item">Rapid Prototyping</div>
-            <div class="skill-item">UX Metrics: SLA · NPS</div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="skill-group-title">UI & Systems</div>
-          <div class="skill-list">
-            <div class="skill-item">Figma · FigJam</div>
-            <div class="skill-item">Design Systems · Tokens</div>
-            <div class="skill-item">Atomic Design</div>
-            <div class="skill-item">Figma MCP Integration</div>
-            <div class="skill-item">Component-Based UI</div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="skill-group-title">Technical</div>
-          <div class="skill-list">
-            <div class="skill-item">Sentry · Grafana</div>
-            <div class="skill-item">PostHog · Analytics</div>
-            <div class="skill-item">Event Storming</div>
-            <div class="skill-item">Engineering handoff</div>
-            <div class="skill-item">HTML · CSS básico</div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="skill-group-title">Languages</div>
-          <div class="skill-list">
-            <div class="skill-item">Spanish — Native</div>
-            <div class="skill-item">English — C1</div>
-            <div class="skill-item">Portuguese — B2</div>
-            <div class="skill-item">German — B1</div>
-          </div>
-        </div>
+      <div class="section-eyebrow">Skills</div>
+      <h2 class="section-heading" style="margin-bottom:32px;">Core <em>skills.</em></h2>
+      <div class="skills-grid reveal">
+        <div class="skill-group"><div class="sg-title">Product & UX</div><div class="sg-items"><div class="sg-item">User-Centered Design</div><div class="sg-item">Usability Testing</div><div class="sg-item">UX Research · Interviews</div><div class="sg-item">Rapid Prototyping</div><div class="sg-item">UX Metrics: SLA · NPS</div></div></div>
+        <div class="skill-group"><div class="sg-title">UI & Systems</div><div class="sg-items"><div class="sg-item">Figma · FigJam</div><div class="sg-item">Design Systems · Tokens</div><div class="sg-item">Atomic Design</div><div class="sg-item">Figma MCP Integration</div><div class="sg-item">Component-Based UI</div></div></div>
+        <div class="skill-group"><div class="sg-title">Technical & AI</div><div class="sg-items"><div class="sg-item">Sentry · Grafana · Miro</div><div class="sg-item">Jira · Confluence</div><div class="sg-item">AI-Assisted Research</div><div class="sg-item">AI Workflow Optimization</div><div class="sg-item">Engineering handoff</div></div></div>
+        <div class="skill-group"><div class="sg-title">Languages</div><div class="sg-items"><div class="sg-item">Spanish — Native</div><div class="sg-item">English — C1</div><div class="sg-item">Portuguese — B2</div><div class="sg-item">German — B1</div></div></div>
       </div>
     </div>
   </div>
 </div>
-</div>
 
-<!-- CONTACT -->
-<div style="border-top: 0.5px solid var(--border);">
-<div class="section-wrap" id="contact">
-  <div class="section-label" style="margin-bottom:40px;">Contact</div>
-  <div class="contact-wrap reveal" style="display:block;">
-    <h2 class="contact-title" style="margin-bottom:16px;">Got an idea? <em>Let's talk.</em></h2>
-    <p class="contact-desc" style="margin-bottom:48px;">Reach out if you're looking for a Product Designer for a project, want to hire me for a full-time role, or just want to talk about design, AI, and systems.</p>
-    <div class="contact-cards">
+<!-- ── CONTACT ── -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow" style="color:#A8A4A0;">Contact</div>
+    <h2 class="contact-title">Got an idea?<br><em>Let's talk.</em></h2>
+    <div class="contact-cards reveal">
       <a href="mailto:123mel.ida@gmail.com" class="contact-card">
-        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Email</div>
-          <div class="contact-card-value">123mel.ida@gmail.com</div>
-        </div>
-        <span class="contact-card-arrow">→</span>
+        <div class="cc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+        <div><div class="cc-label">Email</div><div class="cc-value">123mel.ida@gmail.com</div></div>
+        <span class="cc-arrow">→</span>
       </a>
       <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank" class="contact-card">
-        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4m0-4v4"/></svg></div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">LinkedIn</div>
-          <div class="contact-card-value">linkedin.com/in/uxmel-olivares</div>
-        </div>
-        <span class="contact-card-arrow">→</span>
+        <div class="cc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-3a2 2 0 0 1 4 0v3"/></svg></div>
+        <div><div class="cc-label">LinkedIn</div><div class="cc-value">uxmel-olivares</div></div>
+        <span class="cc-arrow">→</span>
       </a>
       <a href="https://www.behance.net/mitzyolivares" target="_blank" class="contact-card">
-        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="9" height="12" rx="2"/><path d="M11 10a3 3 0 0 1 0 4H2"/><rect x="13" y="6" width="9" height="12" rx="2"/><path d="M13 10h9"/></svg></div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Behance</div>
-          <div class="contact-card-value">behance.net/mitzyolivares</div>
-        </div>
-        <span class="contact-card-arrow">→</span>
+        <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M3 7h7a3 3 0 0 1 0 6H3zm0 0v10h8a3 3 0 0 0 0-6H3"/><rect x="14" y="7" width="7" height="2" rx="1"/><path d="M14 12h7"/></svg></div>
+        <div><div class="cc-label">Behance</div><div class="cc-value">mitzyolivares</div></div>
+        <span class="cc-arrow">→</span>
       </a>
       <a href="assets/cv-melany-olivares.pdf" target="_blank" class="contact-card">
-        <div class="contact-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg></div>
-        <div class="contact-card-body">
-          <div class="contact-card-label">Resume</div>
-          <div class="contact-card-value">Download CV</div>
-        </div>
-        <span class="contact-card-arrow">↓</span>
+        <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg></div>
+        <div><div class="cc-label">Resume</div><div class="cc-value">Download CV</div></div>
+        <span class="cc-arrow">↓</span>
       </a>
     </div>
   </div>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <div class="footer-name">Melany Olivares — 2026</div>
+      <div class="footer-credit">Built with code and Claude ✦ Leipzig, DE</div>
+    </div>
+    <div class="footer-links">
+      <a href="#work">Work</a>
+      <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
+      <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
+      <a href="assets/cv-melany-olivares.pdf" target="_blank">CV ↓</a>
+    </div>
+  </footer>
 </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-left">
-    <span class="footer-name">Melany Olivares — 2026</span>
-    <span class="footer-credit">Built with code and Claude ✦ Leipzig, DE</span>
-  </div>
-  <div class="footer-links">
-    <a href="#work">Work</a>
-    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
-    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
-    <a href="assets/cv-melany-olivares.pdf" target="_blank">CV ↓</a>
-  </div>
-</footer>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));, 3000);
-  }
+const obs = new IntersectionObserver(
+  e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }),
+  { threshold: 0.07 }
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
