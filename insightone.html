@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>InsightOne — Caso de estudio · Melany Olivares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#FAFAF8; --surface:#F0F0EE; --surface2:#E8E8E5;
+      --border:rgba(0,0,0,0.08); --border2:rgba(0,0,0,0.14);
+      --text:#0F0E0C; --muted:#6B6860; --soft:#736D63;
+      --coral:#FE6647; --coral-text:#C73D18; --coral-large:#E54B22;
+      --blue:#4784FE; --blue-text:#2A63D9; --blue-light:#EEF3FF;
+      --yellow:#DFFE47; --yellow-light:#FAFFD9;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'DM Sans',sans-serif;
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral-large);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;text-decoration:none;font-weight:500;transition:all 0.2s;}
+    .lang-btn:hover{border-color:var(--blue-text);color:var(--blue-text);}
+
+    /* ACCENT STRIP */
+    .accent-strip{background:var(--yellow);border-top:1.5px solid var(--text);border-bottom:1.5px solid var(--text);padding:12px 56px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+    .strip-item{font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;}
+    .strip-dot{width:4px;height:4px;border-radius:50%;background:var(--blue-text);flex-shrink:0;}
+
+    /* CASE HERO */
+    .case-hero{padding:80px 56px 0;max-width:1100px;margin:0 auto;}
+    .case-hero-grid{display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .case-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+    .case-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--blue-text);}
+    .case-title{font-family:var(--font-display);font-size:clamp(34px,4.5vw,54px);line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
+    .case-title em{font-style:italic;color:var(--blue-text);}
+    .case-desc{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;}
+    .case-hero-img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:12px;border:1px solid var(--border);background:var(--blue-light);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;overflow:hidden;}
+    .case-hero-img img{width:100%;height:100%;object-fit:cover;border-radius:11px;display:block;}
+
+    /* META */
+    .case-meta{display:flex;gap:40px;flex-wrap:wrap;padding:32px 0;border-bottom:1px solid var(--border);}
+    .case-meta-item{display:flex;flex-direction:column;gap:5px;}
+    .case-meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);}
+    .case-meta-value{font-size:14px;color:var(--text);font-weight:500;}
+
+    /* METRICS STRIP */
+    .metrics-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+    .metric-cell{padding:40px 48px;border-right:1px solid var(--border);}
+    .metric-cell:last-child{border-right:none;}
+    .metric-num{font-family:var(--font-display);font-size:52px;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;}
+    .metric-num.blue{color:var(--blue-text);}
+    .metric-num.coral{color:var(--coral-large);}
+    .metric-num.neutral{color:var(--text);}
+    .metric-desc{font-size:13px;color:var(--soft);line-height:1.5;}
+
+    /* BODY */
+    .case-body{max-width:1100px;margin:0 auto;padding:80px 56px;}
+    .body-section{margin-bottom:80px;}
+    .body-section:last-child{margin-bottom:0;}
+    .body-section-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:400;letter-spacing:-0.01em;color:var(--text);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .body-section-title em{font-style:italic;color:var(--blue-text);}
+
+    /* OVERVIEW */
+    .overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;}
+    .overview-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .overview-card-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px;}
+    .overview-card-text{font-size:14px;color:var(--muted);line-height:1.7;}
+    .overview-card-text strong{color:var(--text);font-weight:500;}
+
+    /* PROCESS TIMELINE */
+    .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:16px;}
+    .process-steps::before{content:'';position:absolute;top:19px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,var(--blue-text),rgba(42,99,217,0.1));z-index:0;}
+    .process-step{padding:0 12px;padding-top:48px;position:relative;text-align:center;}
+    .process-num{position:absolute;top:0;left:50%;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;background:var(--bg);border:1.5px solid var(--blue-text);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--blue-text);font-weight:600;z-index:1;}
+    .process-step-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px;}
+    .process-step-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+    /* RESEARCH */
+    .research-text{font-size:16px;color:var(--muted);line-height:1.8;max-width:720px;font-weight:300;}
+    .research-text strong{color:var(--text);font-weight:500;}
+
+    /* USERS GRID */
+    .users-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
+    .users-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+    .user-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center;}
+    .user-role-badge{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-text);background:var(--blue-light);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:16px;}
+    .user-name{font-family:var(--font-display);font-size:20px;color:var(--text);margin-bottom:4px;}
+    .user-title{font-size:12px;color:var(--soft);}
+
+    /* WHAT USERS SAID */
+    .quotes-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .quote-card{background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:24px 28px;}
+    .quote-text{font-size:14px;color:var(--text);line-height:1.7;font-style:italic;margin-bottom:16px;}
+    .quote-text::before{content:'"';font-family:var(--font-display);font-size:32px;color:var(--blue-text);line-height:0;vertical-align:-12px;margin-right:4px;}
+    .quote-author{font-size:12px;font-weight:500;color:var(--text);}
+    .quote-author-role{font-size:11px;color:var(--soft);}
+
+    /* PAIN POINTS */
+    .pain-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start;}
+    .pain-methods{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .pain-methods-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:20px;}
+    .pain-method{margin-bottom:16px;}
+    .pain-method-label{font-size:11px;color:var(--soft);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;}
+    .pain-method-num{font-family:var(--font-display);font-size:40px;color:var(--text);line-height:1;}
+    .pain-bars-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;}
+    .pain-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:24px;}
+    .pain-bar-item{margin-bottom:20px;}
+    .pain-bar-label{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px;}
+    .pain-bar-track{height:36px;background:rgba(0,0,0,0.06);border-radius:20px;overflow:hidden;position:relative;}
+    .pain-bar-fill{height:100%;border-radius:20px;display:flex;align-items:center;padding-left:14px;transition:width 1s ease;}
+    .pain-bar-pct{font-size:12px;font-weight:600;color:white;}
+
+    /* USER INSIGHTS */
+    .insights-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;max-width:720px;}
+    .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .insight-card{background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:28px;}
+    .insight-title{font-size:14px;font-weight:600;color:var(--blue-text);margin-bottom:10px;}
+    .insight-text{font-size:13.5px;color:var(--muted);line-height:1.65;}
+
+    /* TASK FLOW */
+    .taskflow-grid{display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:36px;}
+    .taskflow-text{font-size:15px;color:var(--muted);line-height:1.75;}
+    .taskflow-text strong{color:var(--text);font-weight:500;}
+    .taskflow-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .tstat{text-align:center;background:var(--bg);border-radius:8px;padding:20px;}
+    .tstat-num{font-family:var(--font-display);font-size:48px;color:var(--blue-text);line-height:1;margin-bottom:4px;}
+    .tstat-label{font-size:12px;color:var(--soft);}
+    .tstat-emoji{font-size:20px;margin-top:10px;}
+
+    /* MAIN INSIGHTS */
+    .main-insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .mi-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .mi-img{width:100%;aspect-ratio:3/1;object-fit:cover;border-radius:6px;margin-bottom:16px;background:var(--surface2);}
+    .mi-img-placeholder{width:100%;aspect-ratio:3/1;background:var(--surface2);border-radius:6px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--soft);}
+    .mi-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;}
+    .mi-text{font-size:13.5px;color:var(--muted);line-height:1.65;}
+    .mi-text strong{color:var(--text);font-weight:500;}
+
+    /* MVP */
+    .mvp-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;max-width:720px;}
+    .mvp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .mvp-card{border:1px solid var(--border);border-radius:10px;padding:28px;background:var(--bg);}
+    .mvp-card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:10px;}
+    .mvp-card-desc{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:20px;}
+    .mvp-tags{display:flex;flex-direction:column;gap:8px;}
+    .mvp-tag{font-size:12.5px;color:var(--text);background:var(--blue-light);border-radius:6px;padding:8px 12px;line-height:1.5;}
+
+    /* IDEATION */
+    .ideation-steps{display:flex;flex-direction:column;gap:24px;}
+    .ideation-step{display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;}
+    .ideation-num{font-family:var(--font-display);font-size:64px;color:rgba(0,0,0,0.08);line-height:1;text-align:center;}
+    .ideation-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+    .ideation-text{font-size:14px;color:var(--muted);line-height:1.7;}
+
+    /* DESIGN SYSTEM */
+    .ds-img{width:100%;border-radius:10px;border:1px solid var(--border);display:block;}
+    .ds-img-placeholder{width:100%;aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;}
+
+    /* BEFORE AFTER */
+    .ba-section-label{font-family:var(--font-display);font-size:19px;font-weight:400;color:var(--text);margin:44px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+    .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;}
+    .ba-panel{border-radius:8px;padding:24px;border:1px solid var(--border);}
+    .ba-panel.before{background:#F9F9F9;border-color:rgba(0,0,0,0.1);}
+    .ba-panel.after{background:var(--blue-light);border-color:rgba(42,99,217,0.15);}
+    .ba-label{font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    .ba-panel.before .ba-label{color:var(--soft);}
+    .ba-panel.after .ba-label{color:var(--blue-text);}
+    .ba-label::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+    .ba-img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:6px;display:block;margin-bottom:14px;border:1px solid rgba(0,0,0,0.06);}
+    .ba-img-placeholder{width:100%;aspect-ratio:16/9;background:rgba(0,0,0,0.04);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:11px;margin-bottom:14px;border:1px dashed var(--border2);}
+    .ba-tag{font-size:12px;color:var(--muted);font-style:italic;}
+
+    /* LEARNINGS */
+    .learnings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .learning-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .learning-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .learning-title::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--blue-text);flex-shrink:0;}
+    .learning-text{font-size:13.5px;color:var(--muted);line-height:1.65;}
+
+    /* REFLECTION */
+    .reflection-block{border-left:3px solid var(--blue-text);padding:28px 36px;margin-top:48px;background:var(--blue-light);border-radius:0 8px 8px 0;}
+    .reflection-quote{font-family:var(--font-display);font-size:clamp(18px,2.5vw,24px);font-style:italic;color:var(--text);line-height:1.5;}
+
+    /* FOOTER */
+    .case-footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+    .footer-left{display:flex;flex-direction:column;gap:3px;}
+    .footer-name{font-family:var(--font-display);font-size:14px;color:var(--soft);}
+    .footer-credit{font-size:11px;color:var(--border2);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:11px;color:var(--soft);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--blue-text);}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:768px){
+      nav{padding:14px 24px;}
+      .case-hero{padding:60px 24px 0;}
+      .case-hero-grid{grid-template-columns:1fr;gap:32px;}
+      .case-body{padding:48px 24px;}
+      .metrics-inner{grid-template-columns:repeat(2,1fr);}
+      .metrics-inner .metric-cell:nth-child(2){border-right:none;}
+      .overview-grid{grid-template-columns:1fr;}
+      .process-steps{grid-template-columns:1fr 1fr;}
+      .process-steps::before{display:none;}
+      .users-grid{grid-template-columns:1fr;}
+      .quotes-grid{grid-template-columns:1fr;}
+      .pain-grid{grid-template-columns:1fr;}
+      .insights-grid{grid-template-columns:1fr;}
+      .taskflow-grid{grid-template-columns:1fr;}
+      .main-insights-grid{grid-template-columns:1fr;}
+      .mvp-grid{grid-template-columns:1fr;}
+      .ba-grid{grid-template-columns:1fr;}
+      .learnings-grid{grid-template-columns:1fr;}
+      .case-footer{flex-direction:column;gap:14px;padding:32px 24px;text-align:center;}
+      .accent-strip{padding:12px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Melany <em>Olivares</em></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+    <a href="#" class="lang-btn">EN</a>
+  </div>
+</nav>
+
+<!-- ACCENT STRIP -->
+<div style="margin-top:57px;">
+  <div class="accent-strip">
+    <span class="strip-item">InsightOne · Smart Payment Platform</span>
+    <div class="strip-dot"></div>
+    <span class="strip-item">UX/UI Designer</span>
+    <div class="strip-dot"></div>
+    <span class="strip-item">Ene – Jul 2024</span>
+    <div class="strip-dot"></div>
+    <span class="strip-item">EE.UU. · Remoto</span>
+    <div class="strip-dot"></div>
+    <span class="strip-item">Design System · Research · Prototyping</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="case-hero-grid">
+    <div>
+      <div class="case-eyebrow">InsightOne · Software · 2024</div>
+      <h1 class="case-title">Del caos visual al<br><em>primer Design System</em><br>de InsightOne.</h1>
+      <p class="case-desc">Una plataforma de gestión de terminales de pago sin sistema de diseño. Cada pantalla era una decisión nueva. Lideré el rediseño completo alineando negocio, producto e ingeniería en equipos distribuidos.</p>
+    </div>
+    <div class="case-hero-img">
+      <img src="images/insightone-hero.png" alt="InsightOne hero" onerror="this.style.display='none';this.parentElement.textContent='insightone-hero.png'"/>
+    </div>
+  </div>
+  <div class="case-meta">
+    <div class="case-meta-item"><span class="case-meta-label">Empresa</span><span class="case-meta-value">InsightOne</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">7 meses</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Industria</span><span class="case-meta-value">Software · Payment Terminals</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mercado</span><span class="case-meta-value">EE.UU. · Remoto</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX/UI Designer</span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:0;">
+  <div class="metrics-inner">
+    <div class="metric-cell"><div class="metric-num blue">10</div><div class="metric-desc">Secciones de plataforma analizadas</div></div>
+    <div class="metric-cell"><div class="metric-num blue">32</div><div class="metric-desc">User paths analizados</div></div>
+    <div class="metric-cell"><div class="metric-num coral">1°</div><div class="metric-desc">Design System de la empresa</div></div>
+    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">4</div><div class="metric-desc">Tipos de research aplicados</div></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- OVERVIEW -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Overview — <em>el contexto del proyecto</em></div>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-card-title">Project Overview</div>
+        <div class="overview-card-text">
+          INSIGHT ONE es una plataforma completa para gestionar y controlar terminales de pago de diferentes marcas, cubriendo todo el ciclo de vida del dispositivo. Es cloud-based, PCI-compliant, y ofrece alta seguridad, escalabilidad y acceso en tiempo real.<br><br>
+          La plataforma usa tecnología avanzada para soportar la gestión omnicanal del ecosistema de pagos, haciendo las operaciones más eficientes y seguras en diferentes canales de venta.
+        </div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-card-title">The Challenge</div>
+        <div class="overview-card-text">
+          <strong>Improve Navigation Clarity and User Flow</strong> — los usuarios perdían el hilo entre secciones sin feedback visual claro.<br><br>
+          <strong>Establish Consistent Usability Patterns for Information Display</strong> — cada módulo tenía su propio criterio visual.<br><br>
+          <strong>Clearly Communicate the Value Proposition</strong> — la plataforma era poderosa pero difícil de entender desde el primer uso.
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div style="margin-top:40px;">
+      <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:24px;">The Process: <em style="font-family:var(--font-display);font-style:italic;color:var(--blue-text);">Design Thinking ejecutado con Agile</em></div>
+      <div class="process-steps">
+        <div class="process-step"><div class="process-num">01</div><div class="process-step-title">Empathize</div><div class="process-step-desc">Research para entender a los usuarios potenciales y sus necesidades reales.</div></div>
+        <div class="process-step"><div class="process-num">02</div><div class="process-step-title">Define</div><div class="process-step-desc">Sintetizar el research e identificar el problema clave a resolver.</div></div>
+        <div class="process-step"><div class="process-num">03</div><div class="process-step-title">Ideate</div><div class="process-step-desc">Generar un rango de ideas creativas y priorizar con MoSCoW.</div></div>
+        <div class="process-step"><div class="process-num">04</div><div class="process-step-title">Prototype</div><div class="process-step-desc">Construir representaciones realistas de las ideas — low a high fidelity.</div></div>
+        <div class="process-step"><div class="process-num">05</div><div class="process-step-title">Understand</div><div class="process-step-desc">Testear con usuarios, modificar e implementar en iteraciones continuas.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Research — <em>entender antes de diseñar</em></div>
+    <p class="research-text" style="margin-bottom:32px;">
+      Para comprender mejor el producto y sus usuarios, <strong>el research se realizó durante dos sprints del roadmap.</strong> Se condujeron <strong>tests moderados y entrevistas con usuarios de la plataforma, QA's, desarrolladores y stakeholders.</strong> Además, se realizó un <strong>desk research y análisis de benchmarking.</strong> Los sistemas existentes también se analizaron mediante competitive research. Este proceso <strong>llevó a la creación de una persona, la definición del problem statement y el desarrollo de un user journey map</strong> basado en los insights de las entrevistas.
+    </p>
+
+    <!-- USERS -->
+    <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:12px;">Users</div>
+    <p class="users-intro">Durante el research, identificamos tres tipos de usuarios que realizaban actividades diferentes dentro de la misma plataforma.</p>
+    <div class="users-grid">
+      <div class="user-card">
+        <div class="user-role-badge">Decision-Makers</div>
+        <div class="user-name">Julieta</div>
+        <div class="user-title">Gerente comercial · Bank Manager</div>
+      </div>
+      <div class="user-card">
+        <div class="user-role-badge">IT Technicians</div>
+        <div class="user-name">Andrés</div>
+        <div class="user-title">IT Systems Manager</div>
+      </div>
+      <div class="user-card">
+        <div class="user-role-badge">Developers</div>
+        <div class="user-name">Diego</div>
+        <div class="user-title">Developer · IT Systems Manager</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT USERS SAID -->
+  <div class="body-section reveal">
+    <div class="body-section-title">What Did Users Say?</div>
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <p class="quote-text">What I dislike the most is that if you minimize some screens, it displays in a single column and the data disappears, so you have to keep switching screens.</p>
+        <div class="quote-author">Patricia</div>
+        <div class="quote-author-role">Quality Assurance Analyst</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">In the displayed tables, I don't feel like we're seeing the columns with the information we need.</p>
+        <div class="quote-author">Andrés</div>
+        <div class="quote-author-role">IT Systems Manager</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">There are no key details like the number of characters for the message or the number of terminals that can be charged.</p>
+        <div class="quote-author">Diego</div>
+        <div class="quote-author-role">IT Systems Manager</div>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">There are processes where I'm not sure if the information was sent or loaded correctly.</p>
+        <div class="quote-author">Julieta</div>
+        <div class="quote-author-role">Bank Manager</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Pain Points — <em>lo que el research reveló</em></div>
+    <div class="pain-grid">
+      <div class="pain-methods">
+        <div class="pain-methods-title">UX Research Methods</div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">A través de estas herramientas, obtuvimos información de nuestros usuarios.</p>
+        <div class="pain-method"><div class="pain-method-label">Interviews</div><div class="pain-method-num">4</div></div>
+        <div class="pain-method"><div class="pain-method-label">Moderated Test</div><div class="pain-method-num">3</div></div>
+        <div class="pain-method"><div class="pain-method-label">QA Feedback</div><div class="pain-method-num">5</div></div>
+        <div class="pain-method"><div class="pain-method-label">Focus Group</div><div class="pain-method-num">1</div></div>
+      </div>
+      <div>
+        <div class="pain-bars-title">Pain Points</div>
+        <p class="pain-desc">Realizamos entrevistas, tests moderados y analizamos el feedback, sugerencias y quejas del equipo de QA. Estos son los principales pain points encontrados:</p>
+        <div class="pain-bar-item">
+          <div class="pain-bar-label">Complex and confusing interface</div>
+          <div class="pain-bar-track">
+            <div class="pain-bar-fill" style="width:64%;background:linear-gradient(90deg,var(--blue-text),var(--blue));"><span class="pain-bar-pct">64%</span></div>
+          </div>
+        </div>
+        <div class="pain-bar-item">
+          <div class="pain-bar-label">Data Overload</div>
+          <div class="pain-bar-track">
+            <div class="pain-bar-fill" style="width:89%;background:linear-gradient(90deg,var(--blue-text),var(--blue));"><span class="pain-bar-pct">89%</span></div>
+          </div>
+        </div>
+        <div class="pain-bar-item">
+          <div class="pain-bar-label">Difficulty in Tracking Tasks</div>
+          <div class="pain-bar-track">
+            <div class="pain-bar-fill" style="width:42%;background:linear-gradient(90deg,var(--blue-text),var(--blue));"><span class="pain-bar-pct">42%</span></div>
+          </div>
+        </div>
+        <div class="pain-bar-item">
+          <div class="pain-bar-label">Difficult in Decision Making</div>
+          <div class="pain-bar-track">
+            <div class="pain-bar-fill" style="width:87%;background:linear-gradient(90deg,var(--blue-text),var(--blue));"><span class="pain-bar-pct">87%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER INSIGHTS -->
+  <div class="body-section reveal">
+    <div class="body-section-title">User Insights</div>
+    <p class="insights-intro">Identificamos y organizamos rasgos esenciales de los usuarios, motivaciones y patrones de comportamiento para entender mejor cómo interactúan con el producto. Este proceso nos ayudó a definir segmentos de usuarios, descubrir pain points y detectar oportunidades de mejora.</p>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-title">Efficiency and Consistency</div>
+        <div class="insight-text">El análisis UX detallado muestra que los usuarios valoran altamente la eficiencia y consistencia en la gestión de terminales y descargas remotas. Esto resalta la necesidad de un enfoque user-centered, enfocado en simplificación y estandarización para mejorar la experiencia.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-title">Simplify Processes and Standardize Interactions</div>
+        <div class="insight-text">Aplicando principios de diseño user-centered y aprovechando el feedback directo de usuarios, podemos simplificar procesos y estandarizar interacciones, entregando una experiencia más intuitiva. Este enfoque acelera la completación de tareas y reduce la carga cognitiva del usuario.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-title">Guidance</div>
+        <div class="insight-text">Proveer guías claras y precisas — como límites de caracteres para mensajes masivos y parámetros definidos para bulk data uploads — empodera a los usuarios a tomar decisiones informadas y ejecutar acciones con confianza.</div>
+      </div>
+      <div class="insight-card" style="grid-column:1/-1;">
+        <div class="insight-title">Segmentation of Features</div>
+        <div class="insight-text">La segmentación efectiva de features por tipo de usuario, junto con acceso fácil a soporte técnico, refuerza el compromiso de la plataforma con la satisfacción del usuario y la resolución eficiente de problemas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASK-USER FLOW -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Task-User Flow</div>
+    <div class="taskflow-grid">
+      <div>
+        <p class="taskflow-text" style="margin-bottom:16px;">Para abordar esta diversidad de usuarios, <strong>desarrollamos un task flow y un user flow para identificar y segmentar pain points específicos de cada tipo de usuario</strong> dentro de las diferentes secciones de la plataforma Insight One.</p>
+        <p class="taskflow-text">A lo largo de este proceso, <strong>detectamos puntos de frustración y satisfacción, así como áreas de éxito o falla en los touch-points.</strong> Analizamos estos elementos en relación a <strong>arquitectura de información, jerarquía visual y UX writing,</strong> lo que nos proporcionó una visión integral de la experiencia de usuario.</p>
+      </div>
+      <div class="taskflow-stats">
+        <div class="tstat"><div class="tstat-num">10</div><div class="tstat-label">Analyzed sections</div></div>
+        <div class="tstat"><div class="tstat-num">32</div><div class="tstat-label">Analyzed User Paths</div></div>
+        <div class="tstat" style="grid-column:1/-1;"><div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px;">User Emotions</div><div class="tstat-emoji">😊 🙂 😠 😤 🤯 😡</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN INSIGHTS -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Main Insights</div>
+    <div class="main-insights-grid">
+      <div class="mi-card">
+        <div class="mi-img-placeholder">insightone-insight-1.png</div>
+        <div class="mi-title">Continuous Development</div>
+        <div class="mi-text">Los usuarios desean una plataforma con <strong>capacidades de desarrollo de funcionalidades mejoradas para reducir la dependencia de providers</strong> y satisfacer sus necesidades específicas. La <strong>estandarización de funcionalidades es un objetivo clave para el cliente,</strong> enfatizando la importancia de mantener la plataforma actualizada y adaptable a requerimientos cambiantes.</div>
+      </div>
+      <div class="mi-card">
+        <div class="mi-img-placeholder">insightone-insight-2.png</div>
+        <div class="mi-title">User Diversity</div>
+        <div class="mi-text">La plataforma es utilizada por tres tipos de usuarios. Es necesaria información clara sobre <strong>permisos y acceso asociado a diferentes roles de usuario</strong> para evitar confusión y <strong>garantizar la seguridad de la plataforma.</strong></div>
+      </div>
+      <div class="mi-card">
+        <div class="mi-img-placeholder">insightone-insight-3.png</div>
+        <div class="mi-title">Standardized Processes</div>
+        <div class="mi-text">Los usuarios prefieren <strong>sistemas que sigan procesos estandarizados,</strong> resaltando la importancia de diseñar flujos de trabajo consistentes y predecibles en toda la plataforma. El <strong>bulk data upload es crucial para agilizar los tiempos de operación.</strong></div>
+      </div>
+      <div class="mi-card">
+        <div class="mi-img-placeholder">insightone-insight-4.png</div>
+        <div class="mi-title">Interaction Efficiency</div>
+        <div class="mi-text">Los usuarios valoran la <strong>eficiencia en la interacción</strong> con la plataforma. Por lo tanto, minimizar el número de pasos para completar una acción y evitar formularios extensos es esencial. <strong>Los usuarios necesitan información detallada para planificar y ejecutar acciones efectivamente.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MVP -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Defining the MVP — <em>Prioritization and Strategy</em></div>
+    <p class="mvp-intro">Después de evaluar las ideas con el equipo de Insight One, definimos un MVP usando una matriz de priorización seguida del método MoSCoW. El rediseño se enfocó en tres áreas clave:</p>
+    <div class="mvp-grid">
+      <div class="mvp-card">
+        <div class="mvp-card-title">User Paths</div>
+        <div class="mvp-card-desc">Mejorar los User Paths es crucial porque un flujo bien diseñado garantiza que los usuarios puedan navegar el producto de manera intuitiva y sin fricción.</div>
+        <div class="mvp-tags">
+          <div class="mvp-tag">Remover paths inefectivos y proveer guía clara</div>
+          <div class="mvp-tag">Revisar relevancia de iconos y alineación visual</div>
+          <div class="mvp-tag">Alinear colores de plataforma con brand identity</div>
+          <div class="mvp-tag">Usar back buttons o breadcrumbs para marcar action paths</div>
+        </div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-card-title">User Guide</div>
+        <div class="mvp-card-desc">Mejorar el User Guide es vital porque provee soporte continuo, reduce la necesidad de asistencia al cliente y empodera a los usuarios con información para sacar el máximo del producto.</div>
+        <div class="mvp-tags">
+          <div class="mvp-tag">Estandarizar lenguaje en español, excepto términos técnicos en inglés</div>
+          <div class="mvp-tag">Revisar mensajes de completación de tareas para consistencia de tono, tamaño, colores, botones y posicionamiento</div>
+        </div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-card-title">Bulk Data Upload</div>
+        <div class="mvp-card-desc">Mejorar el proceso de Bulk Data Upload es importante porque impacta directamente la eficiencia del usuario y la escalabilidad del sistema.</div>
+        <div class="mvp-tags">
+          <div class="mvp-tag">Permitir eliminación manual de terminales con proceso de dos pasos</div>
+          <div class="mvp-tag">Distinguir claramente entre procesos individuales y bulk uploads</div>
+          <div class="mvp-tag">Proveer mensajes de error detallados durante bulk uploads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDEATION -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Ideation Sessions</div>
+    <div class="ideation-steps">
+      <div class="ideation-step">
+        <div class="ideation-num">1</div>
+        <div>
+          <div class="ideation-title">Initial Brainstorming</div>
+          <div class="ideation-text">Basado en research exhaustivo, clustering de información e insights identificados por el equipo. Esta sesión apuntó a reunir un amplio espectro de ideas e identificar áreas clave de enfoque.</div>
+        </div>
+      </div>
+      <div class="ideation-step">
+        <div class="ideation-num">2</div>
+        <div>
+          <div class="ideation-title">Technical Feasibility Review</div>
+          <div class="ideation-text">Colaboramos con los equipos de desarrollo front-end y back-end para evaluar la viabilidad técnica de las ideas generadas en la primera sesión. También priorizamos estas ideas basadas en factibilidad e impacto.</div>
+        </div>
+      </div>
+      <div class="ideation-step">
+        <div class="ideation-num">3</div>
+        <div>
+          <div class="ideation-title">Stakeholder Alignment</div>
+          <div class="ideation-text">Reunimos a product owners, desarrolladores, especialistas de QA y el equipo de ventas para asegurar que las ideas propuestas estuvieran alineadas con los objetivos de negocio y los requerimientos de los stakeholders. Esta validación fue crucial para asegurar el buy-in de todas las partes relevantes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN SYSTEM -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Design — <em>Style Guide y Design System</em></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:16px;">Style Guide</div>
+        <div class="ds-img-placeholder" style="aspect-ratio:3/4;">insightone-ds.png</div>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:16px;">Typography: Poppins &amp; Roboto</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:16px;">
+          <div style="font-size:13.5px;color:var(--muted);margin-bottom:12px;">Headers y subtítulos: Poppins de distintos calibres.</div>
+          <div style="font-size:11px;color:var(--soft);margin-bottom:16px;">Párrafos y Tags: Roboto</div>
+          <div style="display:flex;gap:16px;align-items:baseline;">
+            <span style="font-size:28px;font-weight:700;color:var(--text);">H1–H3</span>
+            <span style="font-size:18px;font-weight:600;color:var(--text);">Sub 1–Sub 3</span>
+            <span style="font-size:14px;color:var(--muted);">P1–P2</span>
+            <span style="font-size:11px;color:var(--soft);">L1–L3</span>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;">
+          <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:12px;">Layout Breakpoints</div>
+          <div style="font-size:13px;color:var(--muted);">Los puntos de quiebre del layout fueron definidos para desktop, tablet y mobile específicamente para el proceso de log-in.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-img-placeholder" style="aspect-ratio:16/7;">insightone-components.png</div>
+  </div>
+
+  <!-- PROTOTYPE / BEFORE AFTER -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Prototype Phase — <em>Iteration and Validation</em></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:40px;">
+      <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px;">Low to Mid-Fidelity Prototyping</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;">Durante la fase de prototipado, desarrollamos prototipos de baja y media fidelidad que fueron esenciales para iterar y refinar las soluciones propuestas. A lo largo del proceso, <strong style="color:var(--text);">reuniones continuas de testing y follow-up fueron realizadas con desarrolladores, product owners y end-users.</strong> Estas validaciones aseguraron que las ideas estuvieran alineadas con las expectativas técnicas y las necesidades reales de los usuarios, facilitando una transición fluida hacia las etapas subsiguientes de desarrollo.</p>
+    </div>
+
+    <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:24px;">Final Prototype — Before &amp; After</div>
+
+    <div class="ba-section-label">Log-in</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-login-before.png</div><div class="ba-tag">Interfaz genérica sin identidad de marca, flujo confuso</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-login-after.png</div><div class="ba-tag">Hero con value proposition clara, branding integrado</div></div>
+    </div>
+
+    <div class="ba-section-label">Dashboard</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-dashboard-before.png</div><div class="ba-tag">Datos sin jerarquía, mapa sin contexto útil</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-dashboard-after.png</div><div class="ba-tag">KPIs priorizados, visualizaciones de distribución por terminal</div></div>
+    </div>
+
+    <div class="ba-section-label">Terminales</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-terminales-before.png</div><div class="ba-tag">Tabla densa, sin filtros, sin visibilidad de estado</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-terminales-after.png</div><div class="ba-tag">KPIs de terminales, filtros activos, tabla con estados claros</div></div>
+    </div>
+
+    <div class="ba-section-label">Data Uploading</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-upload-before.png</div><div class="ba-tag">Proceso de carga sin feedback, sin validaciones claras</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-upload-after.png</div><div class="ba-tag">Flujo guiado con estados claros: subir → verificar → cargar → informe</div></div>
+    </div>
+
+    <div class="ba-section-label">Users</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-users-before.png</div><div class="ba-tag">Lista sin segmentación por rol ni permisos visibles</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-users-after.png</div><div class="ba-tag">Cards por usuario con rol, permisos y estado claramente diferenciados</div></div>
+    </div>
+  </div>
+
+  <!-- OBSTACLES & LEARNINGS -->
+  <div class="body-section reveal">
+    <div class="body-section-title">Obstacles and <em>Learnings</em></div>
+    <div class="learnings-grid">
+      <div class="learning-card">
+        <div class="learning-title">Expectations vs. Capabilities</div>
+        <div class="learning-text">Las empresas que comienzan a integrar UX frecuentemente creen que los resultados óptimos pueden alcanzarse en una sola ejecución. Es esencial mantener alineación continua entre las expectativas del Product Owner y las capacidades técnicas del equipo.</div>
+      </div>
+      <div class="learning-card">
+        <div class="learning-title">Communication in Beta Phase</div>
+        <div class="learning-text">Los proyectos en fase beta dan la oportunidad de ver el producto en acción. Se requiere comunicación abierta y constante con el equipo de desarrollo debido a la evolución continua de la plataforma.</div>
+      </div>
+      <div class="learning-card">
+        <div class="learning-title">Identification of Stakeholders</div>
+        <div class="learning-text">Es crucial identificar claramente a los stakeholders, especialmente respecto a información sensible. Asegurar que el diseño cumpla con requerimientos legales y éticos ayuda a mitigar riesgos y construir confianza.</div>
+      </div>
+      <div class="learning-card">
+        <div class="learning-title">Product Scalability</div>
+        <div class="learning-text">Es fundamental considerar la escalabilidad del producto desde las etapas tempranas. Establecer un design system que facilite el crecimiento y garantice consistencia en futuras iteraciones es clave.</div>
+      </div>
+    </div>
+    <div class="reflection-block">
+      <p class="reflection-quote">"Trabajar en una plataforma en beta phase me enseñó que el diseño no es solo visual — es también comunicación, alineación y la capacidad de adaptar decisiones en tiempo real cuando el producto evoluciona bajo tus manos."</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="case-footer">
+  <div class="footer-left">
+    <div class="footer-name">Melany Olivares — 2026</div>
+    <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
