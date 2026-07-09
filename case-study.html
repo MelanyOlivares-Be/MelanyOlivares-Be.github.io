@@ -123,9 +123,8 @@
     .ba-img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:6px;display:block;margin-bottom:16px;border:1px solid rgba(0,0,0,0.06);}
 
     /* VIDEO PLAYER */
-    .ba-video{width:100%;aspect-ratio:4/3;border-radius:6px;display:block;margin-bottom:16px;border:1px solid rgba(0,0,0,0.06);object-fit:cover;background:#000;}
-    .ba-video-wrap{position:relative;margin-bottom:16px;}
-    .ba-video-wrap video{width:100%;aspect-ratio:4/3;border-radius:6px;display:block;object-fit:cover;border:1px solid rgba(0,0,0,0.06);}
+    .ba-video-wrap{position:relative;margin-bottom:16px;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);}
+    .ba-video-wrap video{width:100%;height:auto;display:block;max-height:360px;object-fit:contain;background:#000;}
     .ba-video-badge{position:absolute;top:10px;left:10px;background:rgba(42,99,217,0.9);color:white;font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:12px;backdrop-filter:blur(4px);}
     .ba-img-placeholder{width:100%;aspect-ratio:4/3;background:rgba(0,0,0,0.04);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:11px;letter-spacing:0.06em;margin-bottom:16px;border:1px dashed var(--border2);}
     .ba-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
@@ -195,7 +194,18 @@
     <a href="case-study-en.html" class="lang-btn">EN</a>
   </div>
 </nav>
-
+<!-- ACCENT STRIP -->
+<div style="margin-top:57px;background:#DFFE47;border-top:1.5px solid #0F0E0C;border-bottom:1.5px solid #0F0E0C;padding:12px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;">
+  <span style="font-size:12px;font-weight:500;color:#0F0E0C;letter-spacing:0.06em;text-transform:uppercase;">ZePOS · Zebrands</span>
+  <div style="width:4px;height:4px;border-radius:50%;background:#E54B22;flex-shrink:0;"></div>
+  <span style="font-size:12px;font-weight:500;color:#0F0E0C;letter-spacing:0.06em;text-transform:uppercase;">Product Designer UX/UI</span>
+  <div style="width:4px;height:4px;border-radius:50%;background:#E54B22;flex-shrink:0;"></div>
+  <span style="font-size:12px;font-weight:500;color:#0F0E0C;letter-spacing:0.06em;text-transform:uppercase;">Dic 2024 – Abr 2026</span>
+  <div style="width:4px;height:4px;border-radius:50%;background:#E54B22;flex-shrink:0;"></div>
+  <span style="font-size:12px;font-weight:500;color:#0F0E0C;letter-spacing:0.06em;text-transform:uppercase;">México · Brasil</span>
+  <div style="width:4px;height:4px;border-radius:50%;background:#E54B22;flex-shrink:0;"></div>
+  <span style="font-size:12px;font-weight:500;color:#0F0E0C;letter-spacing:0.06em;text-transform:uppercase;">Design System · Event Storming</span>
+</div>
 <!-- HERO -->
 <div class="case-hero">
   <div class="case-hero-grid">
@@ -411,31 +421,31 @@
     <div class="ba-section-label">Catálogo</div>
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Catálogo V1</div><img src="images/catalogo-v1.png" alt="Catálogo V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">catalogo-v1.png</div><ul class="ba-list"><li>Lentitud — el catálogo genera cuellos de botella</li><li>Sobrecargado con productos descontinuados</li><li>Búsqueda pasiva sin filtros</li><li>Falta de visibilidad de información clave</li></ul></div>
-      <div class="ba-panel after"><div class="ba-label">Catálogo V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/catalogo-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Búsqueda optimizada con buscador y filtros múltiples</li><li>Solo productos activos y relevantes</li><li>Card de producto intuitiva multicanal</li><li>Visibilidad de información clave resuelta</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Catálogo V2</div><div class="ba-video-wrap"><video muted loop playsinline preload="metadata" class="lazy-video"><source src="images/catalogo-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Búsqueda optimizada con buscador y filtros múltiples</li><li>Solo productos activos y relevantes</li><li>Card de producto intuitiva multicanal</li><li>Visibilidad de información clave resuelta</li></ul></div>
     </div>
 
     <div class="ba-section-label">Modal de producto</div>
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Modal V1</div><img src="images/modal-v1.png" alt="Modal V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">modal-v1.png</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
-      <div class="ba-panel after"><div class="ba-label">Modal V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/modal-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Card design intuitivo con mejor arquitectura</li><li>Apoyos visuales para características relevantes</li><li>Disponibilidad integrada sin plataformas externas</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Modal V2</div><div class="ba-video-wrap"><video muted loop playsinline preload="metadata" class="lazy-video"><source src="images/modal-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Card design intuitivo con mejor arquitectura</li><li>Apoyos visuales para características relevantes</li><li>Disponibilidad integrada sin plataformas externas</li></ul></div>
     </div>
 
     <div class="ba-section-label">Carrito</div>
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Carrito V1</div><img src="images/carrito-v1.png" alt="Carrito V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">carrito-v1.png</div><ul class="ba-list"><li>Sobrecarga de información no esencial</li><li>Falta de elementos para el flujo crítico</li><li>Arquitectura de información poco clara</li></ul></div>
-      <div class="ba-panel after"><div class="ba-label">Carrito V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/carrito-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Mejora de arquitectura de información</li><li>Checkout rápido y fluido</li><li>Visibilidad de disponibilidad en tiempo real</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Carrito V2</div><div class="ba-video-wrap"><video muted loop playsinline preload="metadata" class="lazy-video"><source src="images/carrito-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Mejora de arquitectura de información</li><li>Checkout rápido y fluido</li><li>Visibilidad de disponibilidad en tiempo real</li></ul></div>
     </div>
 
     <div class="ba-section-label">Envío</div>
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Envío V1</div><img src="images/envio-v1.png" alt="Envío V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">envio-v1.png</div><ul class="ba-list"><li>Flujo crítico en un solo modal sin salida</li><li>Feedback insuficiente en procesos de cálculo</li><li>Falta de logs de asignación y entrega</li></ul></div>
-      <div class="ba-panel after"><div class="ba-label">Envío V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/envio-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo completo rediseñado con configuración en tiempo real</li><li>Servicios de inventario integrados</li><li>Cards rediseñadas para agilizar la venta en store</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Envío V2</div><div class="ba-video-wrap"><video muted loop playsinline preload="metadata" class="lazy-video"><source src="images/envio-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo completo rediseñado con configuración en tiempo real</li><li>Servicios de inventario integrados</li><li>Cards rediseñadas para agilizar la venta en store</li></ul></div>
     </div>
 
     <div class="ba-section-label">Pago</div>
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Pago V1</div><img src="images/pago-v1.png" alt="Pago V1" class="ba-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ba-img-placeholder" style="display:none;">pago-v1.png</div><ul class="ba-list"><li>Métodos de pago desordenados sin jerarquía</li><li>Feedback insuficiente en procesos críticos</li><li>Estado de error poco claro sin recuperación</li></ul></div>
-      <div class="ba-panel after"><div class="ba-label">Pago V2</div><div class="ba-video-wrap"><video autoplay muted loop playsinline><source src="images/pago-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo simple y guiado paso a paso</li><li>Estados claros y en tiempo real</li><li>Experiencia segura con estados de salida claros</li></ul></div>
+      <div class="ba-panel after"><div class="ba-label">Pago V2</div><div class="ba-video-wrap"><video muted loop playsinline preload="metadata" class="lazy-video"><source src="images/pago-v2.mp4" type="video/mp4"></video><div class="ba-video-badge">▶ Flujo en vivo</div></div><ul class="ba-list"><li>Flujo simple y guiado paso a paso</li><li>Estados claros y en tiempo real</li><li>Experiencia segura con estados de salida claros</li></ul></div>
     </div>
   </div>
 
@@ -468,8 +478,25 @@
 </footer>
 
 <script>
+// Scroll reveal
 const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Video autoplay on scroll into view
+const videoObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const video = entry.target;
+    if (entry.isIntersecting) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.lazy-video').forEach(video => {
+  videoObs.observe(video);
+});
 </script>
 </body>
 </html>
