@@ -576,7 +576,13 @@
         </div>
       </div>
     </div>
-    <div class="ds-img-placeholder" style="aspect-ratio:16/7;">insightone-components.png</div>
+    <div style="height:520px;overflow-y:auto;border-radius:10px;border:1px solid var(--border);background:var(--surface);">
+      <img src="images/insightone-components.png" alt="InsightOne Design System Components"
+           style="width:100%;display:block;border-radius:10px;"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div style="display:none;height:520px;align-items:center;justify-content:center;color:var(--soft);font-size:12px;">insightone-components.png</div>
+    </div>
+    <p class="img-caption">Scroll para ver todos los componentes del Design System</p>
   </div>
 
   <!-- PROTOTYPE / BEFORE AFTER -->
@@ -605,6 +611,12 @@
     <div class="ba-grid">
       <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-terminales-before.png</div><div class="ba-tag">Tabla densa, sin filtros, sin visibilidad de estado</div></div>
       <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-terminales-after.png</div><div class="ba-tag">KPIs de terminales, filtros activos, tabla con estados claros</div></div>
+    </div>
+
+    <div class="ba-section-label">Apps</div>
+    <div class="ba-grid">
+      <div class="ba-panel before"><div class="ba-label">Before</div><div class="ba-img-placeholder">insightone-apps-before.png</div><div class="ba-tag">Lista densa sin categorización, difícil de escanear</div></div>
+      <div class="ba-panel after"><div class="ba-label">After</div><div class="ba-img-placeholder">insightone-apps-after.png</div><div class="ba-tag">Grid de apps con cards, acceso rápido y categorización clara</div></div>
     </div>
 
     <div class="ba-section-label">Data Uploading</div>
