@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Clue — Caso de estudio · Melany Olivares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#FAFAF8;--surface:#F0F0EE;--surface2:#E8E8E5;
+      --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+      --text:#0F0E0C;--muted:#6B6860;--soft:#736D63;
+      --coral:#FE6647;--coral-text:#C73D18;--coral-large:#E54B22;
+      --blue:#4784FE;--blue-text:#2A63D9;--blue-light:#EEF3FF;
+      --yellow:#DFFE47;--yellow-light:#FAFFD9;
+      --teal:#2A7B6F;--teal-light:#E8F5F3;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'DM Sans',sans-serif;
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral-large);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;text-decoration:none;font-weight:500;transition:all 0.2s;}
+    .lang-btn:hover{border-color:var(--coral-text);color:var(--coral-text);}
+
+    /* ACCENT STRIP */
+    .accent-strip{margin-top:57px;background:var(--yellow);border-top:1.5px solid var(--text);border-bottom:1.5px solid var(--text);padding:12px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+    .strip-item{font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;}
+    .strip-dot{width:4px;height:4px;border-radius:50%;background:var(--coral-text);flex-shrink:0;}
+
+    /* PERSONAL PROJECT BADGE */
+    .personal-badge{display:inline-flex;align-items:center;gap:6px;background:var(--yellow-light);border:1px solid rgba(0,0,0,0.1);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:500;color:var(--text);letter-spacing:0.04em;margin-bottom:20px;}
+
+    /* CASE HERO */
+    .case-hero{padding:48px 56px 0;max-width:1100px;margin:0 auto;}
+    .case-hero-grid{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .case-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+    .case-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--coral-text);}
+    .case-title{font-family:var(--font-display);font-size:clamp(34px,4.5vw,54px);line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
+    .case-title em{font-style:italic;color:var(--coral-large);}
+    .case-desc{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:24px;}
+    .focus-areas{display:flex;flex-direction:column;gap:8px;}
+    .focus-area{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+    .focus-area::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--coral-text);flex-shrink:0;}
+    .hero-img{width:100%;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--border);background:var(--blue-light);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;overflow:hidden;}
+    .hero-img img{width:100%;height:100%;object-fit:cover;border-radius:11px;display:block;}
+
+    /* META */
+    .case-meta{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-bottom:1px solid var(--border);}
+    .case-meta-item{display:flex;flex-direction:column;gap:5px;}
+    .case-meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);}
+    .case-meta-value{font-size:14px;color:var(--text);font-weight:500;}
+
+    /* METRICS */
+    .metrics-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+    .metric-cell{padding:36px 48px;border-right:1px solid var(--border);}
+    .metric-cell:last-child{border-right:none;}
+    .metric-num{font-family:var(--font-display);font-size:48px;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;}
+    .metric-num.blue{color:var(--blue-text);}
+    .metric-num.coral{color:var(--coral-large);}
+    .metric-num.neutral{color:var(--text);}
+    .metric-desc{font-size:13px;color:var(--soft);line-height:1.5;}
+
+    /* BODY */
+    .case-body{max-width:1100px;margin:0 auto;padding:80px 56px;}
+    .body-section{margin-bottom:80px;}
+    .body-section:last-child{margin-bottom:0;}
+    .section-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:400;letter-spacing:-0.01em;color:var(--text);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .section-title em{font-style:italic;color:var(--coral-large);}
+
+    /* IMAGE PLACEHOLDERS */
+    .img-ph{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;letter-spacing:0.04em;}
+    .img-real{width:100%;border-radius:10px;border:1px solid var(--border);display:block;object-fit:cover;}
+    .img-caption{font-size:12px;color:var(--soft);margin-top:10px;text-align:center;letter-spacing:0.04em;}
+
+    /* WHY CLUE */
+    .why-text{font-size:16px;color:var(--muted);line-height:1.85;max-width:720px;font-weight:300;}
+    .why-text strong{color:var(--text);font-weight:500;}
+
+    /* CHALLENGE */
+    .challenge-grid{display:grid;grid-template-columns:1fr 280px;gap:40px;align-items:center;}
+    .challenge-list{display:flex;flex-direction:column;gap:14px;}
+    .challenge-item{font-size:15px;color:var(--muted);line-height:1.6;padding-left:20px;position:relative;}
+    .challenge-item::before{content:'·';position:absolute;left:0;color:var(--coral-text);font-size:20px;line-height:1.2;}
+
+    /* RESEARCH METHODS */
+    .methods-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;}
+    .method-card{background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px 24px;text-align:center;}
+    .method-num{font-family:var(--font-display);font-size:40px;color:var(--blue-text);line-height:1;margin-bottom:4px;}
+    .method-label{font-size:12px;color:var(--muted);}
+
+    /* FINDINGS */
+    .findings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .finding-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .finding-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+    .finding-icon{width:8px;height:8px;background:var(--coral-text);transform:rotate(45deg);flex-shrink:0;}
+    .finding-title{font-size:16px;font-weight:600;color:var(--text);}
+    .finding-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+    .finding-item{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative;}
+    .finding-item::before{content:'·';position:absolute;left:0;color:var(--soft);}
+    .finding-quote{background:rgba(255,255,255,0.8);border:1.5px solid var(--border2);border-radius:8px;padding:14px 16px;margin-top:16px;}
+    .fq-text{font-size:13px;color:var(--text);font-style:italic;line-height:1.6;margin-bottom:8px;}
+    .fq-author{font-size:11px;font-weight:700;color:var(--text);letter-spacing:0.06em;background:var(--yellow);display:inline-block;padding:2px 10px;border-radius:3px;}
+
+    /* INSIGHT BLOCK */
+    .insight-block{background:var(--surface);border-left:4px solid var(--coral-large);border-radius:0 10px 10px 0;padding:36px 40px;}
+    .insight-label{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--coral-text);margin-bottom:16px;}
+    .insight-text{font-size:18px;color:var(--text);line-height:1.65;}
+    .insight-text strong{color:var(--coral-large);font-weight:600;}
+
+    /* MOSCOW */
+    .moscow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+    .moscow-card{border-radius:10px;padding:24px;border:1px solid var(--border);}
+    .moscow-card.must{background:#EEF3FF;border-color:rgba(42,99,217,0.2);}
+    .moscow-card.should{background:#F5F0FF;border-color:rgba(107,60,180,0.2);}
+    .moscow-card.could{background:var(--yellow-light);border-color:rgba(0,0,0,0.1);}
+    .moscow-card.wont{background:#FFF0ED;border-color:rgba(199,61,24,0.15);}
+    .moscow-badge{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:12px;}
+    .moscow-card.must .moscow-badge{background:var(--blue-text);color:white;}
+    .moscow-card.should .moscow-badge{background:#6B3CB4;color:white;}
+    .moscow-card.could .moscow-badge{background:#B8960A;color:white;}
+    .moscow-card.wont .moscow-badge{background:var(--coral-text);color:white;}
+    .moscow-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:12px;}
+    .moscow-items{display:flex;flex-direction:column;gap:8px;}
+    .moscow-item{font-size:12.5px;color:var(--muted);line-height:1.5;padding-left:12px;position:relative;}
+    .moscow-item::before{content:'·';position:absolute;left:0;}
+
+    /* TESTING TASKS */
+    .testing-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
+    .testing-intro strong{color:var(--text);font-weight:500;}
+    .tasks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+    .task-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;}
+    .task-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-text);margin-bottom:14px;}
+    .task-items{display:flex;flex-direction:column;gap:8px;}
+    .task-item{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative;}
+    .task-item::before{content:'·';position:absolute;left:0;color:var(--blue-text);}
+    .usability-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+    .usability-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin-right:8px;}
+    .usability-score{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;}
+    .score-green{background:#2A9B7A;}
+    .score-red{background:var(--coral-text);}
+
+    /* RESULTS */
+    .result-section{margin-bottom:48px;}
+    .result-section-title{font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--soft);margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+    .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+    .result-annotations{display:flex;flex-direction:column;gap:16px;}
+    .annotation{font-size:13.5px;color:var(--muted);line-height:1.6;padding:14px 16px;background:var(--surface);border-radius:8px;border-left:3px solid var(--blue-text);}
+
+    /* UI KIT */
+    .uikit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .uikit-section-title{font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+
+    /* COLOR SWATCHES */
+    .color-swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+    .color-swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+    .swatch-color{height:64px;}
+    .swatch-info{padding:8px 10px;background:white;}
+    .swatch-name{font-size:11px;color:var(--muted);}
+    .swatch-hex{font-size:11px;font-weight:500;color:var(--text);}
+
+    /* QUOTE CLOSE */
+    .closing-quote{text-align:center;padding:64px 48px;background:var(--surface);border-radius:12px;}
+    .closing-quote-text{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-style:italic;color:var(--coral-large);line-height:1.5;margin-bottom:12px;}
+    .closing-quote-attr{font-size:13px;color:var(--soft);}
+
+    /* FOOTER */
+    .case-footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+    .footer-left{display:flex;flex-direction:column;gap:3px;}
+    .footer-name{font-family:var(--font-display);font-size:14px;color:var(--soft);}
+    .footer-credit{font-size:11px;color:rgba(0,0,0,0.2);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:11px;color:var(--soft);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--coral-text);}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:768px){
+      nav{padding:14px 24px;}
+      .case-hero{padding:32px 24px 0;}
+      .case-hero-grid{grid-template-columns:1fr;gap:32px;}
+      .case-body{padding:48px 24px;}
+      .metrics-inner{grid-template-columns:repeat(2,1fr);}
+      .metrics-inner .metric-cell:nth-child(2){border-right:none;}
+      .findings-grid{grid-template-columns:1fr;}
+      .moscow-grid{grid-template-columns:1fr 1fr;}
+      .tasks-grid{grid-template-columns:1fr;}
+      .result-grid{grid-template-columns:1fr;}
+      .uikit-grid{grid-template-columns:1fr;}
+      .challenge-grid{grid-template-columns:1fr;}
+      .methods-strip{grid-template-columns:1fr 1fr;}
+      .case-footer{flex-direction:column;gap:14px;padding:32px 24px;text-align:center;}
+      .accent-strip{padding:12px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Melany <em>Olivares</em></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+    <a href="clue-en.html" class="lang-btn">EN</a>
+  </div>
+</nav>
+
+<!-- ACCENT STRIP -->
+<div class="accent-strip">
+  <span class="strip-item">Clue · Period & Ovulation Tracker</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">UX/UI Designer</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">Sep – Nov 2023</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">Proyecto personal</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">UX Research · Design Thinking</span>
+</div>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="case-hero-grid">
+    <div>
+      <div class="personal-badge">✦ Proyecto personal</div>
+      <div class="case-eyebrow">Clue · Mobile Health · 2023</div>
+      <h1 class="case-title">Lo que los datos no mostraban:<br><em>UX research en Clue.</em></h1>
+      <p class="case-desc">Caso de estudio de la versión en español de Clue — la app de seguimiento menstrual y de ovulación más descargada del mundo. Exploramos la experiencia de la app identificando mejoras a través de testing exhaustivo en 3 áreas clave.</p>
+      <div class="focus-areas">
+        <div class="focus-area">Registro · Onboarding</div>
+        <div class="focus-area">Home · Pantalla de inicio</div>
+        <div class="focus-area">Seguimiento</div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/clue-hero.png" alt="Clue case study hero"
+           onerror="this.style.display='none';this.parentElement.textContent='clue-hero.png'"/>
+    </div>
+  </div>
+  <div class="case-meta">
+    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">4 sprints</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">2 Diseñadoras UX/UI</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Metodología</span><span class="case-meta-value">Design Thinking</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Tipo</span><span class="case-meta-value">Proyecto personal</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX/UI Designer</span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="metrics-inner">
+    <div class="metric-cell"><div class="metric-num blue">29</div><div class="metric-desc">Usuarios testeados vía Maze</div></div>
+    <div class="metric-cell"><div class="metric-num blue">14</div><div class="metric-desc">Respuestas de formularios</div></div>
+    <div class="metric-cell"><div class="metric-num coral">5</div><div class="metric-desc">Empresas en benchmark</div></div>
+    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">9</div><div class="metric-desc">Usuarios en testing moderado</div></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- WHY CLUE -->
+  <div class="body-section reveal">
+    <div class="section-title">¿Por qué Clue?</div>
+    <p class="why-text">
+      Exploramos el caso UX de Clue, la app de seguimiento del ciclo menstrual aclamada a nivel mundial. Como la app más descargada y mejor valorada en su categoría, Clue es un referente en diseño centrado en el usuario, transformando la forma en que las mujeres gestionan su salud reproductiva.<br><br>
+      Este estudio surge de nuestra decisión de mejorar la UI de Clue en su versión en español, en línea con nuestra misión de promover la salud femenina. El análisis no solo destaca mejoras técnicas, sino que <strong>enfatiza el rol de la app en proveer herramientas accesibles y amigables para que las mujeres puedan monitorear aspectos clave de su bienestar.</strong>
+    </p>
+  </div>
+
+  <!-- THE CHALLENGE -->
+  <div class="body-section reveal">
+    <div class="section-title">El desafío</div>
+    <div class="challenge-grid">
+      <div>
+        <div class="challenge-list">
+          <div class="challenge-item">Identificar posibles mejoras en la app Clue a través de testing, con foco en 3 áreas específicas: <strong>Registro-Onboarding, Pantalla de inicio y Seguimiento.</strong></div>
+          <div class="challenge-item">Desarrollar propuestas de mejora que generen una experiencia de usuario más clara y satisfactoria.</div>
+          <div class="challenge-item">Crear prototipos interactivos evaluados a través de pruebas con usuarios reales.</div>
+        </div>
+        <div style="margin-top:32px;">
+          <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:16px;">¿Cómo llegamos a conocer a nuestras usuarias?</div>
+          <div class="methods-strip">
+            <div class="method-card"><div class="method-num">9</div><div class="method-label">Tests moderados</div></div>
+            <div class="method-card"><div class="method-num">14</div><div class="method-label">Formularios a usuarias</div></div>
+            <div class="method-card"><div class="method-num">5</div><div class="method-label">Empresas en benchmark</div></div>
+            <div class="method-card"><div class="method-num">29</div><div class="method-label">Pruebas con usuarias</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:280px;"><img src="images/clue-challenge.png" alt="Clue challenge" style="width:100%;border-radius:10px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:1;display:none;"><span>clue-challenge.png<br>480 × 480px</span></div></div>
+    </div>
+  </div>
+
+  <!-- FINDINGS -->
+  <div class="body-section reveal">
+    <div class="section-title">Hallazgos</div>
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Onboarding</div></div>
+        <div class="finding-list">
+          <div class="finding-item">El registro fue valorado como sencillo por las nuevas usuarias.</div>
+          <div class="finding-item">Consideran que los pasos para registrarse son suficientes y que cuentan con la información necesaria para conectarse.</div>
+          <div class="finding-item">Encuentran el diseño simple y efectivo.</div>
+        </div>
+        <div class="finding-quote">
+          <div class="fq-text">"Me parece un diseño muy sobrio casi sin identidad"</div>
+          <div class="fq-author">CLAUDIA, 36</div>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Pantalla de inicio</div></div>
+        <div class="finding-list">
+          <div class="finding-item">Las usuarias valoran el lenguaje inclusivo y neutral de la app, que les genera confianza.</div>
+          <div class="finding-item">Sugieren agregar alertas del ciclo para mejorar la funcionalidad.</div>
+          <div class="finding-item">Prefieren concentrar toda la información del ciclo en una sola pantalla para mayor comodidad.</div>
+          <div class="finding-item">Algunas usuarias no distinguen claramente entre las funciones de calendario y las de analítica.</div>
+        </div>
+        <div class="finding-quote">
+          <div class="fq-text">"Siento que tengo la información pero no la forma de recordarla"</div>
+          <div class="fq-author">CANDY, 24</div>
+        </div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Seguimiento</div></div>
+        <div class="finding-list">
+          <div class="finding-item">Las usuarias encuentran confuso el seguimiento porque algunos íconos y colores son muy similares entre sí.</div>
+          <div class="finding-item">Algunos botones interfieren con el flujo para guardar el seguimiento.</div>
+        </div>
+        <div class="finding-quote">
+          <div class="fq-text">"Me es confuso el uso variado de colores y cómo puedo agregar mis síntomas"</div>
+          <div class="fq-author">SARA, 28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="body-section reveal">
+    <div class="section-title">Insight principal</div>
+    <div class="insight-block">
+      <div class="insight-label">Insight principal</div>
+      <p class="insight-text">
+        La app Clue es útil, intuitiva y tiene una interfaz simple. Sin embargo, <strong>se siente distante porque su storytelling y tono priorizan el aspecto reproductivo del ciclo.</strong> Esto contrasta con la manera en que las usuarias realmente la usan — <strong>como una herramienta de autoconocimiento y como fuente de información para sus consultas médicas.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- DESIGN PHASE — MOSCOW -->
+  <div class="body-section reveal">
+    <div class="section-title">Fase de diseño — <em>Priorización MoSCoW</em></div>
+    <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;">Tras la fase de descubrimiento, priorizamos las ideas utilizando la metodología MoSCoW.</p>
+    <div class="moscow-grid">
+      <div class="moscow-card must">
+        <div class="moscow-badge">Mo · Debe tener</div>
+        <div class="moscow-items">
+          <div class="moscow-item">Armonizar fuentes, tamaños de letra, números e íconos.</div>
+          <div class="moscow-item">Reforzar y mejorar el UX writing.</div>
+          <div class="moscow-item">Integrar análisis en la pantalla de inicio.</div>
+          <div class="moscow-item">Agregar recordatorios en la barra inferior.</div>
+          <div class="moscow-item">Incorporar íconos clave para mejorar la calidad de la información disponible para las usuarias.</div>
+          <div class="moscow-item">Añadir valor a la invitación de suscripción premium.</div>
+        </div>
+      </div>
+      <div class="moscow-card should">
+        <div class="moscow-badge">S · Debería tener</div>
+        <div class="moscow-items">
+          <div class="moscow-item">Incorporar estratégicamente el logo y el slogan en ciertas pantallas.</div>
+          <div class="moscow-item">Modificar los colores del gráfico de 'ciclo' en la pantalla de inicio.</div>
+          <div class="moscow-item">Ajustar la paleta de colores del calendario.</div>
+        </div>
+      </div>
+      <div class="moscow-card could">
+        <div class="moscow-badge">Co · Podría tener</div>
+        <div class="moscow-items">
+          <div class="moscow-item">Integrar un ícono en el onboarding para la pregunta '¿Qué quieres hacer?'</div>
+        </div>
+      </div>
+      <div class="moscow-card wont">
+        <div class="moscow-badge">W · No tendrá</div>
+        <div class="moscow-items">
+          <div class="moscow-item">Implementar un foro de discusión para el intercambio de ideas entre usuarias.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTOTYPING -->
+  <div class="body-section reveal">
+    <div class="section-title">Prototipado</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:24px;">
+      <div style="font-size:16px;font-style:italic;color:var(--coral-large);font-family:var(--font-display);margin-bottom:16px;">"En este proyecto, el UX no se trata solo de simplificar el proceso; se trata de inspirar confianza y control sobre el propio cuerpo."</div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px;">Primeros bocetos</div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.7;">Después de plasmar nuestras ideas en papel y comenzar a crear wireframes de mediana fidelidad, realizamos testing a través de Maze para recolectar datos cualitativos sobre nuestras propuestas, midiendo los siguientes KPIs:</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">⏱</span><span style="font-size:14px;font-weight:500;color:var(--text);">Reducir el tiempo por tarea</span></div>
+      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">✓</span><span style="font-size:14px;font-weight:500;color:var(--text);">Aumentar la tasa de éxito</span></div>
+      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">↓</span><span style="font-size:14px;font-weight:500;color:var(--text);">Reducir la tasa de error</span></div>
+    </div>
+    <img src="images/clue-sketches.png" alt="Clue first sketches" style="width:100%;border-radius:10px;display:block;margin-bottom:8px;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:16/7;margin-bottom:8px;display:none;"><span>clue-sketches.png</span></div>
+    <p class="img-caption">Primeros bocetos — wireframes de baja fidelidad para los 3 flujos principales</p>
+    <div style="margin-top:24px;"><img src="images/clue-wireframes.png" alt="Clue mid-fi wireframes" style="width:100%;border-radius:10px;display:block;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:16/9;display:none;"><span>clue-wireframes.png</span></div></div>
+    <p class="img-caption">Wireframes de mediana fidelidad — iterados para testing en Maze</p>
+  </div>
+
+  <!-- TESTING & ITERATION -->
+  <div class="body-section reveal">
+    <div class="section-title">Testing e iteración</div>
+    <p class="testing-intro"><strong>Resultados del testing con 29 usuarias a través de la plataforma Maze.</strong></p>
+    <div class="tasks-grid">
+      <div class="task-card">
+        <div class="task-label">Tarea 1</div>
+        <div class="task-items">
+          <div class="task-item">El 80% de las usuarias completó la tarea.</div>
+          <div class="task-item">5.7 segundos en total para completar el flujo.</div>
+          <div class="task-item">1.3% de tasa promedio de error de clics.</div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-label">Tarea 2</div>
+        <div class="task-items">
+          <div class="task-item">El 60% de las usuarias completó la tarea.</div>
+          <div class="task-item">25 segundos en total para completar el flujo.</div>
+          <div class="task-item">50.1% de tasa promedio de error de clics.</div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-label">Tarea 3</div>
+        <div class="task-items">
+          <div class="task-item">El 70% de las usuarias NO completó la tarea.</div>
+          <div class="task-item">91 segundos en total para completar el flujo.</div>
+          <div class="task-item">57% de tasa promedio de error de clics.</div>
+          <div class="task-item">60% de tasa de abandono.</div>
+        </div>
+      </div>
+    </div>
+    <div class="usability-row">
+      <span class="usability-label">Puntuación de usabilidad</span>
+      <div class="usability-score score-green">80</div>
+      <div class="usability-score score-red">0</div>
+      <div class="usability-score score-green">100</div>
+      <div class="usability-score score-green">100</div>
+      <div class="usability-score score-green">100</div>
+      <div class="usability-score score-green">100</div>
+      <div class="usability-score score-red">0</div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="body-section reveal">
+    <div class="section-title">Resultados — <em>Prototipo final</em></div>
+
+    <div class="result-section">
+      <div class="result-section-title">Onboarding</div>
+      <div class="result-grid">
+        <img src="images/clue-result-onboarding.png" alt="Clue onboarding result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-onboarding.png</span></div>
+        <div class="result-annotations">
+          <div class="annotation">Mejoramos la legibilidad de las cards del home a través de un diseño simplificado.</div>
+          <div class="annotation">Revisamos los textos del onboarding para mejorar su claridad.</div>
+          <div class="annotation">Optimizamos el tamaño de los botones para reducir la competencia visual con la información en pantalla.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Pantalla de inicio</div>
+      <div class="result-grid">
+        <img src="images/clue-result-startscreen.png" alt="Clue start screen result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-startscreen.png</span></div>
+        <div class="result-annotations">
+          <div class="annotation">Invitación a Plus con información relevante integrada en contexto.</div>
+          <div class="annotation">Creamos un ícono intuitivo para acceder a la cuenta de usuario.</div>
+          <div class="annotation">Opción para cambiar manualmente el modo de la app desde la pantalla de inicio.</div>
+          <div class="annotation">Una sola pantalla con toda la información clave sobre el período.</div>
+          <div class="annotation">Rediseño del ícono de ciclo + Alertas en la barra principal.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">Pantalla de seguimiento</div>
+      <div class="result-grid">
+        <img src="images/clue-result-tracking.png" alt="Clue tracking result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-tracking.png</span></div>
+        <div class="result-annotations">
+          <div class="annotation">Separamos el botón de personalización de síntomas para destacarlo visualmente.</div>
+          <div class="annotation">Usar diferentes pesos tipográficos ayuda a distinguir y destacar fechas importantes para la usuaria.</div>
+          <div class="annotation">Mejoramos la legibilidad de los íconos y agregamos una categorización por color adecuada.</div>
+          <div class="annotation">Mejoramos el tamaño de los botones para evitar competencia visual con la información en pantalla.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <a href="#" style="display:inline-block;background:var(--text);color:var(--bg);padding:14px 32px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.04em;">PROTOTIPO — Ver el prototipo completo en Figma ↗</a>
+    </div>
+  </div>
+
+  <!-- UI KIT -->
+  <div class="body-section reveal">
+    <div class="section-title">UI Kit</div>
+    <div class="uikit-grid">
+      <div>
+        <div class="uikit-section-title">Paleta de color</div>
+        <div class="color-swatches">
+          <div class="color-swatch"><div class="swatch-color" style="background:#225270;"></div><div class="swatch-info"><div class="swatch-name">Blue primary</div><div class="swatch-hex">#225270</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#3B8EA5;"></div><div class="swatch-info"><div class="swatch-name">Blue secondary</div><div class="swatch-hex">#3B8EA5</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#B8D4DD;"></div><div class="swatch-info"><div class="swatch-name">Blue light</div><div class="swatch-hex">#B8D4DD</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#D4848A;"></div><div class="swatch-info"><div class="swatch-name">Pink accent</div><div class="swatch-hex">#D4848A</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#F0F0F0;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-name">Light gray</div><div class="swatch-hex">#F0F0F0</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-info"><div class="swatch-name">Dark</div><div class="swatch-hex">#1A1A1A</div></div></div>
+          <div class="color-swatch"><div class="swatch-color" style="background:#2D2D2D;"></div><div class="swatch-info"><div class="swatch-name">Dark 2</div><div class="swatch-hex">#2D2D2D</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="uikit-section-title">Tipografía: Commons</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:20px;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:24px;color:var(--text);">T1-ABCDEFGHIJK1234</div>
+            <div style="font-size:18px;color:var(--text);">T2-ABCDEFGHIJK1234</div>
+            <div style="font-size:14px;color:var(--text);">T3-ABCDEFGHIJK1234</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Header-ABCDEFGHIJK1234</div>
+            <div style="font-size:13px;color:var(--muted);">Body-ABCDEFGHIJK1234</div>
+            <div style="font-size:11px;color:var(--soft);">Call out: ABCDEFGHIJK1234</div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);">Sub-headline- ABCDEFGHIJK1234</div>
+          </div>
+        </div>
+        <div class="uikit-section-title">Ilustraciones y UI Kit</div>
+        <img src="images/clue-uikit.png" alt="Clue UI Kit" style="width:100%;border-radius:10px;display:block;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:4/3;display:none;"><span>clue-uikit.png</span></div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <div class="uikit-section-title">Elementos interactivos</div>
+      <div style="height:560px;overflow-y:auto;border-radius:10px;border:1px solid var(--border);background:var(--surface);">
+        <img src="images/clue-interactive.png" alt="Clue interactive elements"
+             style="width:100%;display:block;border-radius:10px;"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="img-ph" style="height:560px;display:none;"><span>clue-interactive.png<br>1200px de ancho, altura libre</span></div>
+      </div>
+      <p class="img-caption">Scroll para ver todos los elementos interactivos</p>
+    </div>
+  </div>
+
+  <!-- CLOSING QUOTE -->
+  <div class="body-section reveal">
+    <div class="closing-quote">
+      <div class="closing-quote-text">"La iteración en diseño trae resultados poderosos"</div>
+      <div class="closing-quote-attr">— Interactive Design Foundation</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="case-footer">
+  <div class="footer-left">
+    <div class="footer-name">Melany Olivares — 2026</div>
+    <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
