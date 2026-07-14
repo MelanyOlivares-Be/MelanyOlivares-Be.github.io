@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Palm & Rescycle — Caso de estudio · Melany Olivares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#FAFAF8;--surface:#F0F0EE;--surface2:#E8E8E5;
+      --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
+      --text:#0F0E0C;--muted:#6B6860;--soft:#736D63;
+      --coral:#FE6647;--coral-text:#C73D18;--coral-large:#E54B22;
+      --blue:#4784FE;--blue-text:#2A63D9;--blue-light:#EEF3FF;
+      --yellow:#DFFE47;--yellow-light:#FAFFD9;
+      --green:#4CA033;--green-text:#3B7D28;--green-light:#F0F7EC;
+      --font-display:'DM Serif Display',Georgia,serif;
+      --font-body:'DM Sans',sans-serif;
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral-large);}
+    .nav-right{display:flex;align-items:center;gap:20px;}
+    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+    .lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;text-decoration:none;font-weight:500;transition:all 0.2s;}
+    .lang-btn:hover{border-color:var(--green-text);color:var(--green-text);}
+
+    /* ACCENT STRIP */
+    .accent-strip{margin-top:57px;background:var(--yellow);border-top:1.5px solid var(--text);border-bottom:1.5px solid var(--text);padding:12px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+    .strip-item{font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;}
+    .strip-dot{width:4px;height:4px;border-radius:50%;background:var(--green-text);flex-shrink:0;}
+
+    /* CASE HERO */
+    .case-hero{padding:80px 56px 0;max-width:1100px;margin:0 auto;}
+    .case-hero-grid{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .case-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+    .case-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--green-text);}
+    .case-title{font-family:var(--font-display);font-size:clamp(34px,4.5vw,54px);line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
+    .case-title em{font-style:italic;color:var(--green-text);}
+    .case-desc{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;}
+    .hero-img{width:100%;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--border);background:var(--green-light);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;overflow:hidden;}
+    .hero-img img{width:100%;height:100%;object-fit:cover;border-radius:11px;display:block;}
+
+    /* META */
+    .case-meta{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-bottom:1px solid var(--border);}
+    .case-meta-item{display:flex;flex-direction:column;gap:5px;}
+    .case-meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);}
+    .case-meta-value{font-size:14px;color:var(--text);font-weight:500;}
+
+    /* METRICS */
+    .metrics-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+    .metric-cell{padding:36px 48px;border-right:1px solid var(--border);}
+    .metric-cell:last-child{border-right:none;}
+    .metric-num{font-family:var(--font-display);font-size:48px;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;}
+    .metric-num.green{color:var(--green-text);}
+    .metric-num.blue{color:var(--blue-text);}
+    .metric-num.neutral{color:var(--text);}
+    .metric-desc{font-size:13px;color:var(--soft);line-height:1.5;}
+
+    /* BODY */
+    .case-body{max-width:1100px;margin:0 auto;padding:80px 56px;}
+    .body-section{margin-bottom:80px;}
+    .body-section:last-child{margin-bottom:0;}
+    .section-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:400;letter-spacing:-0.01em;color:var(--text);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+    .section-title em{font-style:italic;color:var(--green-text);}
+
+    /* IMAGE PLACEHOLDERS */
+    .img-ph{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;letter-spacing:0.04em;text-align:center;padding:20px;}
+    .img-caption{font-size:12px;color:var(--soft);margin-top:10px;text-align:center;letter-spacing:0.04em;}
+
+    /* OVERVIEW */
+    .overview-text{font-size:16px;color:var(--muted);line-height:1.85;max-width:760px;font-weight:300;}
+    .overview-text strong{color:var(--text);font-weight:500;}
+
+    /* PROCESS */
+    .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:16px;}
+    .process-steps::before{content:'';position:absolute;top:19px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,var(--green-text),rgba(59,125,40,0.1));z-index:0;}
+    .process-step{padding:0 12px;padding-top:48px;position:relative;text-align:center;}
+    .process-num{position:absolute;top:0;left:50%;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;background:var(--bg);border:1.5px solid var(--green-text);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green-text);font-weight:600;z-index:1;}
+    .process-step-title{font-size:13px;font-weight:500;color:var(--text);}
+
+    /* CHALLENGE */
+    .challenge-grid{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center;}
+    .challenge-list{display:flex;flex-direction:column;gap:20px;}
+    .challenge-item{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;}
+    .challenge-num{font-family:var(--font-display);font-size:32px;color:var(--green-text);line-height:1;}
+    .challenge-text{font-size:15px;color:var(--muted);line-height:1.6;}
+
+    /* BANNER */
+    .banner{background:var(--yellow);border-radius:12px;padding:40px;text-align:center;border:1.5px solid var(--text);}
+    .banner-label{font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+    .banner-title{font-family:var(--font-display);font-size:clamp(28px,4vw,44px);color:var(--text);letter-spacing:-0.02em;}
+
+    /* PROBLEM STATEMENT */
+    .problem-block{background:var(--surface);border-left:4px solid var(--green-text);border-radius:0 10px 10px 0;padding:32px 36px;margin-bottom:40px;}
+    .problem-label{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-text);margin-bottom:16px;}
+    .problem-text{font-size:16px;color:var(--text);line-height:1.65;}
+
+    /* INTENTIONS & GOALS */
+    .ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+    .ig-title{font-family:var(--font-display);font-size:20px;color:var(--text);margin-bottom:20px;}
+    .ig-list{display:flex;flex-direction:column;gap:16px;}
+    .ig-item{font-size:14px;color:var(--muted);line-height:1.6;padding-left:16px;position:relative;}
+    .ig-item::before{content:'·';position:absolute;left:0;color:var(--green-text);font-size:18px;}
+    .ig-item strong{color:var(--text);font-weight:600;}
+
+    /* RESEARCH METHODS */
+    .methods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+    .method-card{background:var(--green-light);border:1px solid rgba(59,125,40,0.15);border-radius:10px;padding:20px 24px;}
+    .method-num{font-family:var(--font-display);font-size:32px;color:var(--green-text);line-height:1;margin-bottom:6px;}
+    .method-label{font-size:13px;color:var(--muted);line-height:1.4;}
+
+    /* EMPATHY MAP */
+    .empathy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .empathy-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
+    .empathy-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--green-text);display:inline-block;}
+    .empathy-list{display:flex;flex-direction:column;gap:12px;}
+    .empathy-item{font-size:13px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative;}
+    .empathy-item::before{content:'·';position:absolute;left:0;color:var(--soft);}
+
+    /* KEY FINDINGS */
+    .keyfindings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;}
+    .keyfinding-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:24px;}
+    .keyfinding-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--green-text);display:inline-block;}
+    .keyfinding-text{font-size:13px;color:var(--muted);line-height:1.55;}
+
+    /* PAIN POINTS */
+    .painpoints-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+    .painpoint-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;}
+    .painpoint-title{font-size:14px;font-weight:600;color:var(--coral-text);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--coral-large);}
+    .painpoint-text{font-size:13px;color:var(--muted);line-height:1.55;}
+
+    /* INSIGHTS */
+    .insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .insight-card{background:var(--green-light);border:1px solid rgba(59,125,40,0.15);border-radius:10px;padding:28px;position:relative;}
+    .insight-text{font-size:14.5px;color:var(--text);line-height:1.65;margin-bottom:16px;}
+    .insight-tag{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-text);}
+
+    /* IDEATION */
+    .ideation-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
+    .ideation-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .ideation-item{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;}
+    .ideation-num{width:36px;height:36px;border-radius:50%;background:var(--green-text);color:white;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;flex-shrink:0;}
+    .ideation-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+    .ideation-text{font-size:13.5px;color:var(--muted);line-height:1.6;}
+
+    /* DESIGN SYSTEM */
+    .ds-block{margin-bottom:32px;}
+    .ds-subtitle{font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
+    .color-swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+    .swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+    .swatch-color{height:72px;}
+    .swatch-info{padding:8px 12px;background:white;}
+    .swatch-hex{font-size:11px;font-weight:500;color:var(--text);}
+
+    /* WIREFRAMES / RESULTS */
+    .img-full{width:100%;border-radius:10px;border:1px solid var(--border);display:block;}
+
+    /* VIDEO */
+    .ba-video-wrap{position:relative;margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+    .ba-video-wrap video{width:100%;height:auto;display:block;max-height:600px;object-fit:contain;background:#000;}
+
+    /* CLOSING */
+    .closing{text-align:center;padding:56px 48px;background:var(--green-light);border-radius:12px;}
+    .closing-title{font-family:var(--font-display);font-size:clamp(24px,3.5vw,36px);color:var(--green-text);letter-spacing:-0.02em;margin-bottom:12px;}
+    .closing-text{font-size:15px;color:var(--muted);}
+
+    /* FOOTER */
+    .case-footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+    .footer-left{display:flex;flex-direction:column;gap:3px;}
+    .footer-name{font-family:var(--font-display);font-size:14px;color:var(--soft);}
+    .footer-credit{font-size:11px;color:rgba(0,0,0,0.2);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:11px;color:var(--soft);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--green-text);}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:768px){
+      nav{padding:14px 24px;}
+      .case-hero{padding:60px 24px 0;}
+      .case-hero-grid{grid-template-columns:1fr;gap:32px;}
+      .case-body{padding:48px 24px;}
+      .metrics-inner{grid-template-columns:repeat(2,1fr);}
+      .metrics-inner .metric-cell:nth-child(2){border-right:none;}
+      .process-steps{grid-template-columns:1fr 1fr;}
+      .process-steps::before{display:none;}
+      .challenge-grid{grid-template-columns:1fr;}
+      .ig-grid{grid-template-columns:1fr;}
+      .methods-grid{grid-template-columns:1fr;}
+      .empathy-grid{grid-template-columns:1fr;}
+      .keyfindings-grid{grid-template-columns:1fr 1fr;}
+      .painpoints-grid{grid-template-columns:1fr 1fr;}
+      .insights-grid{grid-template-columns:1fr;}
+      .ideation-grid{grid-template-columns:1fr;}
+      .color-swatches{grid-template-columns:repeat(2,1fr);}
+      .case-footer{flex-direction:column;gap:14px;padding:32px 24px;text-align:center;}
+      .accent-strip{padding:12px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Melany <em>Olivares</em></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+    <a href="palm-en.html" class="lang-btn">EN</a>
+  </div>
+</nav>
+
+<!-- ACCENT STRIP -->
+<div class="accent-strip">
+  <span class="strip-item">Palm & Rescycle · Circular Economy</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">Product Designer</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">Mar – Jul 2023</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">Colombia · Startup</span>
+  <div class="strip-dot"></div>
+  <span class="strip-item">UX Research · UX Writing · Agile</span>
+</div>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div class="case-hero-grid">
+    <div>
+      <div class="case-eyebrow">Palm & Rescycle · Economía circular · 2023</div>
+      <h1 class="case-title">De idea a producto validado<br>en <em>8 semanas.</em></h1>
+      <p class="case-desc">Plataforma colombiana de upcycling que conecta generadores de residuos con quienes pueden transformarlos. Rediseñé la landing y las páginas clave para comunicar el valor de la economía circular e invitar a la comunidad a sumarse.</p>
+    </div>
+    <div class="hero-img">
+      <img src="images/palm-hero.png" alt="Palm & Rescycle hero"
+           onerror="this.style.display='none';this.parentElement.textContent='palm-hero.png'"/>
+    </div>
+  </div>
+  <div class="case-meta">
+    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">4 sprints</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">3 Diseñadores UX/UI</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Metodología</span><span class="case-meta-value">Design Thinking</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mercado</span><span class="case-meta-value">Colombia · Medellín</span></div>
+    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">Product Designer UX/UI</span></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="metrics-inner">
+    <div class="metric-cell"><div class="metric-num green">−25%</div><div class="metric-desc">Bounce rate</div></div>
+    <div class="metric-cell"><div class="metric-num green">+15%</div><div class="metric-desc">Retención de usuarios</div></div>
+    <div class="metric-cell"><div class="metric-num green">−20%</div><div class="metric-desc">Tiempo de desarrollo</div></div>
+    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">40</div><div class="metric-desc">Empresas upcycling objetivo</div></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="case-body">
+
+  <!-- OVERVIEW -->
+  <div class="body-section reveal">
+    <div class="section-title">Product Overview — <em>Revolucionando la gestión de residuos</em></div>
+    <p class="overview-text">
+      La alianza entre <strong>PALM y Rescycle</strong> representa una respuesta innovadora a la creciente crisis de residuos. Apalancándose en una plataforma tecnológica de vanguardia, esta colaboración conecta a generadores de residuos con quienes pueden reutilizar los materiales de forma efectiva.<br><br>
+      Enfocada en los principios de la <strong>economía circular</strong>, la iniciativa busca transformar residuos en recursos valiosos, reduciendo significativamente los desechos que van a rellenos sanitarios y basureros. Como equipo de UX Design, nos sumamos a la misión de PALM y Rescycle de construir un futuro más limpio y sostenible para todos.
+    </p>
+
+    <!-- PROCESS -->
+    <div style="margin-top:40px;">
+      <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:24px;">The Process: <em style="font-family:var(--font-display);font-style:italic;color:var(--green-text);">Design Thinking</em></div>
+      <div class="process-steps">
+        <div class="process-step"><div class="process-num">01</div><div class="process-step-title">Empathize</div></div>
+        <div class="process-step"><div class="process-num">02</div><div class="process-step-title">Define</div></div>
+        <div class="process-step"><div class="process-num">03</div><div class="process-step-title">Ideate</div></div>
+        <div class="process-step"><div class="process-num">04</div><div class="process-step-title">Design</div></div>
+        <div class="process-step"><div class="process-num">05</div><div class="process-step-title">Test</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGE -->
+  <div class="body-section reveal">
+    <div class="section-title">El desafío</div>
+    <div class="challenge-grid">
+      <div class="challenge-list">
+        <div class="challenge-item">
+          <div class="challenge-num">1</div>
+          <div class="challenge-text">Diseñar una sección en el sitio web público dirigida a recicladores de residuos, detallando los planes, el proceso de registro y los términos y condiciones.</div>
+        </div>
+        <div class="challenge-item">
+          <div class="challenge-num">2</div>
+          <div class="challenge-text">Diseñar la homepage para comunicar el concepto de la plataforma e invitar tanto a recicladores como a generadores de residuos a unirse a la comunidad (call to action).</div>
+        </div>
+      </div>
+      <div class="img-ph" style="aspect-ratio:4/3;"><span>palm-challenge.png<br>800 × 600px</span></div>
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="body-section reveal">
+    <div class="banner">
+      <div class="banner-label">Good to the planet</div>
+      <div class="banner-title">Designed to Disappear.</div>
+    </div>
+  </div>
+
+  <!-- PROBLEM STATEMENT -->
+  <div class="body-section reveal">
+    <div class="section-title">Problem Statement</div>
+    <div class="problem-block">
+      <div class="problem-label">El problema</div>
+      <p class="problem-text">Rescycle tiene actualmente una plataforma publicada pero carece de una identidad clara en términos de experiencia de usuario (UX). A pesar de una oferta significativa de materiales de desecho, existe una disparidad entre oferta y demanda, lo que indica desafíos para atraer usuarios que puedan aprovechar los materiales anunciados.</p>
+    </div>
+    <div class="ig-grid">
+      <div>
+        <div class="ig-title">Intenciones</div>
+        <div class="ig-list">
+          <div class="ig-item"><strong>Entender los perfiles de usuario en plataformas de economía circular:</strong> analizar user personas para adaptar el diseño UX a la creación de productos upcycled.</div>
+          <div class="ig-item"><strong>Comprender las expectativas y beneficios esperados:</strong> emplear metodologías de user research para captar expectativas e informar decisiones de UX.</div>
+          <div class="ig-item"><strong>Identificar pain points durante el registro:</strong> realizar user journey mapping para descubrir puntos de fricción en el proceso de sign-up.</div>
+        </div>
+      </div>
+      <div>
+        <div class="ig-title">Objetivos</div>
+        <div class="ig-list">
+          <div class="ig-item">Comunicar efectivamente la importancia y el poder de la economía circular en Colombia.</div>
+          <div class="ig-item">Aumentar la demanda incorporando 40 nuevas empresas de upcycling a la plataforma en los próximos 4 meses.</div>
+          <div class="ig-item">Abrir la puerta a construir comunidad con un tono de voz humano y cercano.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="body-section reveal">
+    <div class="section-title">¿Cómo llegamos a conocer a nuestros usuarios?</div>
+    <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:8px;">
+      <strong style="color:var(--text);">Usuarios finales:</strong> grandes empresas, startups o colectivos que buscan aprovechar residuos en línea para crear productos upcycled y downcycled, que ya son usuarios de la plataforma o tienen el potencial de serlo.
+    </p>
+    <div class="methods-grid">
+      <div class="method-card"><div class="method-num">5</div><div class="method-label">Tests moderados y entrevistas con plataformas y empresas de upcycling en Colombia</div></div>
+      <div class="method-card"><div class="method-num">24</div><div class="method-label">Individuos encuestados de la industria del upcycling</div></div>
+      <div class="method-card"><div class="method-num">10</div><div class="method-label">Empresas de upcycling en benchmarking UX/UI mundial</div></div>
+      <div class="method-card"><div class="method-num">7</div><div class="method-label">Guerrilla tests</div></div>
+      <div class="method-card"><div class="method-num">3</div><div class="method-label">Usability tests tras wireframes de media fidelidad</div></div>
+      <div class="method-card"><div class="method-num">+</div><div class="method-label">Desktop research complementario</div></div>
+    </div>
+  </div>
+
+  <!-- WHAT WE FOUND — EMPATHY MAP -->
+  <div class="body-section reveal">
+    <div class="section-title">What We Found — <em>Our Users</em></div>
+    <div class="empathy-grid">
+      <div class="empathy-card">
+        <div class="empathy-title">What they Think & Feel</div>
+        <div class="empathy-list">
+          <div class="empathy-item">"La tecnología debe servir al medio ambiente, no al revés." — Plastichunches.</div>
+          <div class="empathy-item">"Crear una comunidad de personas que compartan tus valores y principios le da sentido a tu trabajo." — Akasha Design Lab.</div>
+          <div class="empathy-item">"Es importante encontrar espacios para mostrar su emprendimiento con otros que compartan su visión." — Bolloplaya.</div>
+          <div class="empathy-item">"Para la startup es vital apoyar a los recicladores y ofrecer un precio justo." — Boyoplaya.</div>
+        </div>
+      </div>
+      <div class="empathy-card">
+        <div class="empathy-title">What they Do & Say</div>
+        <div class="empathy-list">
+          <div class="empathy-item">Tienen un equipo multidisciplinario que opera desde varias perspectivas para desarrollar un modelo de negocio sostenible comprometido con causas sociales.</div>
+          <div class="empathy-item">Sus miembros son apasionados por su trabajo y comparten su conocimiento con sus comunidades y en redes sociales.</div>
+          <div class="empathy-item">Colaboran con otros emprendedores, dan charlas de reciclaje en escuelas y organizan recepciones de residuos con sus vecinos.</div>
+        </div>
+      </div>
+      <div class="empathy-card">
+        <div class="empathy-title">What they Hear & See</div>
+        <div class="empathy-list">
+          <div class="empathy-item">Ven los residuos como una oportunidad para minimizar el impacto ambiental y generar ingresos, priorizando la responsabilidad social.</div>
+          <div class="empathy-item">A pesar de los múltiples actores del sistema de reciclaje, hay comunicación limitada entre ellos, lo que añade complejidad a la gestión de residuos.</div>
+          <div class="empathy-item">Los precios de los residuos varían mucho, desde gratis hasta precios altos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY FINDINGS -->
+    <div style="margin-top:40px;">
+      <div style="font-family:var(--font-display);font-size:20px;color:var(--text);margin-bottom:8px;">Key Findings</div>
+      <div class="keyfindings-grid">
+        <div class="keyfinding-card"><div class="keyfinding-title">Find</div><div class="keyfinding-text">Encontrar materiales que cumplan las necesidades técnicas en ubicaciones cercanas para sus startups de upcycling.</div></div>
+        <div class="keyfinding-card"><div class="keyfinding-title">Create Alliances</div><div class="keyfinding-text">Establecer vínculos entre agentes que comparten valores ambientales y sociales de forma genuina y responsable.</div></div>
+        <div class="keyfinding-card"><div class="keyfinding-title">Plan Effectively</div><div class="keyfinding-text">Generar relaciones sostenibles a largo plazo para mejorar la planificación de su negocio.</div></div>
+        <div class="keyfinding-card"><div class="keyfinding-title">Awareness</div><div class="keyfinding-text">Promover su marca, productos, logros e influencia.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="body-section reveal">
+    <div class="section-title">Pain Points</div>
+    <div class="painpoints-grid">
+      <div class="painpoint-card"><div class="painpoint-title">Inconsistency</div><div class="painpoint-text">La logística para transportar residuos debe negociarse con cada distribuidor, lo que consume tiempo y dificulta la planificación al no haber regulación.</div></div>
+      <div class="painpoint-card"><div class="painpoint-title">Fluctuation</div><div class="painpoint-text">Los precios de estas transacciones no están regulados, resultando en variaciones y un mercado informal.</div></div>
+      <div class="painpoint-card"><div class="painpoint-title">Low Standards</div><div class="painpoint-text">El material obtenido no está clasificado ni limpio, lo que consume tiempo y recursos.</div></div>
+      <div class="painpoint-card"><div class="painpoint-title">Unreliable Information</div><div class="painpoint-text">Los materiales adquiridos suelen tener etiquetado inadecuado, sin ficha técnica que respalde la información de cada compra.</div></div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="body-section reveal">
+    <div class="section-title">Insights</div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <p class="insight-text">Las empresas de upcycling buscan educar a los generadores de residuos y construir una comunidad de negocios afines, cumpliendo a la vez con sus compromisos ambientales y de negocio.</p>
+        <div class="insight-tag">→ Landing Page</div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-text">La gestión adecuada de la información de residuos aumenta la confianza del usuario y refuerza una imagen positiva de la plataforma.</p>
+        <div class="insight-tag">→ Upcyclers Community</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDEATION -->
+  <div class="body-section reveal">
+    <div class="section-title">Ideation — <em>UX Design Proposals</em></div>
+    <p class="ideation-intro">Con base en los datos del research, creamos propuestas para MVPs que buscan resolver los pain points de nuestros usuarios.</p>
+    <div class="ideation-grid">
+      <div class="ideation-item">
+        <div class="ideation-num">1</div>
+        <div><div class="ideation-title">Community Building through Storytelling</div><div class="ideation-text">Usar elementos de diseño narrativo para fomentar un sentido de comunidad entre usuarios, enfatizando los valores compartidos.</div></div>
+      </div>
+      <div class="ideation-item">
+        <div class="ideation-num">2</div>
+        <div><div class="ideation-title">Emphasize Strategic Partnerships</div><div class="ideation-text">Destacar alianzas estratégicas que refuercen la confianza en la comunidad y fomenten la colaboración hacia la gestión sostenible de residuos.</div></div>
+      </div>
+      <div class="ideation-item">
+        <div class="ideation-num">3</div>
+        <div><div class="ideation-title">Users Directory and Brand Visibility</div><div class="ideation-text">Crear un directorio de empresas dentro de la plataforma, ofreciendo un espacio/perfil público dedicado para las empresas participantes.</div></div>
+      </div>
+      <div class="ideation-item">
+        <div class="ideation-num">4</div>
+        <div><div class="ideation-title">Streamlined Search and Tailored Suggestions</div><div class="ideation-text">Encontrar proveedores de residuos que coincidan con los requerimientos y ubicación a través de búsqueda y sugerencias personalizadas.</div></div>
+      </div>
+      <div class="ideation-item">
+        <div class="ideation-num">5</div>
+        <div><div class="ideation-title">Validation of Sustainability Practices</div><div class="ideation-text">Asegurar prácticas de producción sostenible verificando y proveyendo documentación que respalde los procedimientos de gestión de residuos.</div></div>
+      </div>
+      <div class="ideation-item">
+        <div class="ideation-num">6</div>
+        <div><div class="ideation-title">Comprehensive Technical Data Sheets</div><div class="ideation-text">Acceder a fichas técnicas detalladas de los residuos disponibles en el marketplace para apoyar la toma de decisiones informada.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIREFRAMES -->
+  <div class="body-section reveal">
+    <div class="section-title">Low-Fidelity Wireframes</div>
+    <div class="img-ph" style="aspect-ratio:16/9;"><span>palm-wireframes.png<br>1200 × 675px</span></div>
+    <p class="img-caption">Wireframes de baja fidelidad — Landing page y Upcyclers Community</p>
+  </div>
+
+  <!-- DESIGN SYSTEM -->
+  <div class="body-section reveal">
+    <div class="section-title">Design — <em>Design System</em></div>
+
+    <div class="ds-block">
+      <div class="ds-subtitle">Typography — Montserrat</div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:28px;font-weight:700;color:var(--text);">Título Principal — Montserrat 64 Bold</div>
+          <div style="font-size:22px;font-weight:700;color:var(--text);">Título de sección — Montserrat 40 Bold</div>
+          <div style="font-size:18px;font-weight:700;color:var(--text);">Subtítulo — Montserrat 32 Bold</div>
+          <div style="font-size:15px;font-weight:600;color:var(--text);">Contenido 1 — Montserrat 24 Semibold</div>
+          <div style="font-size:14px;color:var(--muted);">Contenido 2 — Montserrat 20 Regular</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);text-decoration:underline;">Botón — Montserrat 18 Bold</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-block">
+      <div class="ds-subtitle">Primary Colors</div>
+      <div class="color-swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#3E8635;"></div><div class="swatch-info"><div class="swatch-hex">#3E8635</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#57B22E;"></div><div class="swatch-info"><div class="swatch-hex">#57B22E</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#123A5A;"></div><div class="swatch-info"><div class="swatch-hex">#123A5A</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#2E5F8A;"></div><div class="swatch-info"><div class="swatch-hex">#2E5F8A</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-block">
+      <div class="ds-subtitle">Secondary Colors</div>
+      <div class="color-swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#4A9CC4;"></div><div class="swatch-info"><div class="swatch-hex">#4A9CC4</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E3C13F;"></div><div class="swatch-info"><div class="swatch-hex">#E3C13F</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#123A5A;"></div><div class="swatch-info"><div class="swatch-hex">#123A5A</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#57B22E;"></div><div class="swatch-info"><div class="swatch-hex">#57B22E</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-block">
+      <div class="ds-subtitle">Neutral Colors</div>
+      <div class="color-swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#2D2D2D;"></div><div class="swatch-info"><div class="swatch-hex">#2D2D2D</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6E6E6E;"></div><div class="swatch-info"><div class="swatch-hex">#6E6E6E</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E8E8E8;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-hex">#E8E8E8</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-hex">#FFFFFF</div></div></div>
+      </div>
+    </div>
+
+    <div class="ds-block">
+      <div class="ds-subtitle">Icons & Illustrations</div>
+      <div class="img-ph" style="aspect-ratio:16/7;"><span>palm-icons.png<br>1200 × 525px</span></div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="body-section reveal">
+    <div class="section-title">Results — <em>Final Design</em></div>
+    <div class="ba-video-wrap">
+      <video muted loop playsinline preload="metadata" class="lazy-video">
+        <source src="images/palm-prototipo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="img-caption">Prototipo final — Landing page y Upcyclers Community en acción</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="body-section reveal">
+    <div class="closing">
+      <div class="closing-title">−25% bounce rate · +15% retención</div>
+      <div class="closing-text">Un rediseño que transformó residuos en oportunidades — y visitantes en comunidad.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="case-footer">
+  <div class="footer-left">
+    <div class="footer-name">Melany Olivares — 2026</div>
+    <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">← Inicio</a>
+    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Video autoplay on scroll into view
+const videoObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const video = entry.target;
+    if (entry.isIntersecting) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.lazy-video').forEach(video => videoObs.observe(video));
+</script>
+</body>
+</html>
