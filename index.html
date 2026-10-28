@@ -1,679 +1,340 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Melany Olivares — UX/UI Product Designer</title>
-  <!-- Open Graph / Social Share -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Melany Olivares — UX/UI Product Designer"/>
-  <meta property="og:description" content="Product Designer especializada en sistemas complejos — plataformas de pago, retail omnicanal y enterprise SaaS. Rediseños con impacto en 200+ puntos de venta."/>
-  <meta property="og:image" content="https://melanyolivares-be.github.io/images/og-image.png"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta property="og:url" content="https://melanyolivares-be.github.io/"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Melany Olivares — UX/UI Product Designer"/>
-  <meta name="twitter:description" content="Product Designer especializada en sistemas complejos — plataformas de pago, retail omnicanal y enterprise SaaS. Rediseños con impacto en 200+ puntos de venta."/>
-  <meta name="twitter:image" content="https://melanyolivares-be.github.io/images/og-image.png"/>
-  <!-- /Open Graph -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#FAFAF8;
-  --text:#0F0E0C;
-  --muted:#6B6860;
-  --soft:#736D63;
-  --border:rgba(0,0,0,0.08);
-  --blue:#4784FE;
-  --coral:#FE6647;
-  --coral-text:#C73D18;
-  --coral-large:#E54B22;
-  --blue-text:#2A63D9;
-  --yellow:#DFFE47;
-  --blue-light:#EEF3FF;
-  --coral-light:#FFF0ED;
-  --yellow-light:#FAFFD9;
-  --font-display:'DM Serif Display',Georgia,serif;
-  --font-body:'DM Sans',sans-serif;
-}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Melany Olivares — Product Designer UX/UI</title>
+<meta name="description" content="Product Designer UX/UI en pagos, retail omnicanal y enterprise SaaS. Primero medir. Después diseñar."/><meta property="og:title" content="Melany Olivares — Product Designer UX/UI"/><meta property="og:description" content="Cuatro sistemas, cuatro industrias. Casos de ZePOS, InsightOne, Clue y Palm."/><meta property="og:image" content="https://melanyolivares-be.github.io/images/zepos-cover.png"/><meta property="og:type" content="website"/><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>:root{--bg:#E9ECF5;--nav:rgba(233,236,245,.9);--line:rgba(26,43,209,.25);--ink:#1A2BD1;--h1:#1A2BD1;--text:#101437;--pop:#F1EB7A;--pop-text:#101437;--btn-text:#E9ECF5;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--grain-o:.35;--grain-b:multiply;--mask:linear-gradient(180deg,#000 72%,transparent 100%);--card:rgba(26,43,209,.06);--card-h:rgba(26,43,209,.12);--block:#1A2BD1;--on-block:#E9ECF5;--ticker-bg:#1A2BD1;--ticker-text:#E9ECF5;--mark-text:#1A2BD1}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:var(--grain-o);mix-blend-mode:var(--grain-b);
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .12  0 0 0 0 .3  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px;position:relative}
+nav{position:sticky;top:0;z-index:20;background:var(--nav);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink)}
+.links{display:flex;gap:32px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.links a{padding:4px 0;border-bottom:1px solid transparent}.links a:hover{border-color:var(--ink)}
+.avail{display:flex;align-items:center;gap:8px;background:var(--pop);color:var(--pop-text);padding:6px 12px;border-radius:99px}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--pop-text);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.lang{border:1px solid var(--ink);padding:5px 10px;border-radius:99px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:28px;display:flex;gap:12px;align-items:center}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--ink)}
+h1{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--h1);line-height:.98;letter-spacing:-.02em}
+h1 .mark{background:linear-gradient(var(--pop),var(--pop)) 0 88%/0% 42% no-repeat;animation:hl 1s .9s forwards;color:var(--mark-text,inherit)}
+@keyframes hl{to{background-size:100% 42%}}
+.lede{margin-top:28px;max-width:540px;font-size:18px;line-height:1.65}
+.lede b{font-weight:600}
+.cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:14px 22px;border:1px solid var(--ink);border-radius:99px;color:var(--ink);transition:.2s}
+.btn.solid{background:var(--ink);color:var(--btn-text)}
+.btn:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--ink)}
+/* río */
+.river{position:relative;cursor:crosshair}
+.river canvas{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.35) 40%,#000 80%);mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.35) 40%,#000 80%);-webkit-mask-composite:source-in;mask-composite:intersect}@media(max-width:900px){.river canvas{-webkit-mask-image:var(--mask);mask-image:var(--mask);opacity:.5}}
+.stone{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed var(--ink);background:transparent;cursor:pointer;padding:0;color:var(--ink);transition:background .25s,transform .25s}
+.stone::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--pop);border:1px solid var(--ink)}
+.stone span{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+.stone:hover,.stone:focus-visible{background:color-mix(in srgb,var(--pop) 35%,transparent);transform:translate(-50%,-50%) scale(1.08);outline:none}
+.tip{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;background:var(--ink);color:var(--btn-text);font-family:var(--mono);font-size:11px;padding:7px 12px;border-radius:99px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis}
+.tip.on{opacity:1}
+.fig-cap{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+section{padding:96px 0}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(40px,5vw,72px);line-height:1;color:var(--h1);letter-spacing:-.01em}
+.p-title{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--h1)}
+.p-metric b{font-family:var(--serif);font-style:italic;font-weight:400;background:linear-gradient(var(--pop),var(--pop)) 0 85%/100% 40% no-repeat;padding:0 4px;color:var(--mark-text,inherit)}
+.arrow{display:inline-block;transition:transform .3s}
+footer{padding:40px 0;font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.duo{position:relative;background:var(--ink);overflow:hidden;border-radius:4px}
+.duo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15);mix-blend-mode:lighten}
+.duo .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--btn-text);font-family:var(--serif);font-style:italic;font-size:28px;
+ background:repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.1) 23px 24px),repeating-linear-gradient(0deg,transparent 0 23px,rgba(255,255,255,.1) 23px 24px);transition:transform .6s}
+@media (max-width:900px){.wrap{padding:0 20px}.links a:not(.lang){display:none}.links .avail{display:flex}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}h1 .mark{background-size:100% 42%}}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:18px 48px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(250,250,248,0.88);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;}
-.nav-logo em{font-style:italic;color:var(--coral-text);}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.07em;text-transform:uppercase;transition:color 0.2s;}
-.nav-links a:hover{color:var(--text);}
-.nav-right{display:flex;align-items:center;gap:14px;}
-.nav-status{font-size:11px;color:var(--blue-text);display:flex;align-items:center;gap:6px;font-weight:500;}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-text);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:5px 10px;text-decoration:none;transition:all 0.2s;font-weight:500;}
-.lang-btn:hover{border-color:var(--coral-text);color:var(--coral-text);}
+.hero{position:relative;min-height:820px;display:flex;align-items:flex-end;overflow:hidden}
+.river{position:absolute;inset:0}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:140px;padding-bottom:56px;pointer-events:none}
+.hero .wrap>*{pointer-events:auto}
+h1{font-size:clamp(52px,7vw,116px);max-width:13ch}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  padding:100px 56px 40px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
+.lede{color:var(--text);max-width:520px}.lede b{color:#fff}
+.hero .fig-cap{position:absolute;right:40px;bottom:20px;z-index:2;color:var(--ink);opacity:.8}
+.stats{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 28px;max-width:640px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.stat{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.stat b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:24px;letter-spacing:0;text-transform:none;color:var(--h1)}
+.stat+.stat::before{content:'✦';color:var(--ink);margin-right:20px;font-size:10px}
+.stat span{display:inline}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink);overflow:hidden;padding:16px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ticker-track{display:flex;width:max-content;animation:tick 34s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--h1);padding:0 26px;white-space:nowrap}
+.ticker-item i{font-style:normal;color:var(--ink);margin-right:26px}
+@keyframes tick{to{transform:translateX(-50%)}}
+.stone span{color:var(--h1)}.tip{bottom:auto;top:90px;background:var(--pop);color:#0A0F2E}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+h2{max-width:14ch}.sec-note{font-size:15px;line-height:1.6;max-width:340px;color:var(--text)}
+.plates{display:grid;grid-template-columns:repeat(3,1fr);gap:64px 32px}
+.plate{display:block}.plate:first-child{grid-column:1/-1}
+.fig{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:14px}
+.duo{background:var(--block);aspect-ratio:4/3;border:1px solid var(--line)}.plate:first-child .duo{aspect-ratio:21/9}
+.duo .ph{color:var(--bg)}
+.plate:hover .duo{background:#0E1A8F}.plate:hover .arrow{transform:translateX(6px)}
+.p-title{font-size:clamp(32px,3.2vw,48px);margin-top:20px;line-height:1.05}
+.p-desc{margin-top:10px;font-size:15px;line-height:1.6;max-width:56ch;color:var(--text)}
+.p-metric{margin-top:16px;display:flex;gap:10px;align-items:baseline;font-family:var(--mono);font-size:12px;color:var(--ink)}
+.p-metric b{font-size:32px;background:none;color:var(--ink);padding:0}
+.about-sec{border-top:1px solid var(--line)}
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+.photo{aspect-ratio:4/5;background:var(--block);border-radius:4px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);mix-blend-mode:lighten}
+.photo .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--bg);font-family:var(--serif);font-style:italic;font-size:26px;text-align:center;padding:24px;background:repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,255,255,.08) 23px 24px)}
+.photo-cap{font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.06em;text-transform:uppercase;margin-top:12px}
+.about h2{max-width:13ch;margin-bottom:28px}
+.about p.body{font-size:18px;line-height:1.7;max-width:52ch;margin-bottom:16px;color:var(--text)}
+.principles{margin-top:36px;border-top:1px solid var(--ink)}
+.principles li{list-style:none;display:grid;grid-template-columns:44px 1fr;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text)}
+.principles li span{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.principles li b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:26px;color:var(--h1);display:block;margin-bottom:2px}
 
-/* BLOBS — fixed circles like reference */
-.blob{position:absolute;pointer-events:none;}
-.blob-1{
-  width:300px;height:300px;
-  background:var(--yellow);
-  top:38%;right:4%;
-  transform:translateY(-50%);
-  border-radius:50%;
-  opacity:1;
-}
-.blob-2{
-  width:220px;height:220px;
-  background:var(--blue);
-  bottom:-140px;left:-90px;
-  border-radius:50%;
-  opacity:1;
-}
-.blob-3{
-  width:220px;height:220px;
-  background:var(--yellow);
-  top:-40px;right:-30px;
-  border-radius:50%;
-  opacity:1;
-}
+.exp-sec{border-top:1px solid var(--line)}
+.exp{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:start}
+.job{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line)}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job .when{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--ink);text-transform:uppercase;line-height:1.6}
+.job h3{font-size:19px;font-weight:500;color:var(--h1);line-height:1.3}
+.job h3 em{font-family:var(--serif);font-size:24px;color:var(--ink);font-style:italic}
+.job .where{font-size:13.5px;color:var(--ink);margin:4px 0 12px}
+.job ul{list-style:none}
+.job li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.6;color:var(--text);margin-bottom:7px}
+.job li::before{content:'';position:absolute;left:0;top:.75em;width:9px;height:1px;background:var(--pop)}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.sk.wide{grid-column:1/-1}
+.sk h4{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.sk li{list-style:none;font-size:14px;line-height:1.5;color:var(--text);padding-left:16px;position:relative;margin-bottom:5px}
+.sk li::before{content:'';position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--ink)}
+.sk p{font-size:14px;line-height:1.7;color:var(--text)}
+.edu{margin-top:44px}
+.edu h4{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.edu p{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:6px}
+.contact{padding:110px 0}
+.contact .ask{font-family:var(--serif);font-style:italic;font-size:clamp(38px,5.2vw,80px);line-height:1.02;color:var(--h1);max-width:16ch;margin-bottom:56px}
+.contact .ask em{color:var(--ink)}
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.c{display:flex;align-items:center;gap:16px;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--card);transition:.25s}
+.c:hover{background:var(--card-h);border-color:var(--ink);transform:translateY(-2px)}
+.c .ic{width:44px;height:44px;border-radius:10px;background:rgba(26,43,209,.08);display:grid;place-items:center;flex:none;color:var(--ink)}
+.c .ic svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.c small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:3px}
+.c span.v{font-size:15px;color:var(--h1);word-break:break-word}
+.c .go{margin-left:auto;color:var(--ink)}
+.c-grid{grid-template-columns:repeat(3,1fr)}
+.c.primary{grid-column:1/-1;background:var(--pop);border-color:var(--ink)}
+.c.primary .ic{background:rgba(10,15,46,.12);color:#0A0F2E}
+.c.primary small,.c.primary span.v,.c.primary .go{color:#0A0F2E}
+.c.primary span.v{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.1}
+.c.primary:hover{background:#FF8E80;border-color:#FF8E80}
+@media(max-width:1000px){.exp{grid-template-columns:1fr;gap:48px}.c-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.job{grid-template-columns:1fr;gap:8px}.skills{grid-template-columns:1fr}.c-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.plates{grid-template-columns:repeat(2,1fr)}.plate:first-child{grid-column:1/-1}.plate:last-child:nth-child(even){grid-column:auto}}
+@media(max-width:900px){.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 15%,rgba(10,15,46,.88) 58%);z-index:1;pointer-events:none}.stone span{display:none}.hero{min-height:760px}.hero .fig-cap{display:none}.plates{grid-template-columns:1fr}.plate:first-child .duo{aspect-ratio:4/3}.about{grid-template-columns:1fr;gap:28px}}
 
-/* HERO CONTENT */
-.hero-inner{position:relative;z-index:2;max-width:1300px;margin:0 auto;width:100%;padding-bottom:0;}
-
-.hero-name{
-  font-size:13px;color:var(--muted);
-  letter-spacing:0.06em;margin-bottom:16px;
-  font-weight:400;
-}
-
-h1.hero-title{
-  font-family:var(--font-display);
-  font-size:clamp(56px,7.5vw,104px);
-  line-height:0.94;
-  letter-spacing:-0.04em;
-  color:var(--text);
-  margin-bottom:0;
-  max-width:14ch;
-}
-h1.hero-title em{font-style:italic;color:var(--coral-large);}
-h1.hero-title .line-blue{color:var(--blue);}
-
-.hero-sub{
-  font-size:16px;color:var(--muted);line-height:1.7;
-  font-weight:300;max-width:460px;
-  margin-top:0;margin-bottom:0;
-}
-.hero-sub strong{color:var(--text);font-weight:500;}
-.hero-mid{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:44px;max-width:1000px;}
-.hero-ctas{display:flex;gap:10px;flex-shrink:0;}
-.hero-metrics{display:inline-flex;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:24px 8px;margin-top:48px;box-shadow:0 6px 32px rgba(0,0,0,0.05);position:relative;z-index:3;align-self:flex-start;}
-.hero-metrics .mi{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 32px;position:relative;text-align:center;}
-.hero-metrics .mi::after{content:'';position:absolute;right:0;top:6px;bottom:6px;width:1px;background:var(--border);}
-.hero-metrics .mi:last-child::after{display:none;}
-.mi-num{font-family:var(--font-display);font-size:clamp(36px,3.5vw,46px);line-height:1;letter-spacing:-0.03em;color:var(--text);}
-.mi-num.blue{color:var(--blue-text);}
-.mi-num.coral{color:var(--coral-large);}
-.mi-label{font-size:11px;color:var(--soft);letter-spacing:0.06em;text-transform:uppercase;}
-
-/* METRICS ROW */
-.hero-bottom{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  padding:36px 0 48px;
-  margin-top:40px;
-  border-top:1px solid var(--border);
-}
-.hero-metrics-left{display:flex;flex-direction:column;gap:16px;}
-.metrics-row{display:flex;align-items:baseline;gap:0;}
-.metric-block{display:flex;align-items:baseline;gap:6px;padding-right:28px;margin-right:28px;border-right:1px solid var(--border);}
-.metric-block:last-child{border-right:none;padding-right:0;margin-right:0;}
-.hm-num{font-family:var(--font-display);font-size:clamp(28px,3.5vw,40px);color:var(--text);line-height:1;letter-spacing:-0.02em;font-weight:400;}
-.hm-num.b{color:var(--blue-text);}
-.hm-label{font-size:12px;color:var(--soft);letter-spacing:0.03em;margin-left:2px;}
-.pills-row{display:flex;gap:8px;flex-wrap:wrap;}
-.pill{
-  font-size:11px;color:var(--muted);font-weight:500;
-  border:1px solid var(--border);
-  border-radius:20px;padding:5px 12px;
-  letter-spacing:0.04em;
-  background:rgba(255,255,255,0.7);
-}
-.pill.active{background:var(--text);color:var(--bg);border-color:var(--text);}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:500;letter-spacing:0.01em;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:var(--font-body);}
-.btn-dark{background:var(--text);color:var(--bg);border:2px solid var(--text);}
-.btn-dark:hover{background:#2D2920;transform:translateY(-2px);}
-.btn-outline{background:transparent;color:var(--text);border:2px solid var(--text);}
-.btn-outline:hover{background:var(--text);color:var(--bg);transform:translateY(-2px);}
-
-/* ── TICKER ── */
-.ticker-wrap{
-  border-top:2px solid var(--text);
-  border-bottom:2px solid var(--text);
-  overflow:hidden;padding:12px 0;
-  background:var(--yellow);
-}
-.ticker-track{display:flex;animation:ticker 24s linear infinite;width:max-content;}
-.ticker-track:hover{animation-play-state:paused;}
-.ticker-item{font-size:13px;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;padding:0 24px;white-space:nowrap;font-weight:500;}
-.ticker-sep{color:var(--coral-text);margin-right:24px;font-weight:700;}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── SECTIONS ── */
-.section{max-width:1100px;margin:0 auto;padding:120px 48px;}
-.section-eyebrow{
-  font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:24px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--coral);border-radius:2px;}
-.section-heading{
-  font-family:var(--font-display);
-  font-size:clamp(32px,4.5vw,52px);
-  line-height:1.1;letter-spacing:-0.02em;
-  color:var(--text);margin-bottom:56px;
-}
-.section-heading em{font-style:italic;color:var(--coral-large);}
-
-/* ── PROJECTS ── */
-.projects-list{display:flex;flex-direction:column;gap:2px;}
-.project-card{
-  display:grid;grid-template-columns:120px 1fr 180px;
-  align-items:center;gap:32px;
-  padding:28px 0;
-  border-bottom:1px solid var(--border);
-  text-decoration:none;color:var(--text);
-  transition:all 0.25s;
-  position:relative;
-}
-.project-card:first-child{border-top:1px solid var(--border);}
-.project-card::before{
-  content:'';position:absolute;left:-48px;right:-48px;top:0;bottom:0;
-  background:transparent;z-index:0;
-  transition:background 0.25s;
-}
-.project-card:hover::before{background:var(--blue-light);}
-.project-card>*{position:relative;z-index:1;}
-
-.project-thumb{
-  width:120px;height:80px;border-radius:8px;
-  overflow:hidden;background:var(--blue-light);
-  border:1px solid var(--border);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;color:var(--soft);
-}
-.project-thumb img{width:100%;height:100%;object-fit:cover;}
-.project-num{font-size:10px;color:var(--soft);letter-spacing:0.1em;margin-bottom:6px;}
-.project-title{
-  font-family:var(--font-display);
-  font-size:clamp(20px,2.5vw,28px);
-  color:var(--text);letter-spacing:-0.01em;
-  line-height:1.15;margin-bottom:8px;
-}
-.project-title em{font-style:italic;color:var(--coral);}
-.project-desc{font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:10px;}
-.project-tags{display:flex;gap:6px;flex-wrap:wrap;}
-.ptag{font-size:11px;padding:3px 10px;border-radius:12px;border:1px solid var(--border);color:var(--muted);}
-
-.project-meta{display:flex;flex-direction:column;gap:16px;align-items:flex-end;}
-.project-impact{text-align:right;}
-.pi-num{font-family:var(--font-display);font-size:36px;line-height:1;letter-spacing:-0.02em;}
-.pi-label{font-size:11px;color:var(--soft);margin-top:2px;}
-.project-arrow{
-  width:40px;height:40px;border-radius:50%;
-  border:1.5px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:var(--muted);
-  transition:all 0.2s;align-self:flex-end;
-}
-.project-card:hover .project-arrow{background:var(--text);color:var(--bg);border-color:var(--text);}
-
-/* Project color accents */
-.project-card[data-color="coral"] .project-thumb{background:var(--coral-light);}
-.project-card[data-color="coral"] .project-title em{color:var(--coral-large);}
-.project-card[data-color="coral"] .pi-num{color:var(--coral-large);}
-.project-card[data-color="blue"] .project-thumb{background:var(--blue-light);}
-.project-card[data-color="blue"] .project-title em{color:var(--blue);}
-.project-card[data-color="blue"] .pi-num{color:var(--blue-text);}
-.project-card[data-color="blue"]:hover::before{background:var(--blue-light);}
-.project-card[data-color="yellow"] .project-thumb{background:var(--yellow-light);}
-.project-card[data-color="yellow"]:hover::before{background:var(--yellow-light);}
-.project-card[data-color="yellow"] .pi-num{color:#8A8A00;}
-
-/* ── ABOUT ── */
-.about-section{background:#F0F0EE;border-top:2px solid var(--text);border-bottom:2px solid var(--text);}
-.about-grid{display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start;}
-.about-photo-wrap{position:relative;}
-.about-photo{
-  width:100%;aspect-ratio:3/4;border-radius:16px;
-  object-fit:cover;display:block;
-  background:var(--blue-light);
-  border:2px solid var(--text);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:10px;color:var(--soft);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
-}
-.about-photo svg{width:32px;height:32px;stroke:var(--soft);fill:none;stroke-width:1.2;stroke-linecap:round;}
-.about-photo-badge{
-  position:absolute;bottom:-16px;left:16px;right:16px;
-  background:var(--yellow);
-  border:2px solid var(--text);
-  border-radius:8px;padding:12px 16px;
-}
-.apb-name{font-family:var(--font-display);font-size:15px;color:var(--text);margin-bottom:2px;}
-.apb-role{font-size:12px;color:var(--text);opacity:0.7;}
-.about-content{padding-top:8px;}
-.about-name{
-  font-family:var(--font-display);
-  font-size:clamp(36px,5vw,56px);
-  line-height:1.05;letter-spacing:-0.03em;
-  margin-bottom:24px;
-}
-.about-name em{font-style:italic;color:var(--coral-large);}
-.about-bio{font-size:16px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:40px;}
-.about-bio strong{color:var(--text);font-weight:500;}
-.principles{display:flex;flex-direction:column;}
-.principle{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(0,0,0,0.1);}
-.principle:first-child{border-top:1px solid rgba(0,0,0,0.1);}
-.pr-num{font-family:var(--font-display);font-size:26px;color:rgba(0,0,0,0.15);line-height:1;min-width:32px;}
-.pr-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
-.pr-desc{font-size:13px;color:var(--muted);line-height:1.6;}
-
-/* ── EXPERIENCE ── */
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
-.exp-list{display:flex;flex-direction:column;}
-.exp-item{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);}
-.exp-item:first-child{border-top:1px solid var(--border);}
-.exp-date{font-size:12px;color:var(--soft);padding-top:2px;}
-.exp-role{font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;}
-.exp-role em{font-style:italic;color:var(--coral-text);}
-.exp-co{font-size:12px;color:var(--muted);margin-bottom:5px;}
-.exp-desc{font-size:13px;color:var(--muted);line-height:1.6;}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.skill-group{border:1px solid var(--border);border-radius:8px;padding:20px;}
-.sg-title{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral-text);margin-bottom:12px;font-weight:500;}
-.sg-items{display:flex;flex-direction:column;gap:6px;}
-.sg-item{font-size:13px;color:var(--muted);padding-left:12px;position:relative;}
-.sg-item::before{content:'—';position:absolute;left:0;font-size:11px;color:var(--border);}
-
-/* ── CONTACT ── */
-.contact-section{background:var(--text);border-top:2px solid var(--text);}
-.contact-inner{max-width:1100px;margin:0 auto;padding:100px 48px;}
-.contact-title{
-  font-family:var(--font-display);
-  font-size:clamp(40px,6vw,72px);
-  line-height:1.0;letter-spacing:-0.03em;
-  color:var(--bg);margin-bottom:48px;
-}
-.contact-title em{font-style:italic;color:var(--yellow);}
-.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:640px;}
-.contact-card{
-  display:flex;align-items:center;gap:14px;
-  padding:18px 20px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:8px;text-decoration:none;color:var(--bg);
-  transition:all 0.2s;
-}
-.contact-card:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);transform:translateY(-2px);}
-.cc-icon{width:36px;height:36px;border-radius:7px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cc-icon svg{width:16px;height:16px;stroke:var(--yellow);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-.cc-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#999590;margin-bottom:2px;}
-.cc-value{font-size:13px;color:var(--bg);}
-.cc-arrow{font-size:14px;color:#999590;margin-left:auto;transition:color 0.2s;}
-.contact-card:hover .cc-arrow{color:var(--yellow);}
-
-/* ── FOOTER ── */
-.site-footer{border-top:1px solid rgba(255,255,255,0.1);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
-.footer-left{display:flex;flex-direction:column;gap:3px;}
-.footer-name{font-family:var(--font-display);font-size:14px;color:#A8A4A0;}
-.footer-credit{font-size:11px;color:#999590;}
-.footer-links{display:flex;gap:20px;}
-.footer-links a{font-size:11px;color:#A8A4A0;text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-.footer-links a:hover{color:var(--yellow);}
-
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.75s ease,transform 0.75s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-/* ── RESPONSIVE ── */
+/* ===== Tinta overrides ===== */
+.hero{display:block;min-height:0;overflow:visible;padding:56px 0 24px;border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:640px;padding:0 40px;pointer-events:auto}
+.hero .wrap>*{pointer-events:auto}
+h1{font-size:clamp(46px,6.2vw,96px);max-width:none}
+.hero-art{position:relative;margin-right:-120px}
+.hero .river{position:relative;inset:auto;width:100%;aspect-ratio:1/1.02}
+.hero .fig-cap{position:static;right:auto;bottom:auto;opacity:1;margin-top:-8px;padding-right:120px}
+.lede b{color:var(--text)}
+.tip{top:auto;bottom:6px;background:var(--ink);color:var(--bg)}
+.stats{border-top-color:var(--line)}
+.ticker{background:var(--ticker-bg);border-color:var(--ticker-bg)}
+.ticker-item{color:var(--ticker-text)}
+.ticker-item i{color:var(--pop)}
+.p-metric b{background:linear-gradient(var(--pop),var(--pop)) 0 85%/100% 40% no-repeat;color:var(--h1);padding:0 4px}
+.contact .ask em{background:linear-gradient(var(--pop),var(--pop)) 0 88%/100% 42% no-repeat;color:var(--h1);font-style:italic}
+.c.primary .ic{background:rgba(16,20,55,.1);color:var(--text)}
+.c.primary small,.c.primary span.v,.c.primary .go{color:var(--text)}
+.c.primary:hover{background:#F6F19A}
+.btn.solid:hover{box-shadow:3px 3px 0 var(--ink)}
+.duo{border:0}
+.photo{border:0}
 @media(max-width:900px){
-  nav{padding:14px 24px;} .nav-links{display:none;} .nav-status span{display:none;}
-  .hero{padding:110px 24px 0;}
-  .hero-title{font-size:clamp(52px,13vw,80px);}
-  .hero-mid{flex-direction:column;align-items:flex-start;gap:24px;margin-top:32px;}
-  .hero-sub{max-width:100%;}
-  .hero-ctas{justify-content:flex-start;}
-  .hero-metrics{flex-wrap:wrap;gap:16px 0;margin-top:36px;padding:20px 4px;width:100%;}
-  .hero-metrics .mi{padding:0 16px;flex:1 1 40%;}
-  .hero-metrics .mi:nth-child(2)::after{display:none;}
-  .blob-1{width:160px;height:160px;right:-50px;top:80px;bottom:auto;transform:none;opacity:0.85;}
-  .blob-2{width:150px;height:150px;bottom:-50px;left:-40px;}
-  .blob-3{width:130px;height:130px;top:-20px;right:-15px;}
-  .section{padding:80px 24px;}
-  .project-card{grid-template-columns:1fr;padding:24px 0;}
-  .project-thumb{width:100%;height:180px;}
-  .project-card::before{left:-24px;right:-24px;}
-  .project-meta{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
-  .about-grid{grid-template-columns:1fr;}
-  .about-photo-wrap{max-width:260px;}
-  .exp-grid{grid-template-columns:1fr;}
-  .exp-item{grid-template-columns:1fr;gap:4px;}
-  .contact-cards{grid-template-columns:1fr;}
-  .contact-inner{padding:60px 24px;}
-  .site-footer{flex-direction:column;gap:12px;padding:24px;text-align:center;}
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding:0 20px}
+  .hero-art{margin:32px 0 0}.hero .fig-cap{padding:0}
+  .hero::after{display:none}.stone span{display:inline}.hero{min-height:0;padding-top:40px}
 }
-</style>
-</head>
-<body>
+@media(max-width:1000px){.c-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.c-grid{grid-template-columns:1fr}}
 
-<!-- ── NAV ── -->
-<nav>
-  <a href="#" class="nav-logo">Melany <em>Olivares</em></a>
-  <ul class="nav-links">
-    <li><a href="#work">Proyectos</a></li>
-    <li><a href="#about">Sobre mí</a></li>
-    <li><a href="#experience">Experiencia</a></li>
-    <li><a href="#contact">Contacto</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="nav-status"><div class="nav-dot"></div><span>Open to work · Remote</span></div>
-    <a href="index-en.html" class="lang-btn">EN</a>
-  </div>
-</nav>
-
-<!-- ── HERO ── -->
-<div class="hero">
-  <!-- Blobs — círculos fijos como referencia -->
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-
-  <div class="hero-inner">
-    <p class="hero-name">UX/UI Product Designer · Fintech &amp; Complex Systems</p>
-    <h1 class="hero-title">
-      Diseño que <em>resiste</em><br>
-      la <span class="line-blue">realidad.</span>
-    </h1>
-    <div class="hero-mid">
-      <p class="hero-sub">
-        <strong>Sistemas complejos</strong>: plataformas de pago, retail omnicanal, enterprise SaaS. Rediseños que eliminaron errores críticos en <strong>200+ puntos de venta</strong>.
-      </p>
-      <div class="hero-ctas">
-        <a href="#work" class="btn btn-dark">Ver proyectos →</a>
-        <a href="assets/cv-melany-olivares-es.pdf" target="_blank" class="btn btn-outline">Descargar CV ↓</a>
-      </div>
-    </div>
-    <div class="hero-metrics">
-      <div class="mi"><span class="mi-num blue">4+</span><span class="mi-label">años</span></div>
-      <div class="mi"><span class="mi-num">5</span><span class="mi-label">mercados</span></div>
-      <div class="mi"><span class="mi-num">4</span><span class="mi-label">idiomas</span></div>
-      <div class="mi"><span class="mi-num coral">200+</span><span class="mi-label">puntos de venta</span></div>
-    </div>
-  </div>
+/* ===== v7 ===== */
+.logo{white-space:nowrap}
+@media(max-width:520px){.links .avail{display:none}}
+[data-theme="dark"]{--bg:#0A0F2E;--nav:rgba(10,15,46,.85);--line:rgba(157,178,255,.25);--ink:#9DB2FF;--h1:#EEF2FF;--text:#C9D3F5;--pop:#F1EB7A;--pop-text:#0A0F2E;--btn-text:#0A0F2E;--card:rgba(24,34,122,.35);--card-h:rgba(24,34,122,.6);--block:#18227A;--on-block:#EEF2FF;--ticker-bg:#0E1450;--ticker-text:#EEF2FF;--mark-text:#0A0F2E;--grain-o:.05;--grain-b:screen}
+[data-theme="dark"] h1 .mark,[data-theme="dark"] .p-metric b,[data-theme="dark"] .contact .ask em,[data-theme="dark"] .row .impact b{background:none;color:var(--pop)}
+body,nav,.ticker,.sk,.c{transition:background-color .5s,color .5s,border-color .5s}
+.theme{border:1px solid var(--ink);background:transparent;color:var(--ink);width:32px;height:28px;border-radius:99px;cursor:pointer;font-size:14px;line-height:1;margin-left:-14px}
+.theme:hover{background:var(--pop);color:var(--pop-text)}
+.duo .ph,.photo .ph{color:var(--on-block)}
+h1 .mark,.p-metric b,.contact .ask em{color:var(--mark-text)}
+.c.primary small,.c.primary span.v,.c.primary .go,.c.primary .ic{color:var(--pop-text)}
+.c.primary .ic{background:rgba(0,0,0,.08)}
+a.inline{color:var(--ink);border-bottom:1px solid var(--ink);margin-left:6px;white-space:nowrap}
+/* hero: río a pantalla completa, estilo Tinta */
+.hero{position:relative;display:flex;align-items:flex-end;min-height:820px;overflow:hidden;padding:0;border-bottom:1px solid var(--line)}
+.hero .wrap{position:static;display:block;min-height:0;width:100%;max-width:1240px;margin:0 auto;padding:0 40px;pointer-events:none}
+.hero .wrap>div:first-child{position:relative;z-index:2;padding:150px 0 64px;max-width:660px}
+.hero .wrap>div:first-child>*{pointer-events:auto}
+.hero-art{position:absolute;inset:0;margin:0;z-index:0;pointer-events:auto}
+.hero .river{position:absolute;inset:0;width:auto;aspect-ratio:auto}
+.hero .fig-cap{position:absolute;right:40px;bottom:16px;z-index:2;margin:0;padding:0;opacity:.85}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 80%,transparent) 34%,transparent 62%)}
+/* experiencia: ledger */
+.sec-note a{font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+.ledger{border-top:1px solid var(--ink)}
+.row{border-bottom:1px solid var(--line)}
+.row summary{display:grid;grid-template-columns:150px 1.15fr 1fr 28px;gap:24px;align-items:baseline;padding:30px 0;cursor:pointer;list-style:none}
+.row summary::-webkit-details-marker{display:none}
+.row .when{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+.row h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1;color:var(--h1)}
+.row .who p{font-size:13.5px;color:var(--text);margin-top:8px}
+.row .impact{font-size:14px;line-height:1.9;color:var(--text)}
+.row .impact b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;color:var(--mark-text);background:linear-gradient(var(--pop),var(--pop)) 0 88%/100% 40% no-repeat;padding:0 4px;margin-right:6px}
+.row .tg{position:relative;width:18px;height:18px;justify-self:end;align-self:center}
+.row .tg::before,.row .tg::after{content:'';position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--ink);transition:transform .3s}
+.row .tg::after{transform:rotate(90deg)}
+.row[open] .tg::after{transform:rotate(0)}
+.row summary:hover h3{color:var(--ink)}
+.row .detail{padding:0 0 30px 174px;max-width:900px}
+.row .detail ul{list-style:none}
+.row .detail li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.65;color:var(--text);margin-bottom:8px}
+.row .detail li::before{content:'';position:absolute;left:0;top:.8em;width:10px;height:1.5px;background:var(--ink)}
+.row .detail li b{font-weight:600}
+.toolbox{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px 56px}
+.toolbox h4{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:13px;color:var(--text);border:1px solid var(--line);border-radius:99px;padding:6px 13px;background:var(--card)}
+.plain{font-size:14.5px;line-height:1.7;color:var(--text);max-width:46ch}
+@media(max-width:900px){
+ .hero{min-height:800px}.hero .wrap{padding:0 20px}.hero .wrap>div:first-child{padding:110px 0 40px}
+ .hero::before{background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 15%,transparent),var(--bg) 72%)}
+ .hero .fig-cap{display:none}.stone span{display:none}
+ .row summary{grid-template-columns:1fr 28px;gap:8px 12px}.row .when{grid-column:1}.row .who{grid-column:1}.row .impact{grid-column:1}.row .tg{grid-row:1/4;grid-column:2}
+ .row .detail{padding-left:0}.toolbox{grid-template-columns:1fr}
+}
+</style></head><body>
+<nav><div class="wrap"><a href="index.html" class="logo">Melany Olivares</a><div class="links">
+<a href="#trabajo">Trabajo</a><a href="#sobre">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a><span class="avail"><i></i>Disponible</span><a href="index-en.html" class="lang" hreflang="en">EN</a><button class="theme" id="theme" aria-label="Cambiar entre tema claro y oscuro" title="Claro / Oscuro">◐</button></div></div></nav>
+<header class="hero"><div class="wrap"><div><p class="eyebrow">Product Designer · UX/UI · Sistemas complejos</p>
+<h1>Primero medir. <span class="mark">Después diseñar.</span></h1>
+<p class="lede">Rediseñé el POS de 200+ tiendas empezando por una pregunta: <b>¿dónde se atoran las personas?</b> Product Designer UX/UI en pagos, retail omnicanal y enterprise SaaS.</p>
+<div class="cta"><a class="btn solid" href="#trabajo">Ver proyectos</a><a class="btn" href="assets/cv-melany-olivares-es.pdf">Descargar CV</a></div><div class="stats"><div class="stat"><b>4+</b><span>años</span></div><div class="stat"><b>5</b><span>mercados</span></div><div class="stat"><b>4</b><span>idiomas</span></div><div class="stat"><b>200+</b><span>tiendas</span></div></div></div>
+<figure class="hero-art"><div class="river" id="river"><canvas id="flow" aria-hidden="true"></canvas><button class="stone" data-x="0.7" data-y="0.22" data-r="0.028" data-tip="¿Cuánto espera alguien antes de poder actuar? (TTI)"><span>Tiempo al 1.er artículo</span></button><button class="stone" data-x="0.86" data-y="0.4" data-r="0.03" data-tip="¿Dónde se atoran las personas y cuántas se van?"><span>Abandono de carrito</span></button><button class="stone" data-x="0.68" data-y="0.62" data-r="0.028" data-tip="El pago no puede esperar: se mide antes de rediseñar"><span>SLA de pago</span></button><button class="stone" data-x="0.91" data-y="0.7" data-r="0.026" data-tip="¿Cómo se sintió la compra: lenta, clara, fluida, confusa?"><span>NPS poscompra</span></button><div class="tip" id="tip"></div></div>
+<figcaption class="fig-cap"><span>Fig. 00 — Cada piedra es una métrica. El río, quien usa el sistema.</span></figcaption></figure></div></header>
+<div class="ticker" aria-label="Lo que puedo hacer"><div class="ticker-track"><span class="ticker-item"><i>✦</i>Product Design</span><span class="ticker-item"><i>✦</i>Design Systems</span><span class="ticker-item"><i>✦</i>UX Research</span><span class="ticker-item"><i>✦</i>Event Storming</span><span class="ticker-item"><i>✦</i>Figma MCP</span><span class="ticker-item"><i>✦</i>PostHog · Sentry · Grafana</span><span class="ticker-item"><i>✦</i>Retail · Fintech · Health</span><span class="ticker-item"><i>✦</i>AI-powered Workflows</span><span class="ticker-item"><i>✦</i>Cross-functional Teams</span><span class="ticker-item"><i>✦</i>Product Design</span><span class="ticker-item"><i>✦</i>Design Systems</span><span class="ticker-item"><i>✦</i>UX Research</span><span class="ticker-item"><i>✦</i>Event Storming</span><span class="ticker-item"><i>✦</i>Figma MCP</span><span class="ticker-item"><i>✦</i>PostHog · Sentry · Grafana</span><span class="ticker-item"><i>✦</i>Retail · Fintech · Health</span><span class="ticker-item"><i>✦</i>AI-powered Workflows</span><span class="ticker-item"><i>✦</i>Cross-functional Teams</span></div></div>
+<section id="trabajo"><div class="wrap"><div class="sec-head"><div><p class="kicker">Selected work · 01—04</p><h2>Cuatro sistemas, cuatro industrias.</h2></div><p class="sec-note">Cada caso es una lámina: problema, decisión y resultado.</p></div><div class="plates"><a class="plate" href="case-study.html"><div class="fig"><span>Fig. 01 — Retail POS · Omnicanal</span><span>↗</span></div><div class="duo"><div class="ph">ZePOS</div></div><h3 class="p-title">ZePOS</h3><p class="p-desc">Lideré el rediseño end-to-end del POS de 200+ tiendas tras una falla crítica: pagos, inventario y sincronización, con 60–90% menos errores.</p><p class="p-metric"><b>50%+</b> más rápidos los flujos principales <span class="arrow">→</span></p></a><a class="plate" href="insightone.html"><div class="fig"><span>Fig. 02 — Pagos B2B · PCI-DSS</span><span>↗</span></div><div class="duo"><div class="ph">InsightOne</div></div><h3 class="p-title">InsightOne</h3><p class="p-desc">Plataforma de pagos con certificación PCI-DSS, del pitch con nivel C a la entrega, con roles para tres tipos de usuario.</p><p class="p-metric"><b>−40%</b> tickets de soporte <span class="arrow">→</span></p></a><a class="plate" href="clue.html"><div class="fig"><span>Fig. 03 — Health app · Research</span><span>↗</span></div><div class="duo"><div class="ph">Clue</div></div><h3 class="p-title">Clue</h3><p class="p-desc">Rediseño de onboarding, home y seguimiento a partir de una auditoría UX, benchmarking y pruebas con usuarios.</p><p class="p-metric"><b>29</b> usuarios validaron el prototipo · 80/100 <span class="arrow">→</span></p></a><a class="plate" href="palm.html"><div class="fig"><span>Fig. 04 — Economía circular · Colombia</span><span>↗</span></div><div class="duo"><div class="ph">Palm</div></div><h3 class="p-title">Palm</h3><p class="p-desc">Landing y flujo de comunicación con iteraciones semanales y mejoras de UX writing.</p><p class="p-metric"><b>+15%</b> retención de usuarios <span class="arrow">→</span></p></a></div></div></section>
+<section class="about-sec" id="sobre"><div class="wrap about"><div><div class="photo"><div class="ph">tu foto aquí</div><img src="images/portada.png" alt="Retrato de Melany Olivares" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><p class="photo-cap">Melany Olivares · Product Designer</p></div>
+<div><p class="kicker">Quién diseña</p><h2>Mi criterio viene de mundos distintos.</h2>
+<p class="body">Vengo de política pública y hoy diseño producto. Además soy permacultora: observo antes de intervenir, mido lo que no se ve y dejo que el sistema encuentre su cauce.</p>
+<ul class="principles"><li><span>01</span><div><b>Medir antes de rediseñar</b>Priorizo con datos reales, no con percepción.</div></li><li><span>02</span><div><b>Lo que no se ve también importa</b>Un error silencioso cuesta más que uno visible.</div></li><li><span>03</span><div><b>No me hagas esperar</b>La velocidad es parte de la interfaz.</div></li><li><span>04</span><div><b>Iterar es el método</b>Medir, ajustar, volver a medir.</div></li></ul></div></div></section>
+<section class="exp-sec" id="experiencia"><div class="wrap">
+<div class="sec-head"><div><p class="kicker">Experiencia</p><h2>Dónde he estado construyendo.</h2></div><p class="sec-note">Cuatro etapas, un mismo hilo: medir, rediseñar y volver a medir. <a class="inline" href="assets/cv-melany-olivares-es.pdf">CV completo →</a></p></div>
+<div class="ledger">
+<details class="row" open><summary><span class="when">Dic 2024 — Abr 2026</span><span class="who"><h3>Zebrands</h3><p>Product Designer UX/UI · POS omnicanal · Remoto</p></span><span class="impact"><b>50%+</b> flujos más rápidos<br><b>60–90%</b> menos errores</span><i class="tg"></i></summary>
+<div class="detail"><ul><li>Lideré el rediseño end-to-end de ZePOS tras una falla crítica en 200+ tiendas, con un equipo de 18 personas y sin Product Manager dedicado.</li><li>Diagnostiqué causas raíz con Sentry y Grafana; contribuí al design system y lideré design reviews.</li><li>Capacité a 500+ empleados de tienda y apoyé el lanzamiento en Brasil con materiales en portugués.</li></ul></div></details>
+<details class="row"><summary><span class="when">Ene — Jul 2024</span><span class="who"><h3>Insight One</h3><p>Product Designer UX/UI · Pagos B2B · PCI-DSS · Remoto</p></span><span class="impact"><b>−40%</b> tickets de soporte</span><i class="tg"></i></summary>
+<div class="detail"><ul><li>Responsable end-to-end de una plataforma de pagos B2B, del pitch con nivel C a la entrega.</li><li>Roles diferenciados para tres tipos de usuario y handoff estructurado a ingeniería.</li></ul></div></details>
+<details class="row"><summary><span class="when">2023</span><span class="who"><h3>Clue · PALM · Locusroom</h3><p>Proyectos destacados · Laboratoria</p></span><span class="impact"><b>29</b> usuarios validaron · <b>+15%</b> retención</span><i class="tg"></i></summary>
+<div class="detail"><ul><li><b>Clue:</b> caso UX de app de salud, prototipos validados en Maze (usabilidad 80/100).</li><li><b>PALM:</b> landing y comunicación de una startup de economía circular, con iteraciones semanales.</li><li><b>Locusroom:</b> flujo de compra end-to-end para una startup de pagos en Chile.</li></ul></div></details>
+<details class="row"><summary><span class="when">2012 — 2022</span><span class="who"><h3>Políticas públicas</h3><p>Project Manager y consultora · Gobierno abierto</p></span><span class="impact"><b>10 años</b> facilitando entre sectores</span><i class="tg"></i></summary>
+<div class="detail"><ul><li>Negociación multisectorial y alineación ejecutiva; hoy lo aplico al manejo de stakeholders en producto.</li></ul></div></details>
 </div>
-
-<!-- ── TICKER ── -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Product Design</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Design Systems</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>UX Research</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Event Storming</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Figma MCP</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>PostHog · Sentry · Grafana</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Retail · Fintech · Health</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>AI-powered Workflows</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Cross-functional Teams</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Product Design</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Design Systems</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>UX Research</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Event Storming</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Figma MCP</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>PostHog · Sentry · Grafana</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Retail · Fintech · Health</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>AI-powered Workflows</span>
-    <span class="ticker-item"><span class="ticker-sep">✦</span>Cross-functional Teams</span>
-  </div>
-</div>
-
-<!-- ── WORK ── -->
-<div class="section" id="work">
-  <div class="section-eyebrow">Proyectos seleccionados</div>
-  <h2 class="section-heading">
-    Cuatro casos que resumen<br>
-    lo que hago: <em>sistema, escala, impacto.</em>
-  </h2>
-  <div class="projects-list reveal">
-
-    <!-- ZePOS -->
-    <a href="case-study.html" class="project-card" data-color="coral">
-      <div class="project-thumb">
-        <img src="images/zepos-cover.png" alt="ZePOS" onerror="this.parentElement.textContent='ZePOS'"/>
-      </div>
-      <div>
-        <div class="project-num">01 / 04 · <strong style="color:var(--coral-text);">Product Designer UX/UI</strong> · Retail POS · México & Brasil</div>
-        <div class="project-title"><em>200 tiendas sin caerse</em> —<br>rediseño de un POS para escalar.</div>
-        <div class="project-desc">El sistema colapsó durante Hot Sale. En 8 meses rediseñé end-to-end la arquitectura, catálogo, carrito, pagos y envío — lanzando antes de Buen Fin 2024 en 200+ tiendas sin un solo incidente.</div>
-        <div class="project-tags"><span class="ptag">Design System</span><span class="ptag">Event Storming</span><span class="ptag">Field Research</span><span class="ptag">PostHog · Sentry</span></div>
-      </div>
-      <div class="project-meta">
-        <div class="project-impact">
-          <div class="pi-num">−80%</div>
-          <div class="pi-label">errores en sync</div>
-          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">de crash en alta demanda a cero incidentes</div>
-        </div>
-        <div class="project-arrow">→</div>
-      </div>
-    </a>
-
-    <!-- InsightOne -->
-    <a href="insightone.html" class="project-card" data-color="blue">
-      <div class="project-thumb">
-        <img src="images/insightone-cover.png" alt="InsightOne" onerror="this.parentElement.textContent='InsightOne'"/>
-      </div>
-      <div>
-        <div class="project-num">02 / 04 · <strong style="color:var(--blue-text);">UX/UI Designer</strong> · Software · EE.UU.</div>
-        <div class="project-title">Del caos visual al<br><em>primer Design System</em> de InsightOne.</div>
-        <div class="project-desc">Una plataforma de pagos sin sistema de diseño: cada pantalla era una decisión nueva. Lideré el rediseño completo y construí el primer Design System de la empresa, coordinando equipos en distintas zonas horarias y alineando negocio, producto e ingeniería.</div>
-        <div class="project-tags"><span class="ptag">Payment Platform</span><span class="ptag">Usability Testing</span><span class="ptag">Agile · Distributed teams</span></div>
-      </div>
-      <div class="project-meta">
-        <div class="project-impact">
-          <div class="pi-num" style="color:var(--blue-text);font-size:28px;line-height:1.2;">Primer<br>DS</div>
-          <div class="pi-label">de la empresa</div>
-          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">consistencia visual en toda la plataforma</div>
-        </div>
-        <div class="project-arrow">→</div>
-      </div>
-    </a>
-
-    <!-- Clue -->
-    <a href="clue.html" class="project-card" data-color="yellow">
-      <div class="project-thumb">
-        <img src="images/clue-cover.png" alt="Clue" onerror="this.parentElement.textContent='Clue'"/>
-      </div>
-      <div>
-        <div class="project-num">03 / 04 · <strong style="color:#6B6860;">UX/UI Designer</strong> · Mobile Health · Sep–Nov 2023</div>
-        <div class="project-title">Lo que los datos no mostraban:<br><em>UX research en Clue.</em></div>
-        <div class="project-desc">Los usuarios abandonaban Clue — pero nadie sabía por qué. Conduje un análisis UX end-to-end: benchmarking, evaluación heurística y testing con usuarios reales. Resultado: fricciones ocultas en los flujos de registro y navegación que nadie había documentado.</div>
-        <div class="project-tags"><span class="ptag">UX Research</span><span class="ptag">Heuristic Eval.</span><span class="ptag">Prototyping</span><span class="ptag">Mobile</span></div>
-      </div>
-      <div class="project-meta">
-        <div class="project-impact">
-          <div class="pi-num" style="color:#5C7A3E;font-size:26px;line-height:1.2;">E2E<br>UX</div>
-          <div class="pi-label">research & testing</div>
-          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">fricciones ocultas documentadas y resueltas</div>
-        </div>
-        <div class="project-arrow">→</div>
-      </div>
-    </a>
-
-    <!-- Palm -->
-    <a href="palm.html" class="project-card" data-color="coral">
-      <div class="project-thumb">
-        <img src="images/palm-cover.png" alt="Palm & Rescycle" onerror="this.parentElement.textContent='Palm'"/>
-      </div>
-      <div>
-        <div class="project-num">04 / 04 · <strong style="color:var(--coral-text);">Product Designer</strong> · Startup · Colombia</div>
-        <div class="project-title">De idea a producto validado<br>en <em>8 semanas.</em></div>
-        <div class="project-desc">Palm & Rescycle necesitaba un producto que convenciera a usuarios e inversores. Lideré el proceso completo — research, arquitectura, UX writing, prototipado y testing — bajo Agile/Scrum con entregas semanales. Resultado: −25% bounce rate, +15% retención de usuarios y −20% tiempo de desarrollo.</div>
-        <div class="project-tags"><span class="ptag">UX Research</span><span class="ptag">UX Writing</span><span class="ptag">Agile · Scrum</span><span class="ptag">Startup</span></div>
-      </div>
-      <div class="project-meta">
-        <div class="project-impact">
-          <div class="pi-num" style="font-size:28px;line-height:1.2;">−25%</div>
-          <div class="pi-label">bounce rate</div>
-          <div style="font-size:11px;color:var(--soft);margin-top:6px;max-width:120px;line-height:1.4;">+15% retención · −20% tiempo de desarrollo</div>
-        </div>
-        <div class="project-arrow">→</div>
-      </div>
-    </a>
-
-  </div>
-</div>
-
-<!-- ── ABOUT ── -->
-<div class="about-section" id="about">
-<div class="section">
-  <div class="section-eyebrow">Sobre mí</div>
-  <div class="about-grid">
-    <div class="about-photo-wrap">
-      <div class="about-photo" style="background:none;border:none;">
-        <img src="images/portada.png" alt="Melany Olivares" style="width:100%;height:100%;object-fit:cover;border-radius:16px;border:1.5px solid var(--border);display:block;"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div style="display:none;width:100%;height:100%;background:var(--surface2);border-radius:16px;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--soft);font-size:12px;"><svg viewBox="0 0 24 24" style="width:32px;height:32px;" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>portada.png</div>
-      </div>
-      <div class="about-photo-badge">
-        <div class="apb-name">Melany Olivares</div>
-        <div class="apb-role">UX/UI Product Designer · Remote</div>
-      </div>
-    </div>
-    <div class="about-content reveal">
-      <h2 class="about-name">Hola, soy <em>Mel.</em></h2>
-      <p class="about-bio">
-        Product Designer con <strong>4+ años</strong> creando productos digitales donde se intersectan <strong>necesidades de usuario, objetivos de negocio y restricciones técnicas</strong> — en plataformas de pago, e-commerce y sistemas omnicanal.<br><br>
-        Especializada en sistemas complejos y experiencias transaccionales escalables. Colaboro con ingeniería, producto y equipos multidisciplinarios — del discovery al delivery — usando research, design systems y decisiones data-informed.<br><br>
-        Antes del diseño de producto, pasé <strong>una década en política pública y consultoría</strong>, liderando proyectos multisectoriales. De ahí viene mi facilidad para negociar, facilitar y alinear stakeholders — algo que ningún proceso de diseño enseña solo.
-      </p>
-      <div class="principles">
-        <div class="principle">
-          <div class="pr-num">01</div>
-          <div><div class="pr-title">Pienso en sistemas antes que en pantallas</div><div class="pr-desc">Tokens, componentes, variantes. Un diseño que no se mantiene solo no está terminado.</div></div>
-        </div>
-        <div class="principle">
-          <div class="pr-num">02</div>
-          <div><div class="pr-title">Performance también es UX</div><div class="pr-desc">Tiempos de carga, disponibilidad y confiabilidad son parte de la experiencia. Un sistema lento es un problema de diseño.</div></div>
-        </div>
-        <div class="principle">
-          <div class="pr-num">03</div>
-          <div><div class="pr-title">La IA la uso de verdad, no la vendo</div><div class="pr-desc">Claude, Figma MCP, Copilot. Herramientas que aceleran el loop entre idea y prototipo en código.</div></div>
-        </div>
-        <div class="principle">
-          <div class="pr-num">04</div>
-          <div><div class="pr-title">Decisiones validadas con research y datos</div><div class="pr-desc">Entrevistas, PostHog, Sentry, Grafana. La intuición no es un plan de diseño.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- ── EXPERIENCE ── -->
-<div class="section" id="experience">
-  <div class="exp-grid">
-    <div>
-      <div class="section-eyebrow">Experiencia</div>
-      <h2 class="section-heading" style="margin-bottom:32px;">Dónde he estado <em>construyendo.</em></h2>
-      <div class="exp-list reveal">
-        <div class="exp-item"><div class="exp-date">Dic 2024 — Abr 2026</div><div><div class="exp-role">Product Designer UX/UI <em>· Zebrands</em></div><div class="exp-co">E-Commerce · Remoto</div><div class="exp-desc">Lideré UX/UI para ZePOS — plataforma omnicanal en 200+ tiendas. Interfaces escalables, design system y decisiones data-informed con Sentry y Grafana.</div></div></div>
-        <div class="exp-item"><div class="exp-date">Ene — Jul 2024</div><div><div class="exp-role">Product Designer UX/UI <em>· InsightOne</em></div><div class="exp-co">Smart Payment Platform · Remoto / EE.UU.</div><div class="exp-desc">Diseño de experiencias para plataforma de pagos. Flujos transaccionales, wireframes, prototipos y research con equipos distribuidos.</div></div></div>
-        <div class="exp-item"><div class="exp-date">Mar — Jul 2023</div><div><div class="exp-role">UX/UI Designer <em>· PALM-Rescycle</em></div><div class="exp-co">Startup · Colombia</div><div class="exp-desc">−25% bounce rate y +15% retención rediseñando interfaces clave bajo economía circular. Iteraciones semanales en Agile.</div></div></div>
-        <div class="exp-item"><div class="exp-date">Ene — Mar 2023</div><div><div class="exp-role">UX/UI Designer <em>· Locusroom</em></div><div class="exp-co">Travel Startup · Chile</div><div class="exp-desc">Nuevo sistema de pago que redujo fricción en el proceso de compra. Research, prototipos de alta fidelidad y testing en entorno ágil.</div></div></div>
-      </div>
-    </div>
-    <div>
-      <div class="section-eyebrow">Skills</div>
-      <h2 class="section-heading" style="margin-bottom:32px;">Core <em>skills.</em></h2>
-      <div class="skills-grid reveal">
-        <div class="skill-group"><div class="sg-title">Product & UX</div><div class="sg-items"><div class="sg-item">User-Centered Design</div><div class="sg-item">Usability Testing</div><div class="sg-item">UX Research · Interviews</div><div class="sg-item">Rapid Prototyping</div><div class="sg-item">UX Metrics: SLA · NPS</div></div></div>
-        <div class="skill-group"><div class="sg-title">UI & Systems</div><div class="sg-items"><div class="sg-item">Figma · FigJam</div><div class="sg-item">Design Systems · Tokens</div><div class="sg-item">Atomic Design</div><div class="sg-item">Figma MCP Integration</div><div class="sg-item">Component-Based UI</div></div></div>
-        <div class="skill-group"><div class="sg-title">Technical & AI</div><div class="sg-items"><div class="sg-item">Sentry · Grafana · Miro</div><div class="sg-item">Jira · Confluence</div><div class="sg-item">AI-Assisted Research</div><div class="sg-item">AI Workflow Optimization</div><div class="sg-item">Engineering handoff</div></div></div>
-        <div class="skill-group"><div class="sg-title">Idiomas</div><div class="sg-items"><div class="sg-item">Español — Nativo</div><div class="sg-item">Inglés — C1</div><div class="sg-item">Portugués — B2</div><div class="sg-item">Alemán — B1</div></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── CONTACT ── -->
-<div class="contact-section" id="contact">
-  <div class="contact-inner">
-    <div class="section-eyebrow" style="color:#A8A4A0;">Contacto</div>
-    <h2 class="contact-title">¿Ideas?<br><em>Conversemos.</em></h2>
-    <div class="contact-cards reveal">
-      <a href="mailto:123mel.ida@gmail.com" class="contact-card">
-        <div class="cc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
-        <div><div class="cc-label">Email</div><div class="cc-value">123mel.ida@gmail.com</div></div>
-        <span class="cc-arrow">→</span>
-      </a>
-      <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank" class="contact-card">
-        <div class="cc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-3a2 2 0 0 1 4 0v3"/></svg></div>
-        <div><div class="cc-label">LinkedIn</div><div class="cc-value">uxmel-olivares</div></div>
-        <span class="cc-arrow">→</span>
-      </a>
-      <a href="https://www.behance.net/mitzyolivares" target="_blank" class="contact-card">
-        <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M3 7h7a3 3 0 0 1 0 6H3zm0 0v10h8a3 3 0 0 0 0-6H3"/><rect x="14" y="7" width="7" height="2" rx="1"/><path d="M14 12h7"/></svg></div>
-        <div><div class="cc-label">Behance</div><div class="cc-value">mitzyolivares</div></div>
-        <span class="cc-arrow">→</span>
-      </a>
-      <a href="assets/cv-melany-olivares-es.pdf" target="_blank" class="contact-card">
-        <div class="cc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg></div>
-        <div><div class="cc-label">Curriculum</div><div class="cc-value">Descargar CV</div></div>
-        <span class="cc-arrow">↓</span>
-      </a>
-    </div>
-  </div>
-  <footer class="site-footer">
-    <div class="footer-left">
-      <div class="footer-name">Melany Olivares — 2026</div>
-      <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
-    </div>
-    <div class="footer-links">
-      <a href="#work">Work</a>
-      <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
-      <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
-      <a href="assets/cv-melany-olivares-es.pdf" target="_blank">CV ↓</a>
-    </div>
-  </footer>
-</div>
+<div class="toolbox">
+<div><h4>Competencias</h4><p class="chips"><span>Product discovery</span><span>UX strategy</span><span>Design systems</span><span>User research</span><span>Usability testing</span><span>Accesibilidad</span><span>Stakeholder management</span><span>PCI-DSS</span></p></div>
+<div><h4>Herramientas &amp; IA</h4><p class="chips"><span>Figma</span><span>FigJam</span><span>Miro</span><span>Maze</span><span>Dovetail</span><span>Sentry</span><span>Grafana</span><span>Jira</span><span>Claude Code</span><span>ChatGPT</span><span>Cursor</span></p></div>
+<div><h4>Idiomas</h4><p class="plain">Español nativo · Inglés B2–C1 · Portugués B2 · Alemán B1</p></div>
+<div><h4>Educación</h4><p class="plain">Diseño UX/UI, Laboratoria (2023) · Lic. Comunicación Social, UAM · Lic. Ciencias Políticas, UNAM</p></div>
+</div></div></section>
+<section class="contact" id="contacto" style="border-top:1px solid var(--line)"><div class="wrap"><p class="ask">¿Tienes un sistema que se atora? <em>Hablemos.</em></p>
+<div class="c-grid">
+<a class="c primary" href="https://calendar.app.google/ZTyFktq6AWEhRXXK8" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><small>Agenda una llamada conmigo</small><span class="v">Elige un horario en mi calendario</span></div><span class="go">→</span></a>
+<a class="c" href="https://www.linkedin.com/in/uxmel-olivares" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 13a2.5 2.5 0 0 1 5 0v3"/></svg></span><div><small>LinkedIn</small><span class="v">uxmel-olivares</span></div><span class="go">→</span></a>
+<a class="c" href="mailto:123mel.ida@gmail.com"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>Email</small><span class="v">123mel.ida@gmail.com</span></div><span class="go">→</span></a>
+<a class="c" href="assets/cv-melany-olivares-es.pdf"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M12 11v6m-3-3 3 3 3-3"/></svg></span><div><small>Currículum</small><span class="v">Descargar CV</span></div><span class="go">↓</span></a>
+</div></div></section>
+<footer><div class="wrap"><span>© 2026 Melany Olivares</span><span>Product Designer UX/UI</span></div></footer>
+<script>window.RIVER={"bg": "233,236,245", "ink": "26,43,209", "pop": "214,205,60", "fade": 0.09, "density": 700, "angle": 0.32, "wave": 0.55};</script>
 
 <script>
-const obs = new IntersectionObserver(
-  e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }),
-  { threshold: 0.07 }
-);
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+(function(){
+  const C=window.RIVER, box=document.getElementById('river'), cv=document.getElementById('flow'), ctx=cv.getContext('2d'), tip=document.getElementById('tip');
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let W,H,dpr,stones=[],parts=[],mouse={x:-999,y:-999,on:false},t=0,boost=null,raf=0,vis=true;
+  function layout(){
+    const r=box.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.fillStyle='rgb('+C.bg+')';ctx.fillRect(0,0,W,H);
+    stones=[...box.querySelectorAll('.stone')].map(el=>{
+      const x=+el.dataset.x*W,y=+el.dataset.y*H,R=+el.dataset.r*W;
+      el.style.left=x+'px';el.style.top=y+'px';el.style.width=el.style.height=R*2+'px';return {el,x,y,R,k:1};});
+    const n=Math.min(Math.round(W*H/C.density),1300);parts=[];for(let i=0;i<n;i++)parts.push(spawn(true));
+  }
+  function spawn(any,x,y,idea){
+    const slow=Math.random()<.5;
+    return {x:x!=null?x:(any?Math.random()*W:-10),y:y!=null?y:Math.random()*H,v:idea?1.6:(slow?.5+Math.random()*.6:1.3+Math.random()*1.4),
+      w:idea?2.2:(slow?1:1.5),idea:!!idea,life:idea?240:0,seed:Math.random()*100};
+  }
+  function field(p){
+    const a=Math.sin(p.x*.009+t*.3+p.seed*.02)+Math.cos(p.y*.012-t*.22)+Math.sin((p.x+p.y)*.006+t*.1);
+    const ang=C.angle+a*C.wave;let vx=Math.cos(ang),vy=Math.sin(ang);
+    const all=mouse.on?stones.concat([{x:mouse.x,y:mouse.y,R:20,k:.7}]):stones;
+    for(const s of all){
+      const dx=p.x-s.x,dy=p.y-s.y,d=Math.hypot(dx,dy)||1,reach=s.R*2.4;
+      if(d<reach){const f=Math.pow(1-d/reach,2)*3.2*(s.k||1),nx=dx/d,ny=dy/d,side=dy>=0?1:-1;
+        vx+=nx*f-ny*side*f*.7;vy+=ny*f+nx*side*f*.7;if(d<s.R){p.x=s.x+nx*s.R;p.y=s.y+ny*s.R}}
+    }
+    return [vx,vy];
+  }
+  function step(){
+    ctx.fillStyle='rgba('+C.bg+','+C.fade+')';ctx.fillRect(0,0,W,H);
+    for(let i=0;i<parts.length;i++){
+      const p=parts[i],f=field(p),vx=f[0],vy=f[1],m=Math.hypot(vx,vy)||1,sp=p.v*.55*(boost&&boost.t>0?1.7:1),ox=p.x,oy=p.y;
+      p.x+=vx/m*sp;p.y+=vy/m*sp;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(p.x,p.y);
+      const c=p.idea?C.pop:C.ink;ctx.strokeStyle='rgba('+c+','+(p.idea?.8:(p.w<1.2?.22:.34))+')';ctx.lineWidth=p.w;ctx.stroke();
+      if((p.idea&&--p.life<=0)||p.x>W+10||p.y<-10||p.y>H+10||p.x<-20){if(p.idea){parts.splice(i,1);i--}else parts[i]=spawn(false)}
+    }
+    t+=.007;if(boost){boost.t--;if(boost.t<=0)boost=null}
+  }
+  function loop(){if(vis)step();raf=requestAnimationFrame(loop)}
+  window.riverTheme=function(cfg){Object.assign(C,cfg);ctx.fillStyle='rgb('+C.bg+')';ctx.fillRect(0,0,W,H)};layout();if(reduce){for(let i=0;i<260;i++)step()}else loop();
+  new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(box);
+  addEventListener('resize',()=>{cancelAnimationFrame(raf);layout();if(!reduce)loop()});
+  box.addEventListener('pointermove',e=>{const r=box.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;mouse.on=true});
+  box.addEventListener('pointerleave',()=>mouse.on=false);
+  box.addEventListener('click',e=>{if(e.target.closest('.stone'))return;const r=box.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    for(let i=0;i<26;i++)parts.push(spawn(false,x+(Math.random()-.5)*14,y+(Math.random()-.5)*14,true))});
+  stones.forEach(s=>{
+    s.el.addEventListener('mouseenter',()=>{s.k=2.2;boost={t:120};tip.textContent=s.el.dataset.tip;tip.classList.add('on')});
+    s.el.addEventListener('mouseleave',()=>{s.k=1;tip.classList.remove('on')});
+    s.el.addEventListener('focus',()=>{tip.textContent=s.el.dataset.tip;tip.classList.add('on')});
+    s.el.addEventListener('blur',()=>tip.classList.remove('on'));
+  });
+})();
 </script>
-</body>
-</html>
+<script>
+(function(){
+  var L={bg:"233,236,245",ink:"26,43,209",pop:"214,205,60"},D={bg:"10,15,46",ink:"157,178,255",pop:"241,235,122"};
+  var root=document.documentElement,btn=document.getElementById('theme');
+  function apply(t,save){ if(t==='dark')root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');
+    if(window.riverTheme)window.riverTheme(t==='dark'?D:L);
+    if(save){try{localStorage.setItem('theme',t)}catch(e){}} }
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  if(saved==='dark')apply('dark',false);
+  btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark',true)});
+})();
+</script></body></html>
