@@ -309,7 +309,29 @@ section{padding:136px 0}
 .row .who p b{display:block;font-weight:600;color:var(--text)}
 .row .who p small{display:block;margin-top:6px;font-size:12.5px;letter-spacing:.02em;color:var(--text);opacity:.75}
 .row .detail li b{color:var(--h1)}
-</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duoL" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.102 0.914"/><feFuncG type="table" tableValues="0.169 0.925"/><feFuncB type="table" tableValues="0.82 0.961"/></feComponentTransfer></filter><filter id="duoD" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.74"/><feFuncG type="table" tableValues="0.059 0.8"/><feFuncB type="table" tableValues="0.18 1"/></feComponentTransfer></filter></svg>
+/* v13 — portadas: proporción 3:2 sin recorte */
+.plate .duo{aspect-ratio:3/2!important}
+.plate .duo img,.plate:first-child .duo img{object-fit:contain!important;object-position:center}
+/* v14 — idiomas más compactos y educación en tarjetas */
+.lang-list{gap:12px}
+.lang-list li{padding:14px 16px 13px;border-radius:12px}
+.lang-list b{font-size:22px}
+.lang-list span{margin:6px 0 10px;font-size:10.5px}
+.lv{height:4px}
+.langs .cap{margin-bottom:14px}
+.edu{grid-column:1/-1}
+.edu-list{list-style:none;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;margin-top:14px}
+.edu-list li{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:var(--card)}
+.edu-list .yr{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink);margin-bottom:12px}
+.edu-list b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:26px;line-height:1.1;color:var(--h1)}
+.edu-list .inst{display:block;margin-top:8px;font-size:14px;font-weight:500;color:var(--text)}
+.edu-list p{margin-top:12px;font-size:13.5px;line-height:1.6;color:var(--text);opacity:.85}
+@media(max-width:900px){.edu-list{grid-template-columns:1fr}}
+/* v15 — retrato: duotono suave */
+.photo{background:var(--duo-bg)}
+.photo img{filter:url(#duoP)!important;mix-blend-mode:normal!important}
+[data-theme="dark"] .photo img{filter:url(#duoD)!important}
+</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duoL" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.102 0.914"/><feFuncG type="table" tableValues="0.169 0.925"/><feFuncB type="table" tableValues="0.82 0.961"/></feComponentTransfer></filter><filter id="duoD" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.74"/><feFuncG type="table" tableValues="0.059 0.8"/><feFuncB type="table" tableValues="0.18 1"/></feComponentTransfer></filter><filter id="duoP" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.16 0.98"/><feFuncG type="table" tableValues="0.22 0.97"/><feFuncB type="table" tableValues="0.62 0.99"/></feComponentTransfer></filter></svg>
 <nav><div class="wrap"><a href="index.html" class="logo">Melany Olivares</a><div class="links">
 <a href="#trabajo">Trabajo</a><a href="#sobre">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a><span class="avail"><i></i>Disponible</span><a href="index-en.html" class="lang" hreflang="en">EN</a><button class="theme" id="theme" aria-label="Cambiar entre tema claro y oscuro" title="Claro / Oscuro">◐</button></div></div></nav>
 <header class="hero"><div class="wrap"><div><p class="eyebrow">Product Designer · UX/UI · Sistemas complejos</p>
@@ -341,7 +363,7 @@ section{padding:136px 0}
 <div><h4>Competencias</h4><p class="chips"><span>Product discovery</span><span>UX strategy</span><span>Design systems</span><span>User research</span><span>Usability testing</span><span>Accesibilidad</span><span>Stakeholder management</span><span>PCI-DSS</span></p></div>
 <div><h4>Herramientas &amp; IA</h4><p class="chips"><span>Figma</span><span>FigJam</span><span>Miro</span><span>Maze</span><span>Dovetail</span><span>Sentry</span><span>Grafana</span><span>Jira</span><span>Claude Code</span><span>ChatGPT</span><span>Cursor</span></p></div>
 
-<div><h4>Educación</h4><p class="plain">Diseño UX/UI, Laboratoria (2023) · Lic. Comunicación Social, UAM · Lic. Ciencias Políticas, UNAM</p></div>
+<div class="edu"><h4>Educación</h4><ul class="edu-list"><li><span class="yr">2023</span><b>Diseño UX/UI</b><span class="inst">Laboratoria, LatAm</span><p>Programa intensivo con admisión de 50 mujeres por cohorte entre cientos de aplicantes de toda Latinoamérica. Proyectos para empresas y startups de la región con metodologías ágiles.</p></li><li><span class="yr">2012</span><b>Lic. en Comunicación Social</b><span class="inst">Universidad Autónoma Metropolitana (UAM)</span></li><li><span class="yr">2010</span><b>Lic. en Ciencias Políticas</b><span class="inst">Universidad Nacional Autónoma de México (UNAM)</span></li></ul></div>
 </div></div></section>
 <section class="contact" id="contacto" style="border-top:1px solid var(--line)"><div class="wrap"><p class="ask">Busco mi próximo sistema complejo. <em>Hablemos.</em></p>
 <div class="c-grid">
