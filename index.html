@@ -31,7 +31,7 @@ h1 .mark{background:linear-gradient(var(--pop),var(--pop)) 0 88%/0% 42% no-repea
 .btn:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--ink)}
 /* río */
 .river{position:relative;cursor:crosshair}
-.river canvas{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.35) 40%,#000 80%);mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.35) 40%,#000 80%);-webkit-mask-composite:source-in;mask-composite:intersect}@media(max-width:900px){.river canvas{-webkit-mask-image:var(--mask);mask-image:var(--mask);opacity:.5}}
+.river canvas{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.6) 38%,#000 78%);mask-image:var(--mask),linear-gradient(90deg,rgba(0,0,0,.6) 0,rgba(0,0,0,.6) 38%,#000 78%);-webkit-mask-composite:source-in;mask-composite:intersect}@media(max-width:900px){.river canvas{-webkit-mask-image:var(--mask);mask-image:var(--mask);opacity:.5}}
 .stone{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed var(--ink);background:transparent;cursor:pointer;padding:0;color:var(--ink);transition:background .25s,transform .25s}
 .stone::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--pop);border:1px solid var(--ink)}
 .stone span{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
@@ -227,7 +227,89 @@ a.inline{color:var(--ink);border-bottom:1px solid var(--ink);margin-left:6px;whi
  .row summary{grid-template-columns:1fr 28px;gap:8px 12px}.row .when{grid-column:1}.row .who{grid-column:1}.row .impact{grid-column:1}.row .tg{grid-row:1/4;grid-column:2}
  .row .detail{padding-left:0}.toolbox{grid-template-columns:1fr}
 }
-</style></head><body>
+/* tip */.tip{bottom:auto!important;transform:translateY(-50%)!important;white-space:normal!important;width:max-content;max-width:min(250px,44%)!important;border-radius:10px!important;padding:9px 13px!important;line-height:1.45;font-size:11.5px!important;overflow:visible!important;text-overflow:clip!important;background:var(--ink)!important;color:var(--btn-text)!important;z-index:5}
+.tip::before{content:'';position:absolute;top:50%;width:16px;height:1px;background:var(--ink)}
+.tip:not(.l)::before{right:100%}.tip.l::before{left:100%}
+/* ---- v8: orden visual ---- */
+@media(min-width:901px){.hero{min-height:700px}.hero .wrap>div:first-child{padding:84px 0 52px}}
+.stats{display:inline-flex;margin-top:36px;padding:16px 24px;max-width:none;border:1px solid var(--line);border-radius:14px;background:var(--card);gap:10px 26px}
+.stat b{color:var(--h1);font-size:26px}
+.stat span{color:var(--text);font-weight:500;opacity:.9}
+.stat+.stat::before{margin-right:22px;color:var(--ink);opacity:.6}
+section h2{color:var(--text)}
+#trabajo,#experiencia{background:var(--card);border-top:1px solid var(--line)}
+section{padding:112px 0}
+.sec-head{display:block;max-width:760px;margin-bottom:64px}
+.kicker{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--bg);margin-bottom:22px}
+.sec-head h2{margin-bottom:0}
+.sec-note{max-width:58ch;margin-top:22px;font-size:17px;line-height:1.65;padding-left:16px;border-left:2px solid var(--pop)}
+.plates{grid-template-columns:1fr 1fr!important;gap:80px 48px}
+.plate:first-child{grid-column:auto!important}
+.plate{display:flex;flex-direction:column;align-items:flex-start}
+.plate .fig{order:0;width:100%}
+.plate .feat{order:1;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--pop);color:#0A0F2E;padding:4px 10px;border-radius:99px}
+.plate .p-title{order:2}.plate .p-desc{order:3;min-height:3.2em}.plate .p-metric{order:4}
+.plate .duo{order:5;width:100%;margin-top:26px;aspect-ratio:4/3!important;border:1px solid var(--line);background:var(--duo-bg)!important;transition:transform .35s,box-shadow .35s}
+.plate:first-child .duo img{object-fit:contain}
+.plate:hover .duo{background:var(--duo-bg)!important;transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(16,20,55,.45)}
+.duo img{filter:url(#duoL)!important;mix-blend-mode:normal!important}
+[data-theme="dark"] .duo img{filter:url(#duoD)!important}
+:root{--duo-bg:#E9ECF5}[data-theme="dark"]{--duo-bg:#3345E0}
+.duo .ph{color:var(--h1)}
+@media(max-width:900px){.plates{grid-template-columns:1fr!important}section{padding:80px 0}}
+
+/* ---- v9: entradas de sección y alineación ---- */
+section{padding:136px 0}
+.sec-head{margin-bottom:84px;max-width:820px}
+.kicker{margin-bottom:34px}
+.sec-head h2{line-height:1.02}
+.sec-note{margin-top:34px;font-size:19px;line-height:1.65;max-width:60ch}
+.about .kicker,.contact .ask{margin-bottom:34px}
+.plates{display:grid;grid-template-columns:1fr 1fr!important;column-gap:56px;row-gap:0}
+.plate{display:grid!important;grid-template-rows:subgrid;grid-row:span 6;margin-bottom:96px;align-content:start}
+.plate:nth-last-child(-n+2){margin-bottom:0}
+.plate .fig{order:0;display:flex;align-items:center;gap:10px}
+.plate .fig .feat{margin:0 auto 0 8px;background:var(--pop);color:#0A0F2E;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.plate .fig .feat+span{margin-left:0}
+.plate .p-title{order:1;margin-top:28px}
+.plate .p-problem{order:2;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(21px,1.9vw,27px);line-height:1.2;color:var(--text);max-width:30ch}
+.plate .p-desc{order:3;margin-top:14px;min-height:0}
+.plate .p-metric{order:4;margin-top:20px;align-self:start}
+.plate .duo{order:5;margin-top:28px}
+@media(max-width:900px){.plates{grid-template-columns:1fr!important}.plate{display:block!important;margin-bottom:64px}.plate .duo{margin-top:24px}section{padding:88px 0}}
+/* fig fix */.plate .fig{height:34px;box-sizing:border-box}.plate .fig span:last-child{margin-left:auto}
+.plate .fig .feat{order:0!important;margin-top:0!important}.plate .fig span:last-child{order:2}
+/* v10: título + problema, imagen, luego detalle */
+.plate .p-title{order:1}.plate .p-problem{order:2}
+.plate .duo{order:3!important;margin-top:30px!important}
+.plate .p-desc{order:4!important;margin-top:26px!important}
+.plate .p-metric{order:5!important;margin-top:18px!important}
+@media(max-width:900px){.plate{display:flex!important;flex-direction:column}}
+.plate .p-problem{max-width:36ch}
+/* v11: experiencia + idiomas */
+.row summary{grid-template-columns:150px 1.15fr 1fr auto}
+.ctl{display:flex;align-items:center;gap:12px;justify-self:end;align-self:center}
+.ctl em{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.ctl em::before{content:attr(data-c)}.row[open] .ctl em::before{content:attr(data-o)}
+.ctl .tg{justify-self:auto}
+.row summary:hover .ctl em{text-decoration:underline;text-underline-offset:4px}
+.row .impact{line-height:1.5}.row .impact>span{display:block;margin-bottom:10px}
+.toolbox{gap:56px}
+.langs{grid-column:1/-1}
+.langs h4{margin-bottom:6px}.langs .cap{font-family:var(--mono);font-size:11px;color:var(--ink);opacity:.8;margin-bottom:20px;letter-spacing:.04em}
+.lang-list{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.lang-list li{border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;background:var(--card)}
+.lang-list b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:34px;line-height:1;color:var(--h1)}
+.lang-list span{display:block;margin:10px 0 16px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+.lv{display:block;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--ink) calc(var(--f)/6*100%),var(--line) 0)}
+@media(max-width:900px){.row summary{grid-template-columns:1fr auto}.ctl{grid-row:1/4;grid-column:2}.ctl em{display:none}.lang-list{grid-template-columns:1fr 1fr}.lang-list b{font-size:28px}}
+/* v12: jerarquía de experiencia */
+.row h3{font-size:clamp(26px,2.8vw,36px)}
+.row .who p{margin-top:12px;font-size:17px;line-height:1.35}
+.row .who p b{display:block;font-weight:600;color:var(--text)}
+.row .who p small{display:block;margin-top:6px;font-size:12.5px;letter-spacing:.02em;color:var(--text);opacity:.75}
+.row .detail li b{color:var(--h1)}
+</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="duoL" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.102 0.914"/><feFuncG type="table" tableValues="0.169 0.925"/><feFuncB type="table" tableValues="0.82 0.961"/></feComponentTransfer></filter><filter id="duoD" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="0.039 0.2"/><feFuncG type="table" tableValues="0.059 0.27"/><feFuncB type="table" tableValues="0.18 0.878"/></feComponentTransfer></filter></svg>
 <nav><div class="wrap"><a href="index.html" class="logo">Melany Olivares</a><div class="links">
 <a href="#trabajo">Trabajo</a><a href="#sobre">Sobre mí</a><a href="#experiencia">Experiencia</a><a href="#contacto">Contacto</a><span class="avail"><i></i>Disponible</span><a href="index-en.html" class="lang" hreflang="en">EN</a><button class="theme" id="theme" aria-label="Cambiar entre tema claro y oscuro" title="Claro / Oscuro">◐</button></div></div></nav>
 <header class="hero"><div class="wrap"><div><p class="eyebrow">Product Designer · UX/UI · Sistemas complejos</p>
@@ -237,30 +319,31 @@ a.inline{color:var(--ink);border-bottom:1px solid var(--ink);margin-left:6px;whi
 <figure class="hero-art"><div class="river" id="river"><canvas id="flow" aria-hidden="true"></canvas><button class="stone" data-x="0.7" data-y="0.22" data-r="0.028" data-tip="¿Cuánto espera alguien antes de poder actuar? (TTI)"><span>Tiempo al 1.er artículo</span></button><button class="stone" data-x="0.86" data-y="0.4" data-r="0.03" data-tip="¿Dónde se atoran las personas y cuántas se van?"><span>Abandono de carrito</span></button><button class="stone" data-x="0.68" data-y="0.62" data-r="0.028" data-tip="El pago no puede esperar: se mide antes de rediseñar"><span>SLA de pago</span></button><button class="stone" data-x="0.91" data-y="0.7" data-r="0.026" data-tip="¿Cómo se sintió la compra: lenta, clara, fluida, confusa?"><span>NPS poscompra</span></button><div class="tip" id="tip"></div></div>
 <figcaption class="fig-cap"><span>Fig. 00 — Cada piedra es una métrica. El río, quien usa el sistema.</span></figcaption></figure></div></header>
 <div class="ticker" aria-label="Lo que puedo hacer"><div class="ticker-track"><span class="ticker-item"><i>✦</i>Product Design</span><span class="ticker-item"><i>✦</i>Design Systems</span><span class="ticker-item"><i>✦</i>UX Research</span><span class="ticker-item"><i>✦</i>Event Storming</span><span class="ticker-item"><i>✦</i>Figma MCP</span><span class="ticker-item"><i>✦</i>PostHog · Sentry · Grafana</span><span class="ticker-item"><i>✦</i>Retail · Fintech · Health</span><span class="ticker-item"><i>✦</i>AI-powered Workflows</span><span class="ticker-item"><i>✦</i>Cross-functional Teams</span><span class="ticker-item"><i>✦</i>Product Design</span><span class="ticker-item"><i>✦</i>Design Systems</span><span class="ticker-item"><i>✦</i>UX Research</span><span class="ticker-item"><i>✦</i>Event Storming</span><span class="ticker-item"><i>✦</i>Figma MCP</span><span class="ticker-item"><i>✦</i>PostHog · Sentry · Grafana</span><span class="ticker-item"><i>✦</i>Retail · Fintech · Health</span><span class="ticker-item"><i>✦</i>AI-powered Workflows</span><span class="ticker-item"><i>✦</i>Cross-functional Teams</span></div></div>
-<section id="trabajo"><div class="wrap"><div class="sec-head"><div><p class="kicker">Selected work · 01—04</p><h2>Cuatro sistemas, cuatro industrias.</h2></div><p class="sec-note">Cada caso es una lámina: problema, decisión y resultado.</p></div><div class="plates"><a class="plate" href="case-study.html"><div class="fig"><span>Fig. 01 — Retail POS · Omnicanal</span><span>↗</span></div><div class="duo"><div class="ph">ZePOS</div><img src="images/zepos-cover.png" alt="Portada del caso ZePOS" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">ZePOS</h3><p class="p-desc">Lideré el rediseño end-to-end del POS de 200+ tiendas tras una falla crítica: pagos, inventario y sincronización, con 60–90% menos errores.</p><p class="p-metric"><b>50%+</b> más rápidos los flujos principales <span class="arrow">→</span></p></a><a class="plate" href="insightone.html"><div class="fig"><span>Fig. 02 — Pagos B2B · PCI-DSS</span><span>↗</span></div><div class="duo"><div class="ph">InsightOne</div><img src="images/insightone-cover.png" alt="Portada del caso InsightOne" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">InsightOne</h3><p class="p-desc">Plataforma de pagos con certificación PCI-DSS, del pitch con nivel C a la entrega, con roles para tres tipos de usuario.</p><p class="p-metric"><b>−40%</b> tickets de soporte <span class="arrow">→</span></p></a><a class="plate" href="clue.html"><div class="fig"><span>Fig. 03 — Health app · Research</span><span>↗</span></div><div class="duo"><div class="ph">Clue</div><img src="images/clue-cover.png" alt="Portada del caso Clue" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">Clue</h3><p class="p-desc">Rediseño de onboarding, home y seguimiento a partir de una auditoría UX, benchmarking y pruebas con usuarios.</p><p class="p-metric"><b>29</b> usuarios validaron el prototipo · 80/100 <span class="arrow">→</span></p></a><a class="plate" href="palm.html"><div class="fig"><span>Fig. 04 — Economía circular · Colombia</span><span>↗</span></div><div class="duo"><div class="ph">Palm</div><img src="images/palm-cover.png" alt="Portada del caso Palm" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">Palm</h3><p class="p-desc">Landing y flujo de comunicación con iteraciones semanales y mejoras de UX writing.</p><p class="p-metric"><b>+15%</b> retención de usuarios <span class="arrow">→</span></p></a></div></div></section>
+<section id="trabajo"><div class="wrap"><div class="sec-head"><div><p class="kicker">Selected work · 01—04</p><h2>Cuatro sistemas, cuatro industrias.</h2></div><p class="sec-note">De operaciones críticas a experiencias transaccionales: diseño productos donde la complejidad técnica debe convertirse en claridad operativa.</p></div><div class="plates"><a class="plate" href="case-study.html"><div class="fig"><span>Fig. 01 — Retail POS · Omnicanal</span><span class="feat">Caso principal</span><span>↗</span></div><div class="duo"><div class="ph">ZePOS</div><img src="images/zepos-cover.png" alt="Portada del caso ZePOS" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">ZePOS</h3><p class="p-problem">De un POS frágil a una operación comercial más resiliente.</p><p class="p-desc">Punto de venta de 200+ tiendas, donde rendimiento, velocidad y fiabilidad afectan directamente las ventas. Lideré el rediseño end-to-end tras una falla crítica, con 60–90% menos errores.</p><p class="p-metric"><b>50%+</b> más rápidos: armado de carrito y envío <span class="arrow">→</span></p></a><a class="plate" href="insightone.html"><div class="fig"><span>Fig. 02 — Pagos B2B · PCI-DSS</span><span>↗</span></div><div class="duo"><div class="ph">InsightOne</div><img src="images/insightone-cover.png" alt="Portada del caso InsightOne" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">InsightOne</h3><p class="p-problem">Simplificar flujos de pago bajo restricciones de seguridad y cumplimiento.</p><p class="p-desc">Plataforma de pagos con certificación PCI-DSS, del pitch con nivel C a la entrega, con roles para tres tipos de usuario.</p><p class="p-metric"><b>−40%</b> tickets de soporte <span class="arrow">→</span></p></a><a class="plate" href="clue.html"><div class="fig"><span>Fig. 03 — Health app · Research</span><span>↗</span></div><div class="duo"><div class="ph">Clue</div><img src="images/clue-cover.png" alt="Portada del caso Clue" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">Clue</h3><p class="p-problem">Que registrar tu salud deje de sentirse como una tarea.</p><p class="p-desc">Rediseño de onboarding, home y seguimiento a partir de una auditoría UX, benchmarking y pruebas con usuarios.</p><p class="p-metric"><b>29</b> usuarios validaron el prototipo · 80/100 <span class="arrow">→</span></p></a><a class="plate" href="palm.html"><div class="fig"><span>Fig. 04 — Economía circular · Colombia</span><span>↗</span></div><div class="duo"><div class="ph">Palm</div><img src="images/palm-cover.png" alt="Portada del caso Palm" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><h3 class="p-title">Palm</h3><p class="p-problem">Explicar la economía circular en segundos y convertir curiosidad en uso.</p><p class="p-desc">Landing y flujo de comunicación con iteraciones semanales y mejoras de UX writing.</p><p class="p-metric"><b>+15%</b> retención de usuarios <span class="arrow">→</span></p></a></div></div></section>
 <section class="about-sec" id="sobre"><div class="wrap about"><div><div class="photo"><div class="ph">tu foto aquí</div><img src="images/portada.png" alt="Retrato de Melany Olivares" loading="lazy" onload="this.previousElementSibling.remove()" onerror="this.remove()"></div><p class="photo-cap">Melany Olivares · Product Designer</p></div>
 <div><p class="kicker">Quién diseña</p><h2>Mi criterio viene de mundos distintos.</h2>
 <p class="body">Vengo de política pública y hoy diseño producto. Además soy permacultora: observo antes de intervenir, mido lo que no se ve y dejo que el sistema encuentre su cauce.</p>
 <ul class="principles"><li><span>01</span><div><b>Medir antes de rediseñar</b>Priorizo con datos reales, no con percepción.</div></li><li><span>02</span><div><b>Lo que no se ve también importa</b>Un error silencioso cuesta más que uno visible.</div></li><li><span>03</span><div><b>No me hagas esperar</b>La velocidad es parte de la interfaz.</div></li><li><span>04</span><div><b>Iterar es el método</b>Medir, ajustar, volver a medir.</div></li></ul></div></div></section>
 <section class="exp-sec" id="experiencia"><div class="wrap">
-<div class="sec-head"><div><p class="kicker">Experiencia</p><h2>Dónde he estado construyendo.</h2></div><p class="sec-note">Cuatro etapas, un mismo hilo: medir, rediseñar y volver a medir. <a class="inline" href="assets/cv-melany-olivares-es.pdf">CV completo →</a></p></div>
+<div class="sec-head"><div><p class="kicker">Experiencia</p><h2>Dónde he estado construyendo.</h2></div><p class="sec-note">4+ años diseñando producto en retail, pagos y salud, después de 10 años como Project Manager y consultora en políticas públicas. <a class="inline" href="assets/cv-melany-olivares-es.pdf">CV completo →</a></p></div>
 <div class="ledger">
-<details class="row" open><summary><span class="when">Dic 2024 — Abr 2026</span><span class="who"><h3>Zebrands</h3><p>Product Designer UX/UI · POS omnicanal · Remoto</p></span><span class="impact"><b>50%+</b> flujos más rápidos<br><b>60–90%</b> menos errores</span><i class="tg"></i></summary>
+<details class="row" open><summary><span class="when">Dic 2024 — Abr 2026</span><span class="who"><h3>Zebrands</h3><p><b>Product Designer UX/UI</b><small>POS omnicanal · Remoto</small></p></span><span class="impact"><b>50%+</b> más rápidos: carrito y envío<br><b>60–90%</b> menos errores</span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
 <div class="detail"><ul><li>Lideré el rediseño end-to-end de ZePOS tras una falla crítica en 200+ tiendas, con un equipo de 18 personas y sin Product Manager dedicado.</li><li>Diagnostiqué causas raíz con Sentry y Grafana; contribuí al design system y lideré design reviews.</li><li>Capacité a 500+ empleados de tienda y apoyé el lanzamiento en Brasil con materiales en portugués.</li></ul></div></details>
-<details class="row"><summary><span class="when">Ene — Jul 2024</span><span class="who"><h3>Insight One</h3><p>Product Designer UX/UI · Pagos B2B · PCI-DSS · Remoto</p></span><span class="impact"><b>−40%</b> tickets de soporte</span><i class="tg"></i></summary>
+<details class="row"><summary><span class="when">Ene — Jul 2024</span><span class="who"><h3>Insight One</h3><p><b>Product Designer UX/UI</b><small>Pagos B2B · PCI-DSS · Remoto</small></p></span><span class="impact"><b>−40%</b> tickets de soporte</span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
 <div class="detail"><ul><li>Responsable end-to-end de una plataforma de pagos B2B, del pitch con nivel C a la entrega.</li><li>Roles diferenciados para tres tipos de usuario y handoff estructurado a ingeniería.</li></ul></div></details>
-<details class="row"><summary><span class="when">2023</span><span class="who"><h3>Clue · PALM · Locusroom</h3><p>Proyectos destacados · Laboratoria</p></span><span class="impact"><b>29</b> usuarios validaron · <b>+15%</b> retención</span><i class="tg"></i></summary>
-<div class="detail"><ul><li><b>Clue:</b> caso UX de app de salud, prototipos validados en Maze (usabilidad 80/100).</li><li><b>PALM:</b> landing y comunicación de una startup de economía circular, con iteraciones semanales.</li><li><b>Locusroom:</b> flujo de compra end-to-end para una startup de pagos en Chile.</li></ul></div></details>
-<details class="row"><summary><span class="when">2012 — 2022</span><span class="who"><h3>Políticas públicas</h3><p>Project Manager y consultora · Gobierno abierto</p></span><span class="impact"><b>10 años</b> facilitando entre sectores</span><i class="tg"></i></summary>
-<div class="detail"><ul><li>Negociación multisectorial y alineación ejecutiva; hoy lo aplico al manejo de stakeholders en producto.</li></ul></div></details>
+<details class="row"><summary><span class="when">2023</span><span class="who"><h3>Clue</h3><p><b>UX/UI · Caso de estudio</b><small>App de salud</small></p></span><span class="impact"><span><b>29</b> usuarios validaron</span></span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
+<div class="detail"><ul><li>App de salud con prototipos validados en Maze (usabilidad 80/100) y revisado después con la UX Lead que llevó el equipo de diseño de Clue.</li></ul></div></details><details class="row"><summary><span class="when">2023</span><span class="who"><h3>PALM</h3><p><b>UX/UI y tareas de producto</b><small>Startup de economía circular</small></p></span><span class="impact"><span><b>+15%</b> retención</span></span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
+<div class="detail"><ul><li>Landing y comunicación de una startup de economía circular, con iteraciones semanales y funciones de product manager.</li></ul></div></details><details class="row"><summary><span class="when">2023</span><span class="who"><h3>Locusroom</h3><p><b>UX/UI</b><small>Startup de pagos · Chile</small></p></span><span class="impact"><span><b>End-to-end</b> flujo de compra</span></span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
+<div class="detail"><ul><li>Flujo de compra end-to-end para una startup de pagos en Chile.</li></ul></div></details><details class="row"><summary><span class="when">2012 — 2022</span><span class="who"><h3>Políticas públicas</h3><p><b>Project Manager y consultora</b><small>Gobierno abierto · Comunicación política · México</small></p></span><span class="impact"><span><b>10 años</b> facilitando entre sectores</span></span><span class="ctl"><em data-c="Ver detalle" data-o="Cerrar"></em><i class="tg"></i></span></summary>
+<div class="detail"><ul><li><b>INE (Instituto Nacional Electoral):</b> área de comunicación, con análisis político de medios.</li><li><b>Campañas y Cámara de Diputados:</b> estrategia de comunicación de dos partidos en campañas a gobernador en distintos estados, diseñada e implementada por mí; después, parte del equipo de comunicación de una bancada.</li><li><b>Transparencia Internacional, capítulo México:</b> comunicación de la organización y relación con medios; en paralelo, proyectos legislativos y open data para contrataciones abiertas, mi primera experiencia UX.</li></ul></div></details>
 </div>
-<div class="toolbox">
+<div class="toolbox"><div class="langs"><h4>Idiomas</h4><p class="cap">Nivel según escala CEFR (A1–C2)</p><ul class="lang-list"><li><b>Español</b><span>Nativo</span><i class="lv" style="--f:6"></i></li><li><b>Inglés</b><span>B2–C1</span><i class="lv" style="--f:4.5"></i></li><li><b>Portugués</b><span>B2</span><i class="lv" style="--f:4"></i></li><li><b>Alemán</b><span>B1</span><i class="lv" style="--f:3"></i></li></ul></div>
 <div><h4>Competencias</h4><p class="chips"><span>Product discovery</span><span>UX strategy</span><span>Design systems</span><span>User research</span><span>Usability testing</span><span>Accesibilidad</span><span>Stakeholder management</span><span>PCI-DSS</span></p></div>
 <div><h4>Herramientas &amp; IA</h4><p class="chips"><span>Figma</span><span>FigJam</span><span>Miro</span><span>Maze</span><span>Dovetail</span><span>Sentry</span><span>Grafana</span><span>Jira</span><span>Claude Code</span><span>ChatGPT</span><span>Cursor</span></p></div>
-<div><h4>Idiomas</h4><p class="plain">Español nativo · Inglés B2–C1 · Portugués B2 · Alemán B1</p></div>
+
 <div><h4>Educación</h4><p class="plain">Diseño UX/UI, Laboratoria (2023) · Lic. Comunicación Social, UAM · Lic. Ciencias Políticas, UNAM</p></div>
 </div></div></section>
-<section class="contact" id="contacto" style="border-top:1px solid var(--line)"><div class="wrap"><p class="ask">¿Tienes un sistema que se atora? <em>Hablemos.</em></p>
+<section class="contact" id="contacto" style="border-top:1px solid var(--line)"><div class="wrap"><p class="ask">Busco mi próximo sistema complejo. <em>Hablemos.</em></p>
 <div class="c-grid">
 <a class="c primary" href="https://calendar.app.google/ZTyFktq6AWEhRXXK8" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><small>Agenda una llamada conmigo</small><span class="v">Elige un horario en mi calendario</span></div><span class="go">→</span></a>
 <a class="c" href="https://www.linkedin.com/in/uxmel-olivares" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M12 13a2.5 2.5 0 0 1 5 0v3"/></svg></span><div><small>LinkedIn</small><span class="v">uxmel-olivares</span></div><span class="go">→</span></a>
@@ -305,7 +388,7 @@ a.inline{color:var(--ink);border-bottom:1px solid var(--ink);margin-left:6px;whi
     for(let i=0;i<parts.length;i++){
       const p=parts[i],f=field(p),vx=f[0],vy=f[1],m=Math.hypot(vx,vy)||1,sp=p.v*.55*(boost&&boost.t>0?1.7:1),ox=p.x,oy=p.y;
       p.x+=vx/m*sp;p.y+=vy/m*sp;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(p.x,p.y);
-      const c=p.idea?C.pop:C.ink;ctx.strokeStyle='rgba('+c+','+(p.idea?.8:(p.w<1.2?.22:.34))+')';ctx.lineWidth=p.w;ctx.stroke();
+      const c=p.idea?C.pop:C.ink;ctx.strokeStyle='rgba('+c+','+(p.idea?.85:(p.w<1.2?.3:.46))+')';ctx.lineWidth=p.w;ctx.stroke();
       if((p.idea&&--p.life<=0)||p.x>W+10||p.y<-10||p.y>H+10||p.x<-20){if(p.idea){parts.splice(i,1);i--}else parts[i]=spawn(false)}
     }
     t+=.007;if(boost){boost.t--;if(boost.t<=0)boost=null}
@@ -318,10 +401,11 @@ a.inline{color:var(--ink);border-bottom:1px solid var(--ink);margin-left:6px;whi
   box.addEventListener('pointerleave',()=>mouse.on=false);
   box.addEventListener('click',e=>{if(e.target.closest('.stone'))return;const r=box.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
     for(let i=0;i<26;i++)parts.push(spawn(false,x+(Math.random()-.5)*14,y+(Math.random()-.5)*14,true))});
+  function showTip(s){tip.textContent=s.el.dataset.tip;const l=s.x>W*.6;tip.classList.toggle('l',l);tip.style.top=s.y+'px';if(l){tip.style.left='auto';tip.style.right=(W-s.x+s.R+16)+'px'}else{tip.style.right='auto';tip.style.left=(s.x+s.R+16)+'px'}tip.classList.add('on')}
   stones.forEach(s=>{
-    s.el.addEventListener('mouseenter',()=>{s.k=2.2;boost={t:120};tip.textContent=s.el.dataset.tip;tip.classList.add('on')});
+    s.el.addEventListener('mouseenter',()=>{s.k=2.2;boost={t:120};showTip(s)});
     s.el.addEventListener('mouseleave',()=>{s.k=1;tip.classList.remove('on')});
-    s.el.addEventListener('focus',()=>{tip.textContent=s.el.dataset.tip;tip.classList.add('on')});
+    s.el.addEventListener('focus',()=>{showTip(s)});
     s.el.addEventListener('blur',()=>tip.classList.remove('on'));
   });
 })();
