@@ -1,593 +1,415 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Clue — Caso de estudio · Melany Olivares</title>
-  <!-- Open Graph / Social Share -->
-  <meta property="og:type" content="article"/>
-  <meta property="og:title" content="Clue — UX research · Melany Olivares"/>
-  <meta property="og:description" content="Caso de estudio de UX research sobre la app de seguimiento menstrual."/>
-  <meta property="og:image" content="https://melanyolivares-be.github.io/images/og-image.png"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Clue — UX research · Melany Olivares"/>
-  <meta name="twitter:description" content="Caso de estudio de UX research sobre la app de seguimiento menstrual."/>
-  <meta name="twitter:image" content="https://melanyolivares-be.github.io/images/og-image.png"/>
-  <!-- /Open Graph -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{
-      --bg:#FAFAF8;--surface:#F0F0EE;--surface2:#E8E8E5;
-      --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);
-      --text:#0F0E0C;--muted:#6B6860;--soft:#736D63;
-      --coral:#FE6647;--coral-text:#C73D18;--coral-large:#E54B22;
-      --blue:#4784FE;--blue-text:#2A63D9;--blue-light:#EEF3FF;
-      --yellow:#DFFE47;--yellow-light:#FAFFD9;
-      --teal:#2A7B6F;--teal-light:#E8F5F3;
-      --font-display:'DM Serif Display',Georgia,serif;
-      --font-body:'DM Sans',sans-serif;
-    }
-    html{scroll-behavior:smooth;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clue — Caso de estudio · Melany Olivares</title><meta property="og:type" content="article"/><meta property="og:title" content="Clue — una app útil que se sentía distante · Melany Olivares"/><meta property="og:description" content="Caso de estudio propio: research y rediseño de la versión en español de Clue."/><meta property="og:image" content="https://melanyolivares-be.github.io/images/og-image.png"/>
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>/* ===== Identidad Tinta / Medianoche — páginas de caso ===== */
+:root{
+  --bg:#E9ECF5;--nav:rgba(233,236,245,.9);--line:rgba(26,43,209,.22);--ink:#1A2BD1;--h1:#1A2BD1;--text:#101437;
+  --pop:#F1EB7A;--pop-text:#101437;--btn-text:#E9ECF5;--mark-text:#1A2BD1;--card:rgba(26,43,209,.06);--card-h:rgba(26,43,209,.12);
+  --block:#1A2BD1;--on-block:#E9ECF5;--river-pop:#D6CD3C;--grain-o:.35;--grain-b:multiply;
+  --mask-h:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  --serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+}
+[data-theme="dark"]{--bg:#0A0F2E;--nav:rgba(10,15,46,.85);--line:rgba(157,178,255,.25);--ink:#9DB2FF;--h1:#EEF2FF;--text:#C9D3F5;
+  --pop:#F1EB7A;--pop-text:#0A0F2E;--btn-text:#0A0F2E;--mark-text:#0A0F2E;--card:rgba(24,34,122,.35);--card-h:rgba(24,34,122,.6);
+  --block:#18227A;--on-block:#EEF2FF;--river-pop:#F1EB7A;--grain-o:.05;--grain-b:screen}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .5s,color .5s}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:var(--grain-o);mix-blend-mode:var(--grain-b);
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .12  0 0 0 0 .3  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px;position:relative}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--btn-text);padding:8px 14px;border-radius:99px;z-index:100}.skip:focus{left:12px}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:60}
+/* nav */
+nav{position:sticky;top:0;z-index:40;background:var(--nav);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background-color .5s}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink);white-space:nowrap}
+.links{display:flex;gap:28px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.links a{padding:4px 0;border-bottom:1px solid transparent}.links a:hover{border-color:var(--ink)}
+.links .lang{border:1px solid var(--ink);padding:5px 10px;border-radius:99px}
+.theme{border:1px solid var(--ink);background:transparent;color:var(--ink);width:32px;height:28px;border-radius:99px;cursor:pointer;font-size:14px;line-height:1;margin-left:-12px}
+.theme:hover{background:var(--pop);color:var(--pop-text)}
+/* hero */
+.case-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.case-hero .top{padding:72px 0 40px;position:relative;z-index:2}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:26px;display:flex;gap:12px;align-items:center}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--ink)}
+h1{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--h1);font-size:clamp(46px,6.4vw,100px);line-height:.98;letter-spacing:-.02em;max-width:15ch}
+h1 em{font-style:italic;background:linear-gradient(var(--pop),var(--pop)) 0 88%/0% 42% no-repeat;animation:hl 1s .8s forwards;color:var(--mark-text);padding:0 .04em}
+@keyframes hl{to{background-size:100% 42%}}
+.lede{margin-top:26px;max-width:620px;font-size:18px;line-height:1.65}
+.case-river{position:relative;height:300px;cursor:crosshair}
+.case-river canvas{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:var(--mask-h);mask-image:var(--mask-h)}
+.stone{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:1px dashed var(--ink);background:transparent;cursor:pointer;padding:0;color:var(--ink);transition:background .25s,transform .25s;font:inherit}
+.stone::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--pop);border:1px solid var(--ink)}
+.stone span{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--h1)}
+.stone:hover,.stone:focus-visible{background:color-mix(in srgb,var(--pop) 35%,transparent);transform:translate(-50%,-50%) scale(1.08);outline:none}
+.tip{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;background:var(--ink);color:var(--btn-text);font-family:var(--mono);font-size:11px;padding:7px 12px;border-radius:99px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis}
+.tip.on{opacity:1}
+/* meta */
+.meta{display:grid;grid-template-columns:repeat(5,auto);gap:0;border-top:1px solid var(--line)}
+.meta div{padding:18px 24px 18px 0;margin-right:24px;border-right:1px solid var(--line)}
+.meta div:last-child{border:0;margin:0}
+.meta small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.meta span{font-size:15px;color:var(--h1);font-weight:500}
+/* metrics */
+.metrics{border-bottom:1px solid var(--line)}
+.metrics .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.metric{padding:48px 28px 44px 0;border-right:1px solid var(--line);margin-right:28px}
+.metric:last-child{border:0;margin:0}
+.metric b{display:inline-block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(52px,6vw,88px);line-height:1;color:var(--mark-text);background:linear-gradient(var(--pop),var(--pop)) 0 88%/100% 36% no-repeat;padding:0 6px 0 2px}
+.metric p{margin-top:14px;font-size:14.5px;line-height:1.5;max-width:22ch}
+/* secciones */
+.sec{padding:88px 0;border-bottom:1px solid var(--line)}
+.sec .wrap{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start}
+.sec.full .wrap{grid-template-columns:1fr;gap:40px}
+.sec-title{position:sticky;top:96px}
+.sec.full .sec-title{position:static}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink);display:block;margin-bottom:14px}
+h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(34px,3.8vw,54px);line-height:1.02;color:var(--h1);letter-spacing:-.01em}
+h2 em{display:block;margin-top:10px;font-family:var(--sans);font-style:normal;font-size:15px;letter-spacing:0;line-height:1.5;color:var(--text);opacity:.75;max-width:30ch}
+.sec.full h2 em{display:inline;margin:0 0 0 14px;font-size:.5em;font-family:var(--serif);font-style:italic;opacity:.6;max-width:none}
+.prose{font-size:17.5px;line-height:1.75;max-width:62ch}
+.prose strong{color:var(--h1);font-weight:600}
+.caption{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink);margin-top:14px}
+.frame{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.frame img{display:block;width:100%;height:auto}
+.ph-box{display:grid;place-items:center;min-height:200px;font-family:var(--mono);font-size:12px;color:var(--ink);letter-spacing:.06em}
+/* resumen */
+.resumen{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+.rc{padding:28px 28px 32px 0;border-bottom:1px solid var(--line)}
+.rc:nth-child(odd){border-right:1px solid var(--line);margin-right:28px}
+.rc svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.rc h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.rc p{font-size:15.5px;line-height:1.65}.rc strong{color:var(--h1);font-weight:600}
+/* diagrama */
+.diag{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:36px 32px;overflow-x:auto}
+.dstage{position:relative;width:1000px;height:480px;margin:0 auto}
+.dstage svg{position:absolute;inset:0}
+.dn{position:absolute;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:10px;font-size:14px;font-weight:500;color:var(--h1);text-align:center;line-height:1.25}
+.dn svg{position:static;width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.dn.core{background:var(--pop);color:var(--pop-text);border:2px solid var(--ink);border-radius:12px;gap:12px}
+.dn.core b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:22px}
+.dn.core span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.dn.ghost{border-style:dashed;color:var(--text);background:transparent;font-size:13.5px}
+.dlines{stroke:var(--ink);opacity:.5}
+.darrows{stroke:var(--ink)}
+.dmobile{display:none;flex-direction:column;gap:0}
+.dmobile .dn{position:static;height:50px}
+.dmobile .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dmobile .ar{display:flex;justify-content:center;height:26px}
+.dmobile .ar svg{width:12px;height:26px;position:static;stroke:var(--ink);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+/* decisiones */
+.dec{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dc{border:1px solid var(--line);border-radius:12px;padding:30px 28px;background:var(--card);transition:background .3s,border-color .3s}
+.dc:hover{background:var(--card-h);border-color:var(--ink)}
+.dc .n{font-family:var(--serif);font-style:italic;font-size:64px;line-height:1;color:var(--ink);opacity:.5}
+.dc h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:26px;line-height:1.1;color:var(--h1);margin:18px 0 12px}
+.dc p{font-size:14.5px;line-height:1.65}
+/* proceso */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps::before{content:'';position:absolute;left:0;right:0;top:19px;height:1px;background:var(--ink);opacity:.5}
+.step{padding-right:28px;position:relative}
+.step .dot{width:39px;height:39px;border-radius:50%;background:var(--bg);border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink);position:relative}
+.step:hover .dot{background:var(--pop);color:var(--pop-text)}
+.step small{display:block;margin:20px 0 8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.step h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:27px;line-height:1.05;color:var(--h1);margin-bottom:10px}
+.step p{font-size:14px;line-height:1.6}
+/* impacto */
+.imp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ic{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:26px 26px 14px}
+.ic h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.irow{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);font-size:14px}
+.irow .b{color:var(--text);opacity:.6;text-decoration:line-through;text-decoration-color:var(--ink);font-family:var(--mono);font-size:12.5px}
+.irow .ar{color:var(--ink)}
+.irow .a{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--mark-text);background:linear-gradient(var(--pop),var(--pop)) 0 88%/100% 38% no-repeat;padding:0 4px}
+.inote{margin-top:24px;font-size:14.5px;line-height:1.65;max-width:74ch;padding-left:18px;border-left:2px solid var(--ink)}
+/* antes/despues */
+.ba-label-s{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin:56px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between}
+.ba-label-s:first-of-type{margin-top:0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.bp{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:16px 16px 20px}
+.bp.after{border-color:var(--ink)}
+.bp .lab{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--text);margin-bottom:14px}
+.bp.after .lab{background:var(--pop);color:var(--pop-text);border-color:var(--pop)}
+.bp .media{border-radius:8px;overflow:hidden;background:var(--bg);position:relative;border:1px solid var(--line)}
+.bp .media img,.bp .media video{display:block;width:100%;height:auto}
+.bp .media .ph-box{min-height:240px}
+.badge{position:absolute;right:10px;top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;background:var(--ink);color:var(--btn-text);padding:4px 9px;border-radius:99px}
+.bp ul{list-style:none;margin-top:16px}
+.bp li{position:relative;padding-left:18px;font-size:14px;line-height:1.55;margin-bottom:6px}
+.bp li::before{content:'';position:absolute;left:0;top:.8em;width:9px;height:1.5px;background:var(--ink)}
+/* aprendizajes */
+.refl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rf{border:1px solid var(--line);border-radius:12px;padding:26px;background:var(--card)}
+.rf svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.rf h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:26px;line-height:1.1;color:var(--h1);margin-bottom:10px}
+.rf p{font-size:14.5px;line-height:1.65}
+.quote{padding:110px 0;border-bottom:1px solid var(--line)}
+.quote p{font-family:var(--serif);font-style:italic;font-size:clamp(30px,4vw,58px);line-height:1.1;color:var(--h1);max-width:26ch;letter-spacing:-.01em}
+.quote small{display:block;margin-top:28px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+/* siguiente + footer */
+.next{display:block;padding:72px 0;border-bottom:1px solid var(--line);transition:background .3s}
+.next:hover{background:var(--card)}
+.next .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.next small{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:12px}
+.next b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(44px,6vw,96px);line-height:1;color:var(--h1)}
+.next .go{font-family:var(--serif);font-size:60px;color:var(--ink);transition:transform .3s}
+.next:hover .go{transform:translateX(10px)}
+footer{padding:36px 0;font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.06em;text-transform:uppercase}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer .fl{display:flex;gap:22px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:1000px){
+ .sec .wrap{grid-template-columns:1fr;gap:32px}.sec-title{position:static}
+ .meta{grid-template-columns:1fr 1fr}.meta div{border:0;margin:0;padding:14px 0}
+ .metrics .wrap{grid-template-columns:1fr 1fr}.metric{border:0;margin:0;padding:32px 12px 28px 0}
+ .dec,.imp{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr;gap:32px 0}.steps::before{display:none}
+ .ba{grid-template-columns:1fr}.refl{grid-template-columns:1fr}
+}
+@media(max-width:900px){.wrap{padding:0 20px}.links a:not(.lang){display:none}.diag{padding:0;border:0;background:none}.dstage{display:none}.dmobile{display:flex}.resumen{grid-template-columns:1fr}.rc:nth-child(odd){border-right:0;margin-right:0}.case-hero .top{padding-top:44px}.case-river{height:240px}.stone span{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}h1 em{background-size:100% 42%}}
+/* dark: el marcador se vuelve texto amarillo */
+[data-theme="dark"] h1 em,[data-theme="dark"] .metric b,[data-theme="dark"] .irow .a{background:none!important;color:var(--pop)}
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
-    .nav-logo{font-family:var(--font-display);font-size:17px;color:var(--text);text-decoration:none;}
-    .nav-logo em{font-style:italic;color:var(--coral-large);}
-    .nav-right{display:flex;align-items:center;gap:20px;}
-    .nav-back{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
-    .nav-back:hover{color:var(--text);}
-    .lang-btn{font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:4px;padding:5px 10px;text-decoration:none;font-weight:500;transition:all 0.2s;}
-    .lang-btn:hover{border-color:var(--coral-text);color:var(--coral-text);}
+/* ---- v8: orden visual ---- */
+.case-hero .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:stretch;padding-top:24px}
+.case-hero .top{padding:56px 0 48px}
+.case-hero .top .wrap{padding:0}
+.river-col{position:relative;display:flex;flex-direction:column;justify-content:center;padding:32px 0 8px}
+.river-col .case-river{height:min(520px,60vh);min-height:400px;border-radius:20px;border:1px solid var(--line);overflow:hidden;background:var(--card)}
+.river-col .case-river canvas{-webkit-mask-image:none;mask-image:none}
+.river-col .fig-cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink);margin-top:14px;text-align:right}
+.stone span{font-size:19px}
+.tip{bottom:auto!important;transform:translateY(-50%)!important;white-space:normal!important;width:max-content;max-width:min(230px,52%)!important;border-radius:10px!important;padding:9px 13px!important;line-height:1.45;font-size:11.5px!important;overflow:visible!important;z-index:5;background:var(--ink)!important;color:var(--btn-text)!important}
+.tip::before{content:'';position:absolute;top:50%;width:16px;height:1px;background:var(--ink)}
+.tip:not(.l)::before{right:100%}.tip.l::before{left:100%}
+.meta{margin-top:24px;border-top:1px solid var(--line);padding-top:8px}
+.metrics{margin-top:72px;background:var(--card);border-top:1px solid var(--line)}
+.metrics .wrap{gap:0}
+.metric{padding:56px 32px 52px 0!important;margin-right:32px;border-right:1px solid var(--line)!important}
+.metric:last-child{border-right:0!important}
+.metric b{margin-bottom:6px}
+.metric p{margin-top:16px;font-size:15px;color:var(--text);max-width:20ch}
+.sec{padding:120px 0}
+.sec-title h2{margin-top:10px}
+.hero-fig{margin:48px 0 0}
+.refl{gap:24px}
+.rf{padding:34px}
+.quote{padding:150px 0;background:var(--card)}
+.quote .wrap{max-width:980px}
+.quote p{font-size:clamp(38px,5.4vw,76px);line-height:1.06;max-width:16ch}
+.quote small{margin-top:36px}
+@media(max-width:900px){.case-hero .hero-grid{grid-template-columns:1fr;gap:8px}.river-col .case-river{min-height:340px;height:340px}.metrics{margin-top:40px}.metric{padding:36px 16px 32px 0!important;margin-right:0;border-right:0!important}.sec{padding:80px 0}.quote{padding:96px 0}}
+/* ---- v9: entradas de sección ---- */
+.sec{padding:136px 0}
+.sec .wrap{gap:56px}
+.sec-title .num{display:block;margin-bottom:22px}
+@media(min-width:1001px){.sec:not(.full) .wrap{gap:72px}}
+.metric b{white-space:nowrap;font-size:clamp(38px,4.3vw,64px)}
+/* ---- v13: lanzamiento y cita ---- */
+.irow.launch{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.irow.launch>span{align-self:center}
+.mini{display:flex;align-items:flex-end;gap:10px;height:76px}
+.mini i{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;height:100%;font-style:normal}
+.mini i::before{content:'';display:block;width:30px;height:calc(var(--h) - 28px);min-height:6px;background:var(--ink);opacity:.35;border-radius:4px 4px 0 0;order:1}
+.mini i.last::before{opacity:1;background:var(--pop);border:1px solid var(--ink)}
+.mini b{order:0;font-family:var(--serif);font-style:italic;font-weight:400;font-size:20px;line-height:1;color:var(--h1)}
+.mini em{order:2;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.quote{padding:84px 0}
+.quote .wrap{max-width:1000px}
+.quote p{font-size:clamp(34px,4.4vw,62px);line-height:1.1;max-width:24ch}
+.quote small{margin-top:26px}
+@media(max-width:900px){.quote{padding:64px 0}}
+.mini{height:112px;gap:14px}
+.mini i::before{height:var(--bh)!important;min-height:0;width:34px}
+.mini em{white-space:nowrap}
+.quote .wrap{max-width:1240px}
+/* ---- v14: fuente, causas ---- */
+.icnote{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.6;color:var(--text)}
+.isrc{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink)}
+.causes{margin-top:40px;padding:30px 32px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.causes h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+.causes ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:18px 32px}
+.causes li{position:relative;padding-left:22px;font-size:15px;line-height:1.55;color:var(--text)}
+.causes li::before{content:'→';position:absolute;left:0;color:var(--ink)}
+.causes p{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--h1)}
+@media(max-width:900px){.causes ul{grid-template-columns:1fr}.causes{padding:24px}}
+/* ---- v15: rol, arquitectura antes/después, reglas de negocio ---- */
+.role{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.rl{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--card)}
+.rl h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;line-height:1.1;color:var(--h1);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.rl ul{list-style:none}.rl li{position:relative;padding-left:20px;margin-bottom:12px;font-size:15px;line-height:1.55;color:var(--text)}
+.rl li::before{content:'';position:absolute;left:0;top:.75em;width:10px;height:1.5px;background:var(--ink)}
+.ba3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:20px;align-items:stretch}
+.ba3 .col{border-radius:16px;padding:28px;display:flex;flex-direction:column}
+.ba3 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.ba3 .col>p{font-size:14.5px;line-height:1.55;margin-bottom:22px}
+.ba3 .before{border:1.5px dashed var(--ink);background:transparent}
+.ba3 .before .tag{color:var(--ink)}.ba3 .before>p{color:var(--text)}
+.ba3 .mid{border:1px solid var(--line);background:var(--card)}
+.ba3 .mid .tag{color:var(--ink)}.ba3 .mid>p{color:var(--text)}
+.ba3 .after{background:var(--block);color:var(--on-block)}
+.ba3 .after .tag{color:var(--pop)}.ba3 .after>p{color:var(--on-block);opacity:.9}
+.ba3 .ng{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ba3 .an{border:1px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;font-size:13.5px;font-weight:500;color:var(--h1);background:var(--bg)}
+.ba3 .after .an{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:var(--on-block)}
+.ba3 .link{text-align:center;font-size:20px;line-height:1;padding:10px 0;color:var(--ink)}
+.ba3 .after .link{color:var(--pop)}
+.ba3 .hub{border-radius:10px;padding:14px;text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:var(--pop);color:#0A0F2E;font-weight:500}
+.ba3 .hub.gw{background:rgba(255,255,255,.14);color:var(--on-block)}
+.ba3 .hub.fe{background:transparent;border:1px solid rgba(255,255,255,.4);color:var(--on-block)}
+.ba3 ol{list-style:none;display:flex;flex-direction:column;gap:18px;flex:1}
+.ba3 ol li{display:grid;grid-template-columns:30px 1fr;gap:14px}
+.ba3 ol b{width:30px;height:30px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-weight:400;font-size:17px;color:var(--ink)}
+.ba3 h4{font-family:var(--serif);font-style:italic;font-weight:400;font-size:21px;color:var(--h1);margin-bottom:4px}
+.ba3 ol p{font-size:13.5px;line-height:1.5;color:var(--text)}
+.ba3 .formula{margin-top:22px;padding:14px 16px;border-radius:10px;background:var(--bg);border:1px solid var(--line);font-family:var(--mono);font-size:11.5px;line-height:1.6;letter-spacing:.03em;color:var(--ink);text-align:center}
+.chains{display:flex;flex-direction:column;gap:16px;margin-top:36px}
+.chain{display:grid;grid-template-columns:84px 1fr 28px 1fr 28px 1fr;align-items:stretch;gap:10px}
+.chain .lbl{align-self:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.chain .ar{align-self:center;text-align:center;font-size:20px;color:var(--ink)}
+.chain .cn{border:1px dashed var(--ink);border-radius:12px;padding:20px 18px;font-size:15px;line-height:1.45;color:var(--text);display:flex;align-items:center}
+.chain.a .cn{border:0;background:var(--block);color:var(--on-block)}
+.chain.a .cn:last-child{background:var(--pop);color:#0A0F2E;font-weight:500}
+@media(max-width:1000px){.role{grid-template-columns:1fr}.ba3{grid-template-columns:1fr}.chain{grid-template-columns:1fr}.chain .ar{transform:rotate(90deg)}.chain .lbl{margin-bottom:-4px}}
 
-    /* ACCENT STRIP */
-    .accent-strip{margin-top:57px;background:var(--yellow);border-top:1.5px solid var(--text);border-bottom:1.5px solid var(--text);padding:12px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
-    .strip-item{font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;}
-    .strip-dot{width:4px;height:4px;border-radius:50%;background:var(--coral-text);flex-shrink:0;}
+/* v16 — conflictos de reglas, decisión de disponibilidad, aprendizaje único */
+.confl{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.cf{border:1px dashed var(--ink);border-radius:14px;padding:26px 28px}
+.cf small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.cf p{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.25;color:var(--h1)}
+.cf p.sub{font-family:var(--sans,inherit);font-style:normal;font-size:14.5px;line-height:1.6;color:var(--text);margin-top:12px}
+.did{margin:20px 0 0;border-radius:14px;padding:26px 28px;background:var(--block);color:var(--on-block)}
+.did h3{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;color:var(--on-block);opacity:.8}
+.did ul{list-style:none}.did li{position:relative;padding-left:20px;margin-bottom:10px;font-size:16px;line-height:1.55}
+.did li:last-child{margin-bottom:0}.did li::before{content:'';position:absolute;left:0;top:.75em;width:10px;height:1.5px;background:var(--pop)}
+.chains{margin-top:28px}
+.avail{margin-top:48px}
+.avail h3{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.avail figure{margin:0 0 28px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.avail img{display:block;width:100%;height:auto}
+.avail figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#1A2BD1;padding:12px 18px;border-top:1px solid #dfe3f3;background:#f6f7fc}
+.refl.one{grid-template-columns:1fr}
+.refl.one .rf h3{font-size:32px}.refl.one .rf p{font-size:16px;max-width:70ch}
+@media(max-width:1000px){.confl{grid-template-columns:1fr}}
+.rule{margin-top:20px;border-left:3px solid var(--pop);padding:6px 0 6px 26px}
+.rule h3{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.rule>p{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.3;color:var(--h1);margin-bottom:14px;max-width:62ch}
+.rule ul{list-style:none}.rule li{position:relative;padding-left:20px;margin-bottom:8px;font-size:16px;line-height:1.55;color:var(--text)}
+.rule li::before{content:'';position:absolute;left:0;top:.75em;width:10px;height:1.5px;background:var(--ink)}
+.avail figure.narrow{max-width:640px;margin-left:auto;margin-right:auto;margin-bottom:28px}
+.uqs{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0 0}
+.uq{border-left:3px solid var(--ink);padding:6px 0 6px 22px;margin:0}
+.uq p{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--h1)}
+.uq cite{display:block;margin-top:12px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink)}
+.bp .media img{display:block;width:100%;height:auto}
+@media(max-width:1000px){.uqs{grid-template-columns:1fr}}
+/* v17 — style guide y componentes con scroll interno */
+.dsw{margin-top:48px}
+.dsh{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.dsgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;align-items:start}
+.scrollbox{max-height:560px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--card);-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--ink) transparent}
+.scrollbox img{display:block;width:100%;height:auto}
+.scrollbox.wide{max-height:520px}
+.hint{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink);margin-top:12px}
+.ph-note{padding:40px 20px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--ink)}
+.dstext{display:flex;flex-direction:column;gap:20px}
+.dscard{border:1px solid var(--line);border-radius:12px;padding:26px 28px;background:var(--card)}
+.dscard small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+.dscard p{font-size:15px;line-height:1.6;color:var(--text)}
+.tys{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;margin-top:20px;padding-top:18px;border-top:1px solid var(--line);color:var(--h1)}
+.tys .t1{font-size:30px;font-weight:700;line-height:1}.tys .t2{font-size:19px;font-weight:600}.tys .t3{font-size:14px}.tys .t4{font-size:11px;opacity:.8}
+@media(max-width:1000px){.dsgrid{grid-template-columns:1fr}.scrollbox{max-height:480px}}
+/* v18 — style guide 2400x1400 a ancho completo; componentes con scroll vertical */
+.scrollbox.sg{max-height:none;overflow-x:auto;overflow-y:hidden}
+.scrollbox.sg img{min-width:760px}
+.hint.mob{display:none}
+.dstext{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0 28px}
+@media(max-width:1000px){.hint.mob{display:block}.dstext{grid-template-columns:1fr}}
+.dsw,.scrollbox{min-width:0;max-width:100%}.sec .wrap>div{min-width:0}
 
-    /* PERSONAL PROJECT BADGE */
-    .personal-badge{display:inline-flex;align-items:center;gap:6px;background:var(--yellow-light);border:1px solid rgba(0,0,0,0.1);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:500;color:var(--text);letter-spacing:0.04em;margin-bottom:20px;}
-
-    /* CASE HERO */
-    .case-hero{padding:48px 56px 0;max-width:1100px;margin:0 auto;}
-    .case-hero-grid{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;padding-bottom:48px;border-bottom:1px solid var(--border);}
-    .case-eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
-    .case-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--coral-text);}
-    .case-title{font-family:var(--font-display);font-size:clamp(34px,4.5vw,54px);line-height:1.05;letter-spacing:-0.03em;color:var(--text);margin-bottom:20px;}
-    .case-title em{font-style:italic;color:var(--coral-large);}
-    .case-desc{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:24px;}
-    .focus-areas{display:flex;flex-direction:column;gap:8px;}
-    .focus-area{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;}
-    .focus-area::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--coral-text);flex-shrink:0;}
-    .hero-img{width:100%;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--border);background:var(--blue-light);display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;overflow:hidden;}
-    .hero-img img{width:100%;height:100%;object-fit:cover;border-radius:11px;display:block;}
-
-    /* META */
-    .case-meta{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-bottom:1px solid var(--border);}
-    .case-meta-item{display:flex;flex-direction:column;gap:5px;}
-    .case-meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--soft);}
-    .case-meta-value{font-size:14px;color:var(--text);font-weight:500;}
-
-    /* METRICS */
-    .metrics-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
-    .metric-cell{padding:36px 48px;border-right:1px solid var(--border);}
-    .metric-cell:last-child{border-right:none;}
-    .metric-num{font-family:var(--font-display);font-size:48px;line-height:1;margin-bottom:8px;letter-spacing:-0.03em;}
-    .metric-num.blue{color:var(--blue-text);}
-    .metric-num.coral{color:var(--coral-large);}
-    .metric-num.neutral{color:var(--text);}
-    .metric-desc{font-size:13px;color:var(--soft);line-height:1.5;}
-
-    /* BODY */
-    .case-body{max-width:1100px;margin:0 auto;padding:80px 56px;}
-    .body-section{margin-bottom:80px;}
-    .body-section:last-child{margin-bottom:0;}
-    .section-title{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:400;letter-spacing:-0.01em;color:var(--text);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
-    .section-title em{font-style:italic;color:var(--coral-large);}
-
-    /* IMAGE PLACEHOLDERS */
-    .img-ph{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:12px;letter-spacing:0.04em;}
-    .img-real{width:100%;border-radius:10px;border:1px solid var(--border);display:block;object-fit:cover;}
-    .img-caption{font-size:12px;color:var(--soft);margin-top:10px;text-align:center;letter-spacing:0.04em;}
-
-    /* WHY CLUE */
-    .why-text{font-size:16px;color:var(--muted);line-height:1.85;max-width:720px;font-weight:300;}
-    .why-text strong{color:var(--text);font-weight:500;}
-
-    /* CHALLENGE */
-    .challenge-grid{display:grid;grid-template-columns:1fr 280px;gap:40px;align-items:center;}
-    .challenge-list{display:flex;flex-direction:column;gap:14px;}
-    .challenge-item{font-size:15px;color:var(--muted);line-height:1.6;padding-left:20px;position:relative;}
-    .challenge-item::before{content:'·';position:absolute;left:0;color:var(--coral-text);font-size:20px;line-height:1.2;}
-
-    /* RESEARCH METHODS */
-    .methods-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;}
-    .method-card{background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px 24px;text-align:center;}
-    .method-num{font-family:var(--font-display);font-size:40px;color:var(--blue-text);line-height:1;margin-bottom:4px;}
-    .method-label{font-size:12px;color:var(--muted);}
-
-    /* FINDINGS */
-    .findings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .finding-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;}
-    .finding-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-    .finding-icon{width:8px;height:8px;background:var(--coral-text);transform:rotate(45deg);flex-shrink:0;}
-    .finding-title{font-size:16px;font-weight:600;color:var(--text);}
-    .finding-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-    .finding-item{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative;}
-    .finding-item::before{content:'·';position:absolute;left:0;color:var(--soft);}
-    .finding-quote{background:rgba(255,255,255,0.8);border:1.5px solid var(--border2);border-radius:8px;padding:14px 16px;margin-top:16px;}
-    .fq-text{font-size:13px;color:var(--text);font-style:italic;line-height:1.6;margin-bottom:8px;}
-    .fq-author{font-size:11px;font-weight:700;color:var(--text);letter-spacing:0.06em;background:var(--yellow);display:inline-block;padding:2px 10px;border-radius:3px;}
-
-    /* INSIGHT BLOCK */
-    .insight-block{background:var(--surface);border-left:4px solid var(--coral-large);border-radius:0 10px 10px 0;padding:36px 40px;}
-    .insight-label{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--coral-text);margin-bottom:16px;}
-    .insight-text{font-size:18px;color:var(--text);line-height:1.65;}
-    .insight-text strong{color:var(--coral-large);font-weight:600;}
-
-    /* MOSCOW */
-    .moscow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-    .moscow-card{border-radius:10px;padding:24px;border:1px solid var(--border);}
-    .moscow-card.must{background:#EEF3FF;border-color:rgba(42,99,217,0.2);}
-    .moscow-card.should{background:#F5F0FF;border-color:rgba(107,60,180,0.2);}
-    .moscow-card.could{background:var(--yellow-light);border-color:rgba(0,0,0,0.1);}
-    .moscow-card.wont{background:#FFF0ED;border-color:rgba(199,61,24,0.15);}
-    .moscow-badge{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px;display:inline-block;margin-bottom:12px;}
-    .moscow-card.must .moscow-badge{background:var(--blue-text);color:white;}
-    .moscow-card.should .moscow-badge{background:#6B3CB4;color:white;}
-    .moscow-card.could .moscow-badge{background:#B8960A;color:white;}
-    .moscow-card.wont .moscow-badge{background:var(--coral-text);color:white;}
-    .moscow-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:12px;}
-    .moscow-items{display:flex;flex-direction:column;gap:8px;}
-    .moscow-item{font-size:12.5px;color:var(--muted);line-height:1.5;padding-left:12px;position:relative;}
-    .moscow-item::before{content:'·';position:absolute;left:0;}
-
-    /* TESTING TASKS */
-    .testing-intro{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;}
-    .testing-intro strong{color:var(--text);font-weight:500;}
-    .tasks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
-    .task-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;}
-    .task-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-text);margin-bottom:14px;}
-    .task-items{display:flex;flex-direction:column;gap:8px;}
-    .task-item{font-size:13.5px;color:var(--muted);line-height:1.55;padding-left:14px;position:relative;}
-    .task-item::before{content:'·';position:absolute;left:0;color:var(--blue-text);}
-    .usability-row{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-    .usability-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin-right:8px;}
-    .usability-score{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;}
-    .score-green{background:#2A9B7A;}
-    .score-red{background:var(--coral-text);}
-
-    /* RESULTS */
-    .result-section{margin-bottom:48px;}
-    .result-section-title{font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--soft);margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-    .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
-    .result-annotations{display:flex;flex-direction:column;gap:16px;}
-    .annotation{font-size:13.5px;color:var(--muted);line-height:1.6;padding:14px 16px;background:var(--surface);border-radius:8px;border-left:3px solid var(--blue-text);}
-
-    /* UI KIT */
-    .uikit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-    .uikit-section-title{font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;}
-
-    /* COLOR SWATCHES */
-    .color-swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-    .color-swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border);}
-    .swatch-color{height:64px;}
-    .swatch-info{padding:8px 10px;background:white;}
-    .swatch-name{font-size:11px;color:var(--muted);}
-    .swatch-hex{font-size:11px;font-weight:500;color:var(--text);}
-
-    /* QUOTE CLOSE */
-    .closing-quote{text-align:center;padding:64px 48px;background:var(--surface);border-radius:12px;}
-    .closing-quote-text{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-style:italic;color:var(--coral-large);line-height:1.5;margin-bottom:12px;}
-    .closing-quote-attr{font-size:13px;color:var(--soft);}
-
-    /* FOOTER */
-    .case-footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
-    .footer-left{display:flex;flex-direction:column;gap:3px;}
-    .footer-name{font-family:var(--font-display);font-size:14px;color:var(--soft);}
-    .footer-credit{font-size:11px;color:rgba(0,0,0,0.2);}
-    .footer-links{display:flex;gap:20px;}
-    .footer-links a{font-size:11px;color:var(--soft);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-    .footer-links a:hover{color:var(--coral-text);}
-
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
-    .reveal.visible{opacity:1;transform:translateY(0);}
-
-    @media(max-width:768px){
-      nav{padding:14px 24px;}
-      .case-hero{padding:32px 24px 0;}
-      .case-hero-grid{grid-template-columns:1fr;gap:32px;}
-      .case-body{padding:48px 24px;}
-      .metrics-inner{grid-template-columns:repeat(2,1fr);}
-      .metrics-inner .metric-cell:nth-child(2){border-right:none;}
-      .findings-grid{grid-template-columns:1fr;}
-      .moscow-grid{grid-template-columns:1fr 1fr;}
-      .tasks-grid{grid-template-columns:1fr;}
-      .result-grid{grid-template-columns:1fr;}
-      .uikit-grid{grid-template-columns:1fr;}
-      .challenge-grid{grid-template-columns:1fr;}
-      .methods-strip{grid-template-columns:1fr 1fr;}
-      .case-footer{flex-direction:column;gap:14px;padding:32px 24px;text-align:center;}
-      .accent-strip{padding:12px 24px;}
-    }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">Melany <em>Olivares</em></a>
-  <div class="nav-right">
-    <a href="index.html" class="nav-back">← Volver al inicio</a>
-    <a href="clue-en.html" class="lang-btn">EN</a>
-  </div>
-</nav>
-
-<!-- ACCENT STRIP -->
-<div class="accent-strip">
-  <span class="strip-item">Clue · Period & Ovulation Tracker</span>
-  <div class="strip-dot"></div>
-  <span class="strip-item">UX/UI Designer</span>
-  <div class="strip-dot"></div>
-  <span class="strip-item">Sep – Nov 2023</span>
-  <div class="strip-dot"></div>
-  <span class="strip-item">Proyecto personal</span>
-  <div class="strip-dot"></div>
-  <span class="strip-item">UX Research · Design Thinking</span>
-</div>
-
-<!-- HERO -->
-<div class="case-hero">
-  <div class="case-hero-grid">
-    <div>
-      <div class="personal-badge">✦ Proyecto personal</div>
-      <div class="case-eyebrow">Clue · Mobile Health · 2023</div>
-      <h1 class="case-title">Lo que los datos no mostraban:<br><em>UX research en Clue.</em></h1>
-      <p class="case-desc">Caso de estudio de la versión en español de Clue — la app de seguimiento menstrual y de ovulación más descargada del mundo. Exploramos la experiencia de la app identificando mejoras a través de testing exhaustivo en 3 áreas clave.</p>
-      <div class="focus-areas">
-        <div class="focus-area">Registro · Onboarding</div>
-        <div class="focus-area">Home · Pantalla de inicio</div>
-        <div class="focus-area">Seguimiento</div>
-      </div>
-    </div>
-    <div class="hero-img">
-      <img src="images/clue-hero.png" alt="Clue case study hero"
-           onerror="this.style.display='none';this.parentElement.textContent='clue-hero.png'"/>
-    </div>
-  </div>
-  <div class="case-meta">
-    <div class="case-meta-item"><span class="case-meta-label">Duración</span><span class="case-meta-value">4 sprints</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Equipo</span><span class="case-meta-value">2 Diseñadoras UX/UI</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Metodología</span><span class="case-meta-value">Design Thinking</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Tipo</span><span class="case-meta-value">Proyecto personal</span></div>
-    <div class="case-meta-item"><span class="case-meta-label">Mi rol</span><span class="case-meta-value">UX/UI Designer</span></div>
-  </div>
-</div>
-
-<!-- METRICS -->
-<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="metrics-inner">
-    <div class="metric-cell"><div class="metric-num blue">29</div><div class="metric-desc">Usuarios testeados vía Maze</div></div>
-    <div class="metric-cell"><div class="metric-num blue">14</div><div class="metric-desc">Respuestas de formularios</div></div>
-    <div class="metric-cell"><div class="metric-num coral">5</div><div class="metric-desc">Empresas en benchmark</div></div>
-    <div class="metric-cell" style="border-right:none"><div class="metric-num neutral">9</div><div class="metric-desc">Usuarios en testing moderado</div></div>
-  </div>
-</div>
-
-<!-- BODY -->
-<div class="case-body">
-
-  <!-- WHY CLUE -->
-  <div class="body-section reveal">
-    <div class="section-title">¿Por qué Clue?</div>
-    <p class="why-text">
-      Exploramos el caso UX de Clue, la app de seguimiento del ciclo menstrual aclamada a nivel mundial. Como la app más descargada y mejor valorada en su categoría, Clue es un referente en diseño centrado en el usuario, transformando la forma en que las mujeres gestionan su salud reproductiva.<br><br>
-      Este estudio surge de nuestra decisión de mejorar la UI de Clue en su versión en español, en línea con nuestra misión de promover la salud femenina. El análisis no solo destaca mejoras técnicas, sino que <strong>enfatiza el rol de la app en proveer herramientas accesibles y amigables para que las mujeres puedan monitorear aspectos clave de su bienestar.</strong>
-    </p>
-  </div>
-
-  <!-- THE CHALLENGE -->
-  <div class="body-section reveal">
-    <div class="section-title">El desafío</div>
-    <div class="challenge-grid">
-      <div>
-        <div class="challenge-list">
-          <div class="challenge-item">Identificar posibles mejoras en la app Clue a través de testing, con foco en 3 áreas específicas: <strong>Registro-Onboarding, Pantalla de inicio y Seguimiento.</strong></div>
-          <div class="challenge-item">Desarrollar propuestas de mejora que generen una experiencia de usuario más clara y satisfactoria.</div>
-          <div class="challenge-item">Crear prototipos interactivos evaluados a través de pruebas con usuarios reales.</div>
-        </div>
-        <div style="margin-top:32px;">
-          <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:16px;">¿Cómo llegamos a conocer a nuestras usuarias?</div>
-          <div class="methods-strip">
-            <div class="method-card"><div class="method-num">9</div><div class="method-label">Tests moderados</div></div>
-            <div class="method-card"><div class="method-num">14</div><div class="method-label">Formularios a usuarias</div></div>
-            <div class="method-card"><div class="method-num">5</div><div class="method-label">Empresas en benchmark</div></div>
-            <div class="method-card"><div class="method-num">29</div><div class="method-label">Pruebas con usuarias</div></div>
-          </div>
-        </div>
-      </div>
-      <div style="max-width:280px;"><img src="images/clue-challenge.png" alt="Clue challenge" style="width:100%;border-radius:10px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:1;display:none;"><span>clue-challenge.png<br>480 × 480px</span></div></div>
-    </div>
-  </div>
-
-  <!-- FINDINGS -->
-  <div class="body-section reveal">
-    <div class="section-title">Hallazgos</div>
-    <div class="findings-grid">
-      <div class="finding-card">
-        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Onboarding</div></div>
-        <div class="finding-list">
-          <div class="finding-item">El registro fue valorado como sencillo por las nuevas usuarias.</div>
-          <div class="finding-item">Consideran que los pasos para registrarse son suficientes y que cuentan con la información necesaria para conectarse.</div>
-          <div class="finding-item">Encuentran el diseño simple y efectivo.</div>
-        </div>
-        <div class="finding-quote">
-          <div class="fq-text">"Me parece un diseño muy sobrio casi sin identidad"</div>
-          <div class="fq-author">CLAUDIA, 36</div>
-        </div>
-      </div>
-      <div class="finding-card">
-        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Pantalla de inicio</div></div>
-        <div class="finding-list">
-          <div class="finding-item">Las usuarias valoran el lenguaje inclusivo y neutral de la app, que les genera confianza.</div>
-          <div class="finding-item">Sugieren agregar alertas del ciclo para mejorar la funcionalidad.</div>
-          <div class="finding-item">Prefieren concentrar toda la información del ciclo en una sola pantalla para mayor comodidad.</div>
-          <div class="finding-item">Algunas usuarias no distinguen claramente entre las funciones de calendario y las de analítica.</div>
-        </div>
-        <div class="finding-quote">
-          <div class="fq-text">"Siento que tengo la información pero no la forma de recordarla"</div>
-          <div class="fq-author">CANDY, 24</div>
-        </div>
-      </div>
-      <div class="finding-card">
-        <div class="finding-header"><div class="finding-icon"></div><div class="finding-title">Seguimiento</div></div>
-        <div class="finding-list">
-          <div class="finding-item">Las usuarias encuentran confuso el seguimiento porque algunos íconos y colores son muy similares entre sí.</div>
-          <div class="finding-item">Algunos botones interfieren con el flujo para guardar el seguimiento.</div>
-        </div>
-        <div class="finding-quote">
-          <div class="fq-text">"Me es confuso el uso variado de colores y cómo puedo agregar mis síntomas"</div>
-          <div class="fq-author">SARA, 28</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- INSIGHT -->
-  <div class="body-section reveal">
-    <div class="section-title">Insight principal</div>
-    <div class="insight-block">
-      <div class="insight-label">Insight principal</div>
-      <p class="insight-text">
-        La app Clue es útil, intuitiva y tiene una interfaz simple. Sin embargo, <strong>se siente distante porque su storytelling y tono priorizan el aspecto reproductivo del ciclo.</strong> Esto contrasta con la manera en que las usuarias realmente la usan — <strong>como una herramienta de autoconocimiento y como fuente de información para sus consultas médicas.</strong>
-      </p>
-    </div>
-  </div>
-
-  <!-- DESIGN PHASE — MOSCOW -->
-  <div class="body-section reveal">
-    <div class="section-title">Fase de diseño — <em>Priorización MoSCoW</em></div>
-    <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;">Tras la fase de descubrimiento, priorizamos las ideas utilizando la metodología MoSCoW.</p>
-    <div class="moscow-grid">
-      <div class="moscow-card must">
-        <div class="moscow-badge">Mo · Debe tener</div>
-        <div class="moscow-items">
-          <div class="moscow-item">Armonizar fuentes, tamaños de letra, números e íconos.</div>
-          <div class="moscow-item">Reforzar y mejorar el UX writing.</div>
-          <div class="moscow-item">Integrar análisis en la pantalla de inicio.</div>
-          <div class="moscow-item">Agregar recordatorios en la barra inferior.</div>
-          <div class="moscow-item">Incorporar íconos clave para mejorar la calidad de la información disponible para las usuarias.</div>
-          <div class="moscow-item">Añadir valor a la invitación de suscripción premium.</div>
-        </div>
-      </div>
-      <div class="moscow-card should">
-        <div class="moscow-badge">S · Debería tener</div>
-        <div class="moscow-items">
-          <div class="moscow-item">Incorporar estratégicamente el logo y el slogan en ciertas pantallas.</div>
-          <div class="moscow-item">Modificar los colores del gráfico de 'ciclo' en la pantalla de inicio.</div>
-          <div class="moscow-item">Ajustar la paleta de colores del calendario.</div>
-        </div>
-      </div>
-      <div class="moscow-card could">
-        <div class="moscow-badge">Co · Podría tener</div>
-        <div class="moscow-items">
-          <div class="moscow-item">Integrar un ícono en el onboarding para la pregunta '¿Qué quieres hacer?'</div>
-        </div>
-      </div>
-      <div class="moscow-card wont">
-        <div class="moscow-badge">W · No tendrá</div>
-        <div class="moscow-items">
-          <div class="moscow-item">Implementar un foro de discusión para el intercambio de ideas entre usuarias.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROTOTYPING -->
-  <div class="body-section reveal">
-    <div class="section-title">Prototipado</div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;margin-bottom:24px;">
-      <div style="font-size:16px;font-style:italic;color:var(--coral-large);font-family:var(--font-display);margin-bottom:16px;">"En este proyecto, el UX no se trata solo de simplificar el proceso; se trata de inspirar confianza y control sobre el propio cuerpo."</div>
-      <div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px;">Primeros bocetos</div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.7;">Después de plasmar nuestras ideas en papel y comenzar a crear wireframes de mediana fidelidad, realizamos testing a través de Maze para recolectar datos cualitativos sobre nuestras propuestas, midiendo los siguientes KPIs:</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
-      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">⏱</span><span style="font-size:14px;font-weight:500;color:var(--text);">Reducir el tiempo por tarea</span></div>
-      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">✓</span><span style="font-size:14px;font-weight:500;color:var(--text);">Aumentar la tasa de éxito</span></div>
-      <div style="background:var(--blue-light);border:1px solid rgba(42,99,217,0.12);border-radius:10px;padding:20px;display:flex;align-items:center;gap:12px;"><span style="font-size:20px;">↓</span><span style="font-size:14px;font-weight:500;color:var(--text);">Reducir la tasa de error</span></div>
-    </div>
-    <img src="images/clue-sketches.png" alt="Clue first sketches" style="width:100%;border-radius:10px;display:block;margin-bottom:8px;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:16/7;margin-bottom:8px;display:none;"><span>clue-sketches.png</span></div>
-    <p class="img-caption">Primeros bocetos — wireframes de baja fidelidad para los 3 flujos principales</p>
-    <div style="margin-top:24px;"><img src="images/clue-wireframes.png" alt="Clue mid-fi wireframes" style="width:100%;border-radius:10px;display:block;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:16/9;display:none;"><span>clue-wireframes.png</span></div></div>
-    <p class="img-caption">Wireframes de mediana fidelidad — iterados para testing en Maze</p>
-  </div>
-
-  <!-- TESTING & ITERATION -->
-  <div class="body-section reveal">
-    <div class="section-title">Testing e iteración</div>
-    <p class="testing-intro"><strong>Resultados del testing con 29 usuarias a través de la plataforma Maze.</strong></p>
-    <div class="tasks-grid">
-      <div class="task-card">
-        <div class="task-label">Tarea 1</div>
-        <div class="task-items">
-          <div class="task-item">El 80% de las usuarias completó la tarea.</div>
-          <div class="task-item">5.7 segundos en total para completar el flujo.</div>
-          <div class="task-item">1.3% de tasa promedio de error de clics.</div>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-label">Tarea 2</div>
-        <div class="task-items">
-          <div class="task-item">El 60% de las usuarias completó la tarea.</div>
-          <div class="task-item">25 segundos en total para completar el flujo.</div>
-          <div class="task-item">50.1% de tasa promedio de error de clics.</div>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-label">Tarea 3</div>
-        <div class="task-items">
-          <div class="task-item">El 70% de las usuarias NO completó la tarea.</div>
-          <div class="task-item">91 segundos en total para completar el flujo.</div>
-          <div class="task-item">57% de tasa promedio de error de clics.</div>
-          <div class="task-item">60% de tasa de abandono.</div>
-        </div>
-      </div>
-    </div>
-    <div class="usability-row">
-      <span class="usability-label">Puntuación de usabilidad</span>
-      <div class="usability-score score-green">80</div>
-      <div class="usability-score score-red">0</div>
-      <div class="usability-score score-green">100</div>
-      <div class="usability-score score-green">100</div>
-      <div class="usability-score score-green">100</div>
-      <div class="usability-score score-green">100</div>
-      <div class="usability-score score-red">0</div>
-    </div>
-  </div>
-
-  <!-- RESULTS -->
-  <div class="body-section reveal">
-    <div class="section-title">Resultados — <em>Prototipo final</em></div>
-
-    <div class="result-section">
-      <div class="result-section-title">Onboarding</div>
-      <div class="result-grid">
-        <img src="images/clue-result-onboarding.png" alt="Clue onboarding result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-onboarding.png</span></div>
-        <div class="result-annotations">
-          <div class="annotation">Mejoramos la legibilidad de las cards del home a través de un diseño simplificado.</div>
-          <div class="annotation">Revisamos los textos del onboarding para mejorar su claridad.</div>
-          <div class="annotation">Optimizamos el tamaño de los botones para reducir la competencia visual con la información en pantalla.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="result-section">
-      <div class="result-section-title">Pantalla de inicio</div>
-      <div class="result-grid">
-        <img src="images/clue-result-startscreen.png" alt="Clue start screen result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-startscreen.png</span></div>
-        <div class="result-annotations">
-          <div class="annotation">Invitación a Plus con información relevante integrada en contexto.</div>
-          <div class="annotation">Creamos un ícono intuitivo para acceder a la cuenta de usuario.</div>
-          <div class="annotation">Opción para cambiar manualmente el modo de la app desde la pantalla de inicio.</div>
-          <div class="annotation">Una sola pantalla con toda la información clave sobre el período.</div>
-          <div class="annotation">Rediseño del ícono de ciclo + Alertas en la barra principal.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="result-section">
-      <div class="result-section-title">Pantalla de seguimiento</div>
-      <div class="result-grid">
-        <img src="images/clue-result-tracking.png" alt="Clue tracking result" style="max-width:320px;width:100%;border-radius:10px;display:block;margin:0 auto;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:9/16;max-width:320px;margin:0 auto;display:none;"><span>clue-result-tracking.png</span></div>
-        <div class="result-annotations">
-          <div class="annotation">Separamos el botón de personalización de síntomas para destacarlo visualmente.</div>
-          <div class="annotation">Usar diferentes pesos tipográficos ayuda a distinguir y destacar fechas importantes para la usuaria.</div>
-          <div class="annotation">Mejoramos la legibilidad de los íconos y agregamos una categorización por color adecuada.</div>
-          <div class="annotation">Mejoramos el tamaño de los botones para evitar competencia visual con la información en pantalla.</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:32px;">
-      <a href="#" style="display:inline-block;background:var(--text);color:var(--bg);padding:14px 32px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.04em;">PROTOTIPO — Ver el prototipo completo en Figma ↗</a>
-    </div>
-  </div>
-
-  <!-- UI KIT -->
-  <div class="body-section reveal">
-    <div class="section-title">UI Kit</div>
-    <div class="uikit-grid">
-      <div>
-        <div class="uikit-section-title">Paleta de color</div>
-        <div class="color-swatches">
-          <div class="color-swatch"><div class="swatch-color" style="background:#225270;"></div><div class="swatch-info"><div class="swatch-name">Blue primary</div><div class="swatch-hex">#225270</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#3B8EA5;"></div><div class="swatch-info"><div class="swatch-name">Blue secondary</div><div class="swatch-hex">#3B8EA5</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#B8D4DD;"></div><div class="swatch-info"><div class="swatch-name">Blue light</div><div class="swatch-hex">#B8D4DD</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#D4848A;"></div><div class="swatch-info"><div class="swatch-name">Pink accent</div><div class="swatch-hex">#D4848A</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#F0F0F0;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-name">Light gray</div><div class="swatch-hex">#F0F0F0</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.08);"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#1A1A1A;"></div><div class="swatch-info"><div class="swatch-name">Dark</div><div class="swatch-hex">#1A1A1A</div></div></div>
-          <div class="color-swatch"><div class="swatch-color" style="background:#2D2D2D;"></div><div class="swatch-info"><div class="swatch-name">Dark 2</div><div class="swatch-hex">#2D2D2D</div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="uikit-section-title">Tipografía: Commons</div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:20px;">
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="font-size:24px;color:var(--text);">T1-ABCDEFGHIJK1234</div>
-            <div style="font-size:18px;color:var(--text);">T2-ABCDEFGHIJK1234</div>
-            <div style="font-size:14px;color:var(--text);">T3-ABCDEFGHIJK1234</div>
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Header-ABCDEFGHIJK1234</div>
-            <div style="font-size:13px;color:var(--muted);">Body-ABCDEFGHIJK1234</div>
-            <div style="font-size:11px;color:var(--soft);">Call out: ABCDEFGHIJK1234</div>
-            <div style="font-size:13px;font-weight:700;color:var(--text);">Sub-headline- ABCDEFGHIJK1234</div>
-          </div>
-        </div>
-        <div class="uikit-section-title">Ilustraciones y UI Kit</div>
-        <img src="images/clue-uikit.png" alt="Clue UI Kit" style="width:100%;border-radius:10px;display:block;border:1px solid var(--border);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="img-ph" style="aspect-ratio:4/3;display:none;"><span>clue-uikit.png</span></div>
-      </div>
-    </div>
-    <div style="margin-top:24px;">
-      <div class="uikit-section-title">Elementos interactivos</div>
-      <div style="height:560px;overflow-y:auto;border-radius:10px;border:1px solid var(--border);background:var(--surface);">
-        <img src="images/clue-interactive.png" alt="Clue interactive elements"
-             style="width:100%;display:block;border-radius:10px;"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="img-ph" style="height:560px;display:none;"><span>clue-interactive.png<br>1200px de ancho, altura libre</span></div>
-      </div>
-      <p class="img-caption">Scroll para ver todos los elementos interactivos</p>
-    </div>
-  </div>
-
-  <!-- CLOSING QUOTE -->
-  <div class="body-section reveal">
-    <div class="closing-quote">
-      <div class="closing-quote-text">"La iteración en diseño trae resultados poderosos"</div>
-      <div class="closing-quote-attr">— Interactive Design Foundation</div>
-    </div>
-  </div>
-
-</div>
-
-<footer class="case-footer">
-  <div class="footer-left">
-    <div class="footer-name">Melany Olivares — 2026</div>
-    <div class="footer-credit">Hecho con código y Claude ✦ Leipzig, DE</div>
-  </div>
-  <div class="footer-links">
-    <a href="index.html">← Inicio</a>
-    <a href="https://www.behance.net/mitzyolivares" target="_blank">Behance ↗</a>
-    <a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank">LinkedIn ↗</a>
-  </div>
-</footer>
-
-<script>
-const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-</body>
-</html>
+.role.four{grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.role.four{grid-template-columns:1fr}}
+.avail figure video{background:#000}
+.avail .rule{margin:-8px 0 28px}
+.avail figcaption{color:var(--ink)}
+.confl+.dec{margin-top:20px}
+.dec+.uqs,.confl+.uqs{margin-top:32px}
+.uqs+.did{margin-top:32px}
+</style></head><body>
+<a class="skip" href="#main">Saltar al contenido</a><div class="progress"></div>
+<nav><div class="wrap"><a href="index.html" class="logo">Melany Olivares</a><div class="links"><a href="index.html">← Volver al inicio</a><a href="clue-en.html" class="lang">EN</a><button class="theme" id="theme" aria-label="Cambiar tema claro/oscuro" title="Cambiar tema claro/oscuro">◐</button></div></div></nav>
+<main id="main">
+<header class="case-hero"><div class="wrap hero-grid"><div class="top"><p class="eyebrow">Clue · Caso de estudio · App de salud · Sep – Nov 2023</p><h1>Una app útil que se sentía <em>distante.</em></h1><p class="lede">Caso de estudio propio sobre la versión en español de Clue. Contrasté lo que la app prioriza con cómo la usan sus usuarias y revisé las conclusiones con una lead designer del primer equipo de diseño de Clue.</p></div>
+<div class="river-col"><div class="case-river" data-angle="0.02" data-wave="0.5" data-density="520" aria-label="Cada piedra es una métrica del caso."><canvas aria-hidden="true"></canvas><button class="stone" data-x="0.28" data-y="0.16" data-r="0.026" data-tip="Usuarias en pruebas no moderadas (Maze)"><span>29</span></button><button class="stone" data-x="0.7" data-y="0.38" data-r="0.026" data-tip="Puntuación de usabilidad del prototipo"><span>80/100</span></button><button class="stone" data-x="0.3" data-y="0.6" data-r="0.026" data-tip="Tests moderados"><span>9</span></button><button class="stone" data-x="0.68" data-y="0.78" data-r="0.026" data-tip="Empresas en el benchmark"><span>5</span></button><div class="tip"></div></div><p class="fig-cap">Cada piedra es una métrica del caso.</p></div></div>
+<div class="wrap"><div class="meta"><div><small>Tipo</small><span>Caso de estudio propio</span></div><div><small>Duración</small><span>4 sprints · Sep – Nov 2023</span></div><div><small>Equipo</small><span>2 diseñadoras UX/UI, en par</span></div><div><small>Metodología</small><span>Design Thinking</span></div><div><small>Mi rol</small><span>UX/UI Designer — research, síntesis y prototipo</span></div></div></div></header>
+<section class="metrics"><div class="wrap"><div class="metric"><b>29</b><p>Usuarias en pruebas no moderadas (Maze)</p></div><div class="metric"><b>80/100</b><p>Puntuación de usabilidad del prototipo</p></div><div class="metric"><b>9</b><p>Tests moderados</p></div><div class="metric"><b>5</b><p>Empresas en el benchmark</p></div></div></section>
+<section class="sec reveal"><div class="wrap"><div class="sec-title"><span class="num">01</span><h2>Contexto</h2></div><div><p class="prose">Clue es una de las apps de seguimiento menstrual más conocidas. Elegimos su versión en español para un caso de estudio propio: sin cliente ni brief, definimos nosotras el alcance en tres áreas — registro y onboarding, pantalla de inicio y seguimiento.<br/><br/>Sin equipo de producto, la parte difícil era decidir qué problema valía la pena resolver. Por eso cruzamos cuatro fuentes antes de dibujar nada: 9 tests moderados, 14 formularios, un benchmark de 5 empresas y pruebas con 29 usuarias. Al final contrastamos las conclusiones con alguien que trabajó dentro de Clue.</p><figure class="frame hero-fig"><img src="images/clue-hero.png" alt="Clue" loading="lazy" onerror="this.closest('figure').remove()"></figure></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">02</span><h2>Mi rol<em>research, síntesis y alcance</em></h2></div><div><p class="prose">Fuimos dos diseñadoras trabajando en par durante cuatro sprints. Al no haber equipo de producto, también hicimos ese trabajo: definir el alcance, decidir qué priorizar y qué dejar fuera.</p><div class="role "><div class="rl"><h3>Research</h3><ul><li>9 tests moderados y 14 formularios</li><li>Benchmark de 5 empresas</li><li>Pruebas no moderadas con 29 usuarias en Maze</li></ul></div><div class="rl"><h3>Síntesis y priorización</h3><ul><li>Hallazgos por área: onboarding, inicio y seguimiento</li><li>Un insight principal que ordenó el trabajo</li><li>Priorización con MoSCoW</li></ul></div><div class="rl"><h3>Prototipo y contraste</h3><ul><li>Bocetos, wireframes y prototipo, con KPIs definidos de antemano</li><li>Iteración con los resultados de Maze</li><li>Revisión con una lead designer de Clue</li></ul></div></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">03</span><h2>El cuello de botella<em>la app hablaba de otra cosa</em></h2></div><div><p class="prose">La app funcionaba: el registro era sencillo y su lenguaje inclusivo generaba confianza. El problema no estaba en una pantalla, sino en de qué hablaba el producto.</p><div class="confl"><div class="cf"><small>Lo que la app prioriza</small><p>Un storytelling y un tono centrados en el aspecto reproductivo del ciclo.</p><p class="sub">Ese es el lado del ciclo hacia el que empuja el tono de la app.</p></div><div class="cf"><small>Cómo la usan las usuarias</small><p>Como herramienta de autoconocimiento y fuente de información para sus consultas médicas.</p><p class="sub">Para eso necesitan recordar, distinguir y registrar con claridad.</p></div></div><div class="dec"><div class="dc"><div class="n">01</div><h3>Onboarding</h3><p>Registro sencillo, pero un diseño “casi sin identidad”.</p></div><div class="dc"><div class="n">02</div><h3>Pantalla de inicio</h3><p>Confianza por el lenguaje inclusivo; confusión entre calendario y analítica.</p></div><div class="dc"><div class="n">03</div><h3>Seguimiento</h3><p>Íconos y colores muy parecidos, y botones que estorban al guardar.</p></div></div><div class="uqs"><blockquote class="uq"><p>“Me parece un diseño muy sobrio casi sin identidad”</p><cite>Claudia, 36</cite></blockquote><blockquote class="uq"><p>“Siento que tengo la información pero no la forma de recordarla”</p><cite>Candy, 24</cite></blockquote><blockquote class="uq"><p>“Me es confuso el uso variado de colores y cómo puedo agregar mis síntomas”</p><cite>Sara, 28</cite></blockquote></div><div class="did"><h3>Lo que hice</h3><ul><li>Organicé los hallazgos por área y los reduje a un insight principal: la app es útil e intuitiva, pero se siente distante.</li><li>Con mi compañera definimos los KPIs antes de prototipar: tiempo por tarea, tasa de éxito y tasa de error.</li></ul></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">04</span><h2>Decisiones<em>qué entra y qué se queda fuera</em></h2></div><div><p class="prose">Priorizamos con MoSCoW. La decisión más importante no fue lo que sumamos, sino lo que dejamos fuera.</p><div class="dec"><div class="dc"><div class="n">01</div><h3>Primero consistencia, después funciones</h3><p>Lo “debe tener” fue armonizar fuentes, tamaños, números e íconos y reforzar el UX writing, antes de agregar algo nuevo.</p></div><div class="dc"><div class="n">02</div><h3>Llevar el análisis al inicio</h3><p>Analítica en la pantalla de inicio y recordatorios en la barra inferior, para que la usuaria pueda recordar y entender sus datos.</p></div><div class="dc"><div class="n">03</div><h3>No construir el foro</h3><p>Un foro entre usuarias quedó en “No tendrá”: era otra apuesta de producto, y el research apuntaba a claridad y autoconocimiento.</p></div></div><div style="height:28px"></div><div class="role four"><div class="rl"><h3>Debe tener</h3><ul><li>Armonizar fuentes, tamaños, números e íconos</li><li>Reforzar el UX writing</li><li>Integrar analítica en la pantalla de inicio</li><li>Recordatorios en la barra inferior</li><li>Íconos clave para mejorar la información</li><li>Más valor en la invitación a Plus</li></ul></div><div class="rl"><h3>Debería tener</h3><ul><li>Logo y slogan en ciertas pantallas</li><li>Colores del gráfico de ciclo</li><li>Paleta del calendario</li></ul></div><div class="rl"><h3>Podría tener</h3><ul><li>Ícono en la pregunta “¿Qué quieres hacer?” del onboarding</li></ul></div><div class="rl"><h3>No tendrá</h3><ul><li>Foro de discusión entre usuarias</li></ul></div></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">05</span><h2>Pruebas<em>qué funcionó y qué no</em></h2></div><div><p class="prose">Probamos el prototipo con 29 usuarias en Maze: tres tareas y tres KPIs — tiempo, éxito y error. La puntuación de usabilidad fue de 80/100.</p><div class="imp"><div class="ic"><h3>Tarea 1</h3><div class="irow launch"><span>Completaron</span><span class="a">80%</span></div><div class="irow launch"><span>Tiempo total</span><span class="a">5.7 s</span></div><div class="irow launch"><span>Error de clics</span><span class="a">1.3%</span></div></div><div class="ic"><h3>Tarea 2</h3><div class="irow launch"><span>Completaron</span><span class="a">60%</span></div><div class="irow launch"><span>Tiempo total</span><span class="a">25 s</span></div><div class="irow launch"><span>Error de clics</span><span class="a">50.1%</span></div></div><div class="ic"><h3>Tarea 3</h3><div class="irow launch"><span>No completaron</span><span class="a">70%</span></div><div class="irow launch"><span>Tiempo total</span><span class="a">91 s</span></div><div class="irow launch"><span>Error de clics</span><span class="a">57%</span></div><div class="irow launch"><span>Abandono</span><span class="a">60%</span></div></div></div><p class="isrc">Fuente: pruebas no moderadas en Maze con 29 usuarias, sobre el prototipo.</p><div class="rule"><h3>Lo que dijeron los datos</h3><p>La tarea 3 fue el punto débil.</p><ul><li>El 70% no la completó, el 60% abandonó y el error de clics llegó a 57%.</li><li>Las tareas 1 y 2 funcionaron mejor en éxito, aunque la 2 mostró un error de clics alto.</li></ul></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">06</span><h2>Contraste<em>validar con quien está adentro</em></h2></div><div><p class="prose">Durante mi búsqueda de empleo tuve mentorías en ADPList. Una de ellas fue con una lead designer del primer equipo de diseño de Clue, la empresa alemana, que revisó el caso.</p><div class="rule"><h3>Lo que escuché</h3><p>Varios de los insights coincidían con temas en los que su equipo ya había trabajado.</p><ul><li>Las propuestas apuntaban a features y mejoras que ellos ya habían detectado.</li><li>No es una validación de implementación: es una señal de que el research, sin acceso a sus datos internos, llegó a preguntas parecidas.</li></ul></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">07</span><h2>Evidencia<em>del boceto al prototipo</em></h2></div><div><div class="avail"><h3>Proceso</h3><figure class=""><img src="images/clue-sketches.png" alt="Primeros bocetos — baja fidelidad para los 3 flujos principales" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-sketches.png</div><figcaption>Primeros bocetos — baja fidelidad para los 3 flujos principales</figcaption></figure><figure class=""><img src="images/clue-wireframes.png" alt="Wireframes de mediana fidelidad, iterados para testing en Maze" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-wireframes.png</div><figcaption>Wireframes de mediana fidelidad, iterados para testing en Maze</figcaption></figure></div><div class="avail"><h3>Prototipo final — onboarding</h3><figure class="narrow"><img src="images/clue-result-onboarding.png" alt="Onboarding" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-result-onboarding.png</div><figcaption>Onboarding</figcaption></figure><div class="rule"><h3></h3><ul><li>Cards del home más legibles con un diseño simplificado</li><li>Textos del onboarding revisados para ganar claridad</li><li>Botones más pequeños para no competir con la información</li></ul></div></div><div class="avail"><h3>Prototipo final — pantalla de inicio</h3><figure class="narrow"><img src="images/clue-result-startscreen.png" alt="Pantalla de inicio" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-result-startscreen.png</div><figcaption>Pantalla de inicio</figcaption></figure><div class="rule"><h3></h3><ul><li>Invitación a Plus con información relevante en contexto</li><li>Una sola pantalla con la información clave del período</li><li>Ícono de ciclo rediseñado y alertas en la barra principal</li><li>Opción para cambiar el modo de la app desde el inicio</li></ul></div></div><div class="avail"><h3>Prototipo final — seguimiento</h3><figure class="narrow"><img src="images/clue-result-tracking.png" alt="Pantalla de seguimiento" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-result-tracking.png</div><figcaption>Pantalla de seguimiento</figcaption></figure><div class="rule"><h3></h3><ul><li>Botón de personalizar síntomas separado para destacarlo</li><li>Distintos pesos tipográficos para distinguir fechas importantes</li><li>Íconos más legibles con categorización por color</li></ul></div></div><div class="avail"><h3>UI Kit</h3><div class="dstext"><div class="dscard"><small>Paleta · azules con acento rosa</small><p>#225270 · #3B8EA5 · #B8D4DD · #D4848A</p></div><div class="dscard"><small>Tipografía · Commons</small><p>Jerarquía de títulos, cuerpo, call-outs y subtítulos.</p></div></div><figure class=""><img src="images/clue-uikit.png" alt="Ilustraciones y UI kit" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-uikit.png</div><figcaption>Ilustraciones y UI kit</figcaption></figure><figure class=""><img src="images/clue-interactive.png" alt="Elementos interactivos" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="ph-box" style="display:none">clue-interactive.png</div><figcaption>Elementos interactivos</figcaption></figure></div></div></div></section><section class="sec full reveal"><div class="wrap"><div class="sec-title"><span class="num">08</span><h2>Lo que aprendí</h2></div><div><div class="refl one"><div class="rf"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5a3.5 3.5 0 1 0 7 0 3.5 3.5 0 1 0-7 0z"/></svg><h3>Un insight es una diferencia, no una opinión</h3><p>Lo útil no fue decir que la app “se sentía distante”, sino mostrar la distancia entre lo que comunica y cómo se usa. Esa diferencia ordenó la priorización y es lo que una diseñadora de Clue reconoció como cercano a su propio trabajo.</p></div></div></div></div></section>
+<section class="quote reveal"><div class="wrap"><p>“En este proyecto, el UX no se trata solo de simplificar; se trata de inspirar confianza y control sobre el propio cuerpo.”</p><small>Melany Olivares</small></div></section>
+<a class="next" href="palm.html"><div class="wrap"><div><small>Siguiente caso</small><b>PALM</b></div><span class="go">→</span></div></a>
+</main>
+<footer><div class="wrap"><span>Melany Olivares — 2026 · Hecho con código y Claude ✦ Leipzig, DE</span><span class="fl"><a href="index.html">← Inicio</a><a href="https://www.linkedin.com/in/uxmel-olivares/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="assets/cv-melany-olivares-es.pdf">CV ↓</a></span></div></footer>
+<script>/* Tema, reveal, videos, progreso y río — compartido por todas las páginas */
+(function(){
+  var root=document.documentElement;
+  function hex2rgb(h){h=h.trim();if(h[0]!=='#')return null;if(h.length===4)h='#'+h[1]+h[1]+h[2]+h[2]+h[3]+h[3];return parseInt(h.slice(1,3),16)+','+parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)}
+  function css(v){return getComputedStyle(root).getPropertyValue(v)}
+  function colors(){return {bg:hex2rgb(css('--bg')),ink:hex2rgb(css('--ink')),pop:hex2rgb(css('--river-pop'))}}
+  /* tema */
+  var btn=document.getElementById('theme');
+  function setTheme(t,save){if(t==='dark')root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');
+    if(save){try{localStorage.setItem('theme',t)}catch(e){}}
+    window.dispatchEvent(new Event('themechange'))}
+  if(btn)btn.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark',true)});
+  /* progreso de lectura */
+  var bar=document.querySelector('.progress');
+  if(bar)addEventListener('scroll',function(){var h=document.documentElement;bar.style.width=Math.min(100,h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+  /* reveal */
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  /* videos al entrar en pantalla */
+  var vo=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.3});
+  document.querySelectorAll('.lazy-video').forEach(function(v){vo.observe(v)});
+  /* río */
+  var box=document.querySelector('.case-river');
+  if(box){
+    var cv=box.querySelector('canvas'),ctx=cv.getContext('2d'),tip=box.querySelector('.tip'),C=colors();
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var W,H,dpr,stones=[],parts=[],mouse={x:-999,y:-999,on:false},t=0,boost=null,raf=0,vis=true;
+    var density=+box.dataset.density||620,angle=+box.dataset.angle||0.02,wave=+box.dataset.wave||0.5;
+    function layout(){var r=box.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.fillStyle='rgb('+C.bg+')';ctx.fillRect(0,0,W,H);
+      stones=[].map.call(box.querySelectorAll('.stone'),function(el){var x=+el.dataset.x*W,y=+el.dataset.y*H,R=+el.dataset.r*Math.max(W,900);el.style.left=x+'px';el.style.top=y+'px';el.style.width=el.style.height=R*2+'px';return{el:el,x:x,y:y,R:R,k:1}});
+      var n=Math.min(Math.round(W*H/density*3),1100);parts=[];for(var i=0;i<n;i++)parts.push(spawn(true))}
+    function spawn(any,x,y,idea){var slow=Math.random()<.5;return{x:x!=null?x:(any?Math.random()*W:-10),y:y!=null?y:Math.random()*H,v:idea?1.6:(slow?.5+Math.random()*.6:1.3+Math.random()*1.4),w:idea?2.2:(slow?1:1.5),idea:!!idea,life:idea?240:0,seed:Math.random()*100}}
+    function field(p){var a=Math.sin(p.x*.009+t*.3+p.seed*.02)+Math.cos(p.y*.012-t*.22)+Math.sin((p.x+p.y)*.006+t*.1);var ang=angle+a*wave,vx=Math.cos(ang),vy=Math.sin(ang);
+      var all=mouse.on?stones.concat([{x:mouse.x,y:mouse.y,R:18,k:.7}]):stones;
+      for(var i=0;i<all.length;i++){var s=all[i],dx=p.x-s.x,dy=p.y-s.y,d=Math.hypot(dx,dy)||1,reach=s.R*2.4;
+        if(d<reach){var f=Math.pow(1-d/reach,2)*3.2*(s.k||1),nx=dx/d,ny=dy/d,side=dy>=0?1:-1;vx+=nx*f-ny*side*f*.7;vy+=ny*f+nx*side*f*.7;if(d<s.R){p.x=s.x+nx*s.R;p.y=s.y+ny*s.R}}}
+      return[vx,vy]}
+    function step(){ctx.fillStyle='rgba('+C.bg+',.1)';ctx.fillRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){var p=parts[i],f=field(p),m=Math.hypot(f[0],f[1])||1,sp=p.v*.55*(boost&&boost.t>0?1.7:1),ox=p.x,oy=p.y;p.x+=f[0]/m*sp;p.y+=f[1]/m*sp;
+        ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(p.x,p.y);ctx.strokeStyle='rgba('+(p.idea?C.pop:C.ink)+','+(p.idea?.85:(p.w<1.2?.3:.46))+')';ctx.lineWidth=p.w;ctx.stroke();
+        if((p.idea&&--p.life<=0)||p.x>W+10||p.y<-10||p.y>H+10||p.x<-20){if(p.idea){parts.splice(i,1);i--}else parts[i]=spawn(false)}}
+      t+=.007;if(boost){boost.t--;if(boost.t<=0)boost=null}}
+    function loop(){if(vis)step();raf=requestAnimationFrame(loop)}
+    layout();if(reduce){for(var k=0;k<240;k++)step()}else loop();
+    new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(box);
+    addEventListener('resize',function(){cancelAnimationFrame(raf);layout();if(!reduce)loop()});
+    addEventListener('themechange',function(){C=colors();ctx.fillStyle='rgb('+C.bg+')';ctx.fillRect(0,0,W,H)});
+    box.addEventListener('pointermove',function(e){var r=box.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;mouse.on=true});
+    box.addEventListener('pointerleave',function(){mouse.on=false});
+    box.addEventListener('click',function(e){if(e.target.closest('.stone'))return;var r=box.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;for(var i=0;i<26;i++)parts.push(spawn(false,x+(Math.random()-.5)*14,y+(Math.random()-.5)*14,true))});
+    function showTip(s){tip.textContent=s.el.dataset.tip;var l=s.x>W*.55;tip.classList.toggle('l',l);tip.style.top=s.y+'px';if(l){tip.style.left='auto';tip.style.right=(W-s.x+s.R+16)+'px'}else{tip.style.right='auto';tip.style.left=(s.x+s.R+16)+'px'}tip.classList.add('on')}
+    stones.forEach(function(s){s.el.addEventListener('mouseenter',function(){s.k=2.2;boost={t:120};showTip(s)});
+      s.el.addEventListener('mouseleave',function(){s.k=1;tip.classList.remove('on')});
+      s.el.addEventListener('focus',function(){showTip(s)});s.el.addEventListener('blur',function(){tip.classList.remove('on')})});
+  }
+})();
+</script></body></html>
